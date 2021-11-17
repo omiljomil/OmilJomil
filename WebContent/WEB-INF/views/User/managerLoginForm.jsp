@@ -89,7 +89,7 @@ table{
 <%@ include file = "../common/header.jsp" %>
 
 <div class="headjoin">회원 가입</div>
-	<form action="<%= request.getContextPath() %>/insertJoinServlet.me"
+	<form action="<%= request.getContextPath() %>/insertManagerServlet.me"
 			 method="post" name="joinForm" onsubmit="return checkValue()">
 		<table>
 		
