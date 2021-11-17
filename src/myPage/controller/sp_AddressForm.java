@@ -1,4 +1,4 @@
-package User.controller;
+package myPage.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,43 +7,33 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import User.model.service.UserService;
-
 /**
- * Servlet implementation class DeleteUserListServlet
+ * Servlet implementation class sp_AddressForm
  */
-@WebServlet("/userDeleteManage.no")
-public class UserDeleteManageServlet extends HttpServlet {
+@WebServlet("/sp_AddressForm.me")
+public class sp_AddressForm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserDeleteManageServlet() {
+    public sp_AddressForm() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getParameter("UTF-8");
-		String[] users = request.getParameterValues("user");
-		
-		int result = new UserService().selectDelete(users);
-		
-		if(result > 0) {
-			response.sendRedirect("userManagement.no");
-		} else {
-			request.setAttribute("msg", "회원 삭제 실패");
-			request.getRequestDispatcher("WEB-INF/views/common/errorPage.jsp").forward(request, response);
-		}
+		request.getRequestDispatcher("WEB-INF/views/myPage/sp_AddressForm.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
