@@ -163,7 +163,7 @@
 				<label for=""><%= loginUser.getUserName() %>(님)</label>
 				<a href="<%=request.getContextPath() %>/loginOutFormServlet.me" class="link_text">LOGOUT</a>
 				<%} %>
-				<a href="#" class="link_text">MYPAGE</a>
+				<a href="<%=request.getContextPath() %>/mypagemain.me" class="link_text">MYPAGE</a>
 			</div>
 		
 		<!-- 우측 상단 -->
