@@ -82,7 +82,7 @@
 		</div>
 		<div class="searchbtn">
 			<button onclick='location.href="<%=request.getContextPath()%>/loginForm.me"'>로그인</button>
-			<button type="button" onclick="location.href='<%=request.getContextPath()%>/pwdFindForm.me'">비밀번호 찾기</button>
+			<button type="button" onclick="location.href='<%=request.getContextPath()%>'">메인 페이지</button>
 		</div>
 		
 	</div>
