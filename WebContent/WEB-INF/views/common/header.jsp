@@ -161,7 +161,7 @@
 				<a href="<%=request.getContextPath() %>/joinForm.me" class="link_text">JOIN</a>
 				<%}else{%>
 				<label for=""><%= loginUser.getUserName() %> <% if(loginUser.getManager().equals("Y")){ %>관리자 <%} %>(님)</label>
-				<a href="<%=request.getContextPath() %>/loginOutFormServlet.me" class="link_text">LOGOUT</a>
+				<a href="<%=request.getContextPath() %>/loginOutServlet.me" class="link_text">LOGOUT</a>
 				<%} %>
 				<a href="<%=request.getContextPath() %>/mypagemain.me" class="link_text">MYPAGE</a>
 			</div>

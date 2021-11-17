@@ -426,4 +426,7 @@ table{
 	
 </script>
 </body>
+<footer>
+		<%@ include file="../common/bottontitle.jsp" %>
+	</footer>
 </html>
