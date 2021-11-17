@@ -16,6 +16,8 @@
 </head>
 <body>
 	<div class="bottontitle">
+		
+		
 		<a href="<%=request.getContextPath()%>/managerLogin.me">회사소개</a>
 	</div>
 </body>
