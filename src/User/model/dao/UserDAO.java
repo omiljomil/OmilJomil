@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import User.model.vo.User;
-import page.PageInfo;
 
 public class UserDAO {
 	private Properties prop = null;
@@ -177,43 +176,40 @@ public class UserDAO {
 		return result;
 	}
 	
-	public ArrayList<User> userList(Connection conn, PageInfo pi) {
-		PreparedStatement pstmt = null;
+	public ArrayList<User> userList(Connection conn) {
+		Statement stmt = null;
 		ResultSet rset = null;
 		ArrayList<User> list = null;
 		
 		String query = prop.getProperty("userList");
 		
-		int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
-		int endRow = startRow + pi.getBoardLimit() - 1;
 		
 		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
-			rset = pstmt.executeQuery();
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
 			
 			list = new ArrayList<User>();
-			User user = null;
 			
 			while(rset.next()) {
-				user = new User(rset.getInt("R"),
-								rset.getString("USER_ID"),
-									rset.getString("USER_PWD"),
-									rset.getString("USER_NAME"),
-									rset.getString("PHONE"),
-									rset.getString("EMAIL"),
-									rset.getString("MANAGER"),
-									rset.getDate("ENROLL_DATE"),
-									rset.getDate("MODIFY_DATE"),
-									rset.getString("STATUS"));
-				list.add(user);
+				String userId = rset.getString("user_id");
+				String userPwd = rset.getString("user_pwd");
+				String userName = rset.getString("user_name");
+				String phone = rset.getString("phone");
+				String email = rset.getString("email");
+				String manager = rset.getString("manager");
+				Date enrollDate = rset.getDate("enroll_date");
+				Date modifyDate = rset.getDate("modify_date");
+				String status = rset.getString("status");
+				
+				User m = new User(userId, userPwd, userName, phone, email, manager, enrollDate, modifyDate, status);
+				
+				list.add(m);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(rset);
-			close(pstmt);
+			close(stmt);
 		}
 		
 		return list;
@@ -224,19 +220,19 @@ public class UserDAO {
 		ResultSet rset = null;
 		int listCount = 0;
 		
-		String query = prop.getProperty("getListCount");
+		String query = prop.getProperty("listCount");
 		
 		try {
 			stmt = conn.createStatement();
-			rset = stmt.executeQuery(query);
-			
-			if(rset.next()) {
-				listCount = rset.getInt(1);
-			}
+		    rset = stmt.executeQuery(query);
+		    
+		    if(rset.next()) {
+		    	listCount = rset.getInt(1);
+		    }
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
+		}finally {
 			close(rset);
 			close(stmt);
 		}
@@ -244,13 +240,10 @@ public class UserDAO {
 		return listCount;
 	}
 	
-	public ArrayList<User> userSearch(Connection conn, String cond, String search, PageInfo pi) {
+	public ArrayList<User> userSearch(Connection conn, String cond, String search) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<User> list = null;
-		
-		int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
-		int endRow = startRow + pi.getBoardLimit() - 1;
 		
 		String selectQuery = "";
 		
@@ -296,29 +289,22 @@ public class UserDAO {
 			}
 			
 			pstmt.setString(1, "%" + search + "%");
-			pstmt.setInt(2, startRow);
-			pstmt.setInt(3, endRow);
-			
-			System.out.println(startRow);
-			System.out.println(endRow);
-			
 			rset = pstmt.executeQuery();
 			
 			list = new ArrayList<User>();
 			
 			while(rset.next()) {
-				int num = rset.getInt("r");
 				String userId = rset.getString("user_id");
-				String userName = rset.getString("user_name");
 				String userPwd = rset.getString("user_pwd");
-				String email = rset.getString("email");
+				String userName = rset.getString("user_name");
 				String phone = rset.getString("phone");
+				String email = rset.getString("email");
 				String manager = rset.getString("manager");
 				Date enrollDate = rset.getDate("enroll_date");
 				Date modifyDate = rset.getDate("modify_date");
 				String status = rset.getString("status");
 				
-				User m = new User(num, userId, userPwd, userName, phone, email, manager, enrollDate, modifyDate, status);
+				User m = new User(userId, userPwd, userName, phone, email, manager, enrollDate, modifyDate, status);
 				
 				list.add(m);
 			}
@@ -330,70 +316,6 @@ public class UserDAO {
 		}
 		
 		return list;
-	}
-	
-	public int getSearchCount(Connection conn, String cond, String search) {
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		int count = 0;
-		
-		String selectQuery = "";
-		
-		switch(cond) {
-		case "id":
-			selectQuery = "getSearchCount1";
-			break;
-		case "name":
-			selectQuery = "getSearchCount2";
-			break;
-		case "email":
-			selectQuery = "getSearchCount3";
-			break;
-		case "phone":
-			selectQuery = "getSearchCount4";
-			break;
-		case "enroll":
-			selectQuery = "getSearchCount5";
-			break;
-		case "manager":
-			selectQuery = "getSearchCount6";
-			break;
-		case "status":
-			selectQuery = "getSearchCount7";
-			break;
-		}
-		
-		String query = prop.getProperty(selectQuery);
-		
-		try {
-			pstmt = conn.prepareStatement(query);
-			
-			if(cond.equals("status") && search.equals("가입")) {
-				search = "Y";
-			} else if(cond.equals("status") && search.equals("탈퇴")) {
-				search = "N";
-			} else if(cond.equals("manager") && search.equals("관리자")) {
-				search = "Y";
-			} else if(cond.equals("manager") && search.equals("일반회원")) {
-				search = "N";
-			}
-			
-			pstmt.setString(1, "%" + search + "%");
-			
-			rset = pstmt.executeQuery();
-			
-			if(rset.next()) {
-				count = rset.getInt(1);
-			}
-			System.out.println(count);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		
-		return count;
 	}
 	
 	public int selectDelete(Connection conn, String[] users) {
@@ -493,14 +415,14 @@ public class UserDAO {
 			
 			if(rset.next()) {
 				user = new User(rset.getString("USER_ID"),
-									rset.getString("USER_NAME"),
-									rset.getString("USER_PWD"),
-									rset.getString("EMAIL"),
-									rset.getString("PHONE"),
-									rset.getString("MANAGER"),
-									rset.getDate("ENROLL_DATE"),
-									rset.getDate("MODIFY_DATE"),
-									rset.getString("STATUS"));
+								rset.getString("USER_PWD"),
+								rset.getString("USER_NAME"),
+								rset.getString("PHONE"),
+								rset.getString("EMAIL"),
+								rset.getString("MANAGER"),
+								rset.getDate("ENROLL_DATE"),
+								rset.getDate("MODIFY_DATE"),
+								rset.getString("STATUS"));
 				}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -533,3 +455,5 @@ public class UserDAO {
 		return result;
 	}
 }
+	
+

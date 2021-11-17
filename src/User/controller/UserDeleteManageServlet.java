@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import User.model.service.UserService;
+import user.model.service.UserService;
 
 /**
  * Servlet implementation class DeleteUserListServlet

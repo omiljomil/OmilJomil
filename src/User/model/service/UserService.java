@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import User.model.dao.UserDAO;
 import User.model.vo.User;
-import page.PageInfo;
 
 
 public class UserService {
@@ -59,10 +58,10 @@ public class UserService {
 		return result;
 	}
 	
-	public ArrayList<User> userList(PageInfo pi) {
+	public ArrayList<User> userList() {
 		Connection conn = getConnection();
 		
-		ArrayList<User> list = mDAO.userList(conn, pi);
+		ArrayList<User> list = mDAO.userList(conn);
 		
 		close(conn);
 		
@@ -72,7 +71,7 @@ public class UserService {
 	public int getListCount() {
 		Connection conn=getConnection();
 		
-		int listCount = mDAO.getListCount(conn);
+		int listCount=mDAO.getListCount(conn);
 		
 		close(conn);
 		
@@ -80,24 +79,14 @@ public class UserService {
 	}
 
 	
-	public ArrayList<User> userSearch(String cond, String search, PageInfo pi) {
+	public ArrayList<User> userSearch(String cond, String search) {
 		Connection conn = getConnection();
 		
-		ArrayList<User> list = mDAO.userSearch(conn, cond, search, pi);
+		ArrayList<User> list = mDAO.userSearch(conn, cond, search);
 		
 		close(conn);
 		
 		return list;
-	}
-	
-	public int getSearchCount(String cond, String search) {
-		Connection conn=getConnection();
-		
-		int listCount = mDAO.getSearchCount(conn, cond, search);
-		
-		close(conn);
-		
-		return listCount;
 	}
 	
 	public int selectDelete(String[] users) {
@@ -165,5 +154,4 @@ public class UserService {
 		
 		return result;
 	}
-
 }
