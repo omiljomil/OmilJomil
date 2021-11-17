@@ -201,7 +201,7 @@
 
 					<li><a href="#" >신상품</a></li>
 					<li><a href="#" >베스트상품</a></li>
-					<li><a href="#" >커뮤니티</a></li>
+					<li><a href="<%= request.getContextPath() %>/community.me" >커뮤니티</a></li>
 					
 					</ul>
 				</div>
