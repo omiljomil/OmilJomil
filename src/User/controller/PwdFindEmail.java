@@ -111,7 +111,7 @@ public class PwdFindEmail extends HttpServlet {
         HttpSession saveKey = request.getSession();
         saveKey.setAttribute("Key", AuthenticationKey);
         request.setAttribute("id", userId);
-        request.getRequestDispatcher("WEB-INF/views/member/pwdFindCeNumForm.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/views/User/pwdFindCeNumForm.jsp").forward(request, response);
         
 	}
 

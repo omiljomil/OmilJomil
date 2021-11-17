@@ -1,7 +1,7 @@
 <%@page import="User.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
-    <%User m = (User)request.getAttribute("m"); %>
+    <%String name = (String)request.getAttribute("name"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +10,7 @@
 </head>
 <style>
 	.idform{
-		width: 650px;
+		width: 880px;
 		margin: 0 auto;
 		border: 1px solid #909090;
 		padding: 20px;
@@ -63,17 +63,18 @@
 </head>
 <body>
 <%@ include file = "../common/header.jsp" %>
-	<form action="<%= request.getContextPath() %>/pwdFindEmail.me"
+	<form action="<%= request.getContextPath() %>/pwdChageResult.me"
 			 method="post" name="Form" onsubmit="return checkValue()">
 	<div class="idform">
 		<h3>비밀번호 변경</h3>
 		<div class="seartext">
 			<div class="id_id">
-				비밀번호 <input type="text" id="userPwd1" name="userPwd1"/><label id="pwdCheck1"></label>
+				비밀번호 <input type="password" id="userPwd1" name="userPwd1" style="margin-left: 88px"/><label id="pwdCheck1"></label>
 			</div>
 			<div class="id_email">
-				비밀번호 확인 <input type="text" id="userPwd2" name="userPwd2"/><label id="pwdCheck2"></label>
+				비밀번호 확인 <input type="password" id="userPwd2" name="userPwd2"/><label id="pwdCheck2"></label>
 			</div>
+			<input type="hidden" name="userName" value="<%= name %>"/>
 			
 		</div>
 		<div class="searchbtn">
@@ -110,33 +111,33 @@ $('#userPwd1').on('chage paste keyup',function(){
 	 var eng = pw.search(/[a-z]/ig);
 	 var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
 
-	 if(pw.length < 8 || pw.length > 20){
+	 if(pw.length < 8 || pw.length >20){
 		$('#pwdCheck1').text("8자리 ~ 20자리 이내로 입력해주세요.");
-		$('#pwdCheck1').css({'color':'red','float':'left','display':'inline-block'});
+		$('#pwdCheck1').css({'color':'red','float':'inline-block'});
 		isPwdCheck = false;
 	 }else if(pw.search(/\s/) != -1){
 	 	 $('#pwdCheck1').text("비밀번호는 공백 없이 입력해주세요.");
-			$('#pwdCheck1').css({'color':'red','float':'left','display':'inline-block'});
+			$('#pwdCheck1').css({'color':'red','float':'inline-block'});
 			isPwdCheck = false;
 	 }else if(num < 0 || eng < 0 || spe < 0 ){
 	 		 $('#pwdCheck1').text("영문,숫자, 특수문자를 혼합하여 입력해주세요.");
-			$('#pwdCheck1').css({'color':'red','float':'left','display':'inline-block'});
+			$('#pwdCheck1').css({'color':'red','float':'inline-block'});
 			isPwdCheck = false;
 	 }else {
 		console.log("통과"); 
 		isPwdCheck = true;
 		$('#pwdCheck1').text("안전한 비밀번호 입니다.");
-		$('#pwdCheck1').css({'color':'green','float':'left','display':'inline-block'});
+		$('#pwdCheck1').css({'color':'green','float':'inline-block'});
 	 }
 });
 
 $('#userPwd2').on('chage paste keyup',function(){
-	if($('#userPwd2').val() !=$('#userPwd').val()){
+	if($('#userPwd2').val() !=$('#userPwd1').val()){
 		$('#pwdCheck2').text("비밀번호가 다릅니다.");
-		$('#pwdCheck2').css({'color':'red','float':'left','display':'inline-block'});
+		$('#pwdCheck2').css({'color':'red','float':'inline-block'});
 	}else{
 		$('#pwdCheck2').text("비밀번호가 같습니다.");
-		$('#pwdCheck2').css({'color':'green','float':'left','display':'inline-block'});
+		$('#pwdCheck2').css({'color':'green','float':'inline-block'});
 	}
 });
 

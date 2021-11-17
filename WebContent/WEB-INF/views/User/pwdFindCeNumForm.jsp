@@ -76,7 +76,7 @@
 			
 			<div class="id_email" style="">
 				인증번호 <input type="text" id="ceNum" name="ceNum"/><span id="ceNumText"></span>
-				<input type="hidden" name="<%=request.getAttribute("id")%>"/>
+				<input type="hidden" name="id" value="<%=request.getAttribute("id")%>"/>
 			</div>
 			
 		
