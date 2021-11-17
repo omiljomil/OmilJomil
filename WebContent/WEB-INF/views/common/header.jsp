@@ -160,10 +160,10 @@
 				<a href="<%=request.getContextPath() %>/loginForm.me" class="link_text">LOGIN</a>
 				<a href="<%=request.getContextPath() %>/joinForm.me" class="link_text">JOIN</a>
 				<%}else{%>
-				<label for=""><%= loginUser.getUserName() %>(님)</label>
+				<label for=""><%= loginUser.getUserName() %> <% if(loginUser.getManager().equals("Y")){ %>관리자 <%} %>(님)</label>
 				<a href="<%=request.getContextPath() %>/loginOutFormServlet.me" class="link_text">LOGOUT</a>
 				<%} %>
-				<a href="#" class="link_text">MYPAGE</a>
+				<a href="<%=request.getContextPath() %>/mypagemain.me" class="link_text">MYPAGE</a>
 			</div>
 		
 		<!-- 우측 상단 -->

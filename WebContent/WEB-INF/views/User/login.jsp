@@ -127,7 +127,7 @@ input[type="checkbox"] {
 <!--  헤더 부분 -->
 	<%@ include file = "../common/header.jsp" %>
 		<!--  메인 페이지  -->
-		<form id="loginForm" action="<%= request.getContextPath()%>/loginMemberServlet.me" method="post">
+		<form id="loginForm" action="<%= request.getContextPath()%>/loginUserServlet.me" method="post">
 		  <div id="wrap">
 		   <div class="form">
 		    <div class="form2">
