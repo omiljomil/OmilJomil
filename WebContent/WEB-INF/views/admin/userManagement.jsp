@@ -4,7 +4,6 @@
 	ArrayList<User> list = (ArrayList)request.getAttribute("list");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -274,5 +273,6 @@
 	<div class="layout" id="space5"></div>
 	
 <%@ include file="../common/bottontitle.jsp" %>
+
 </body>
 </html>

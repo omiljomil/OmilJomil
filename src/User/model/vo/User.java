@@ -131,5 +131,4 @@ public class User {
 				+ ", phone=" + phone + ", email=" + email + ", manager=" + manager + ", enrollDate=" + enrollDate
 				+ ", modifyDate=" + modifyDate + ", status=" + status + "]";
 	}
-	
 }

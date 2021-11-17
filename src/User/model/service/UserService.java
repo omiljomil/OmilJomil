@@ -149,7 +149,7 @@ public class UserService {
 		
 		return user;
 	}
-	
+	 
 	public int deleteUser(String userId) {
 		Connection conn = getConnection();
 		
@@ -165,5 +165,4 @@ public class UserService {
 		
 		return result;
 	}
-
 }
