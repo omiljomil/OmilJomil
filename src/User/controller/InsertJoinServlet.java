@@ -42,7 +42,7 @@ public class InsertJoinServlet extends HttpServlet {
 		
 		if(result > 0) {
 			request.setAttribute("userName", userName);
-			request.getRequestDispatcher("WEB-INF/views/User/joinresultForm.jsp").forward(request, response);
+			request.getRequestDispatcher("WEB-INF/views/User/joinResultForm.jsp").forward(request, response);
 		}else {
 			request.setAttribute("msg", "회원가입에 실패하였습니다");
 			request.getRequestDispatcher("WEB-INF/views/common/errorPage.jsp").forward(request, response);

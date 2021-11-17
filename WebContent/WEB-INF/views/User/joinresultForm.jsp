@@ -86,8 +86,8 @@
 			</div>
 		</div>
 		<div class="searchbtn">
-			<a href="login.jsp"><button>로그인</button></a>
-			<button >메인페이지</button>
+			<button onclick='location.href="<%=request.getContextPath()%>/loginForm.me"'>로그인</button>
+			<button onclick="location.href='<%=request.getContextPath()%>'">메인페이지</button>
 		</div>
 		
 	</div>
