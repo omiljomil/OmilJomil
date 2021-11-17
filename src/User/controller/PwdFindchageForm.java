@@ -31,7 +31,7 @@ public class PwdFindchageForm extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId = request.getParameter("id");
 		User m = new UserService().userIdsearch(userId);
-		request.setAttribute("m", m);
+		request.setAttribute("name", m.getUserName());
 		request.getRequestDispatcher("WEB-INF/views/User/pwdFindChageForm.jsp").forward(request, response);
 	}
 

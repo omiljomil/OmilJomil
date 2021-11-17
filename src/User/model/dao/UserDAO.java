@@ -122,7 +122,7 @@ public class UserDAO {
 		ResultSet rset = null;
 		User m = null;
 		
-		String query = prop.getProperty("UserIdsearch");
+		String query = prop.getProperty("userIdsearch");
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, userId);
