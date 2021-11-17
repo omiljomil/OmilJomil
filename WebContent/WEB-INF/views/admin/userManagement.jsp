@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList,user.model.vo.User, page.PageInfo" %>
+    pageEncoding="UTF-8" import="java.util.ArrayList,User.model.vo.User, page.PageInfo" %>
 <%
 	ArrayList<User> list = (ArrayList)request.getAttribute("list");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
 %>
 
 <!DOCTYPE html>
@@ -52,7 +53,9 @@
 	#menu-search {text-align: center;}
 	#userlist {text-align: center; width: 1230px;}
 	#address {text-align: left;}
-	.pagingArea input, button {background: white; border: 1px solid #ddd; width: 30px; height: 30px;}
+	.pagingArea input, button {background: white; border: 1px solid #ddd; width: 40px; height: 40px; font-size: 14px;}
+	#choosen {font-weight: bold; background: Seashell; color: black; cursor: text;}
+	
 	/* 하단 버튼 */
 	#space2 {height: 105px; text-align: center;}
 	#space3 {height: 70px; text-align: center;}
@@ -69,7 +72,7 @@
 		<div class="layout" id="subject">회원 목록 조회</div>
 		<div class="layout" id="line2"></div>
 		<div class="layout" id="space4"></div>
-		<form action="<%= request.getContextPath() %>/searchUserManagement.no" method="post" id="userListForm">
+		<form action="<%= request.getContextPath() %>/searchUserManagement.no" method="post" id="userSearchForm">
 			<div class="layout" id="search_space">
 				<div class="user_search_subject">회원검색</div><!-- 
 				 --><div class="user_search_select">
@@ -91,6 +94,9 @@
 				 </div>
 			</div>
 			<div class="layout" id="space5"></div>
+		</form>
+		
+		<form id="userListForm">
 		
 			<div class="layout" id="space6">
 				<input type="button" id="selectDelete" value="선택 회원 삭제" onclick="return userDelete();">
@@ -125,7 +131,7 @@
 							<% } %>
 							</td>
 							<td>
-								<%= list.size() - i %>
+								<%= list.get(i).getRnum() %>
 							</td>
 							<td><%= list.get(i).getUserId() %></td>
 							<td><%= list.get(i).getUserName() %></td>
@@ -158,9 +164,40 @@
 				<% } %>
 				</tbody>
 			</table>
-					
+			
 		</form>
-	
+		
+		<div class="layout" id="space7"></div>
+		
+		<div class="pagingArea" align="center">
+			<!-- 맨 처음으로 -->
+			<input type="button" onclick="location.href='<%= request.getContextPath() %>/userManagement.no?currentPage=1'" value="처음">
+			<!-- 이전 페이지로 -->
+			<input type="button" id="beforeBtn" onclick="location.href='<%= request.getContextPath() %>/userManagement.no?currentPage=<%= pi.getCurrentPage() - 1 %>'"  value="이전">
+			<script>
+				if(<%= pi.getCurrentPage() %> <= 1) {
+					$('#beforeBtn').prop('disabled', true);
+				}
+			</script>
+			<!-- 숫자 버튼 -->
+			<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++) { %>
+				<% if(p == pi.getCurrentPage()) { %>
+					<input type="button" id="choosen" disabled value="<%= p %>">
+				<% } else { %>
+					<input type="button" id="numBtn" onclick="location.href='<%= request.getContextPath() %>/userManagement.no?currentPage=<%= p %>'" value="<%= p %>">
+				<% } %>
+			<%  } %>
+			<!-- 다음 페이지로 -->
+			<input type="button" id="afterBtn" onclick="location.href='<%= request.getContextPath() %>/userManagement.no?currentPage=<%= pi.getCurrentPage() + 1 %>'" value="다음">
+			<script>
+				if(<%= pi.getCurrentPage() %> >= <%= pi.getMaxPage() %>) {
+					$('#afterBtn').prop('disabled', true);
+				}
+			</script>
+			<!-- 맨 끝으로 -->
+			<input type="button" onclick="location.href='<%= request.getContextPath() %>/userManagement.no?currentPage=<%= pi.getMaxPage() %>'" value="끝">
+		</div>
+		
 		<script>
 			var all = document.getElementById('all');
 			var user = document.getElementsByName('user');
