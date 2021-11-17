@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
+import User.model.service.UserService;
+import User.model.vo.User;
+
+
 /**
  * Servlet implementation class DeleteEndServlet
  */
@@ -32,12 +36,10 @@ public class DeleteEndServlet extends HttpServlet {
 		response.sendRedirect(request.getContextPath());
 	}
 		
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-
 }
