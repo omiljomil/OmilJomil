@@ -90,4 +90,7 @@
 		
 	</div>
 </body>
+<footer>
+		<%@ include file="../common/bottontitle.jsp" %>
+	</footer>
 </html>

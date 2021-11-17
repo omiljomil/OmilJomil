@@ -34,6 +34,9 @@
 	<input type="button" id="usedNick" value="확인">
 	<input type="button" id="cancel" value="취소" onclick="window.close();">
 </body>
+<footer>
+		<%@ include file="../common/bottontitle.jsp" %>
+	</footer>
 <script>
 	function inputValue(){
 		if(<%= result %> == null){

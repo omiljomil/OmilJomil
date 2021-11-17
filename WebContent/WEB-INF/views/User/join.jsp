@@ -83,6 +83,10 @@ table{
 		margin-bottom: 20px;
 		
 	}
+	.must{
+		color: red;
+		font-size: 15px;
+	}
 </style>
 </head>
 <body>
@@ -94,32 +98,32 @@ table{
 		<table>
 		
 			<tr>
-				<td class="jointitle" rowspan="2">아이디</td>
-				<td class="checktd"><input type="text" name = "userId" id="userId" style="width: 180px;"/></td>
+				<td class="jointitle" rowspan="2"><label class="must">*</label>아이디</td>
+				<td class="checktd"><input type="text" name = "userId" id="userId" style="width: 180px;"/><div id="pwdcon">4자리 이상</div></td>
 			</tr>
 			<tr>
 				<td class="labeltd"><label id="idCheck">아이디를 입력해주세요.</label></td>
 			</tr>
 			<tr>
-				<td class="jointitle">이름</td>
+				<td class="jointitle"><label class="must">*</label>이름</td>
 				<td><input type="text" name = "username" id="username" style="width: 180px;"/>
 			</tr>
 			<tr>
-				<td rowspan="2" class="jointitle">비밀번호</td>
+				<td rowspan="2" class="jointitle"><label class="must">*</label>비밀번호</td>
 				<td  class="checktd"><input type="password" name = "userPwd" id="userPwd"/><div id="pwdcon">영문/숫자/특수문자 조합(8-20자)</div></td>
 			</tr>
 			<tr>
-				<td class="labeltd"><label id="pwdCheck1">안전한 비밀번호 입니다.</label></td>
+				<td class="labeltd"><label id="pwdCheck1">비밀번호를 입력해주세요.</label></td>
 			</tr>
 			<tr>
-				<td rowspan="2" class="jointitle">비밀번호 확인</td>
+				<td rowspan="2" class="jointitle"><label class="must">*</label>비밀번호 확인</td>
 				<td  class="checktd"><input type="password" name = "userPwd2" id="userPwd2"/></td>
 			</tr>
 			<tr>
-				<td class="labeltd"><label id="pwdCheck2">비밀번호가 일치하지 않습니다.</label></td>
+				<td class="labeltd"><label id="pwdCheck2"></label></td>
 			</tr>
 			<tr>
-				<td class="jointitle" rowspan="3">이메일</td>
+				<td class="jointitle" rowspan="3"><label class="must">*</label>이메일</td>
 				<td class="checktd"><input type="text" style="width: 150px;" id="email1"name = "email1"/> @ 
 				<input type="text" name = "email2" id="email2" style="width: 150px;" /> 
 																	<select name = "email3" id="email">
@@ -139,7 +143,7 @@ table{
 				<td class="labeltd" ><label id="ceNumText"/></label></td>				
 			</tr>
 			<tr>
-				<td class="jointitle">휴대폰 번호</td>
+				<td class="jointitle"><label class="must">*</label>휴대폰 번호</td>
 				<td><input type="tel" class="phone" name = "phone" style="width: 320px;"></td>
 			</tr>
 			<!--  
@@ -166,7 +170,9 @@ table{
 	</div>
 	</form>
 	<br>
-	
+	<footer>
+		<%@ include file="../common/bottontitle.jsp" %>
+	</footer>
 	<!-- 
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -397,5 +403,6 @@ table{
 
 	
 </script>
+ 
 </body>
 </html>

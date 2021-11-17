@@ -36,6 +36,8 @@
 		margin-left: 50px;
 		padding: 6px;
 		margin-right: 20px;
+		border: none;
+		border-bottom: 1px solid #606060;
 	}
 	.seartext .id_name input{
 		margin-left: 66px;
@@ -81,6 +83,9 @@
 	</div>
 	</form>
 </body>
+<footer>
+		<%@ include file="../common/bottontitle.jsp" %>
+	</footer>
 <script>
 	function checkValue(){
 		 var form = document.Form;
