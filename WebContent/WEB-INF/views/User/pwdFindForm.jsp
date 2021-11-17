@@ -33,6 +33,7 @@
 	}
 	
 	.seartext input{
+		width:230px;
 		margin-left: 50px;
 		padding: 6px;
 		margin-right: 20px;
