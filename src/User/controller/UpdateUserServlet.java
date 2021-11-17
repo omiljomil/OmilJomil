@@ -1,4 +1,4 @@
-package user.controller;
+package User.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import user.model.service.UserService;
-import user.model.vo.User;
+import User.model.service.UserService;
+import User.model.vo.User;
 
 /**
  * Servlet implementation class UpdateUserServlet
