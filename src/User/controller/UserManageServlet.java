@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import user.model.service.UserService;
-import user.model.vo.User;
+import User.model.service.UserService;
+import User.model.vo.User;
 
 /**
  * Servlet implementation class UserListServlet
