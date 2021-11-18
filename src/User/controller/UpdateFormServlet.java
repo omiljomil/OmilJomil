@@ -50,7 +50,7 @@ public class UpdateFormServlet extends HttpServlet {
 		String page = "";
 		if(result != 0) {
 			request.setAttribute("m", m);
-			page = "WEB-INF/views/user/userUpdateForm.jsp";
+			page = "WEB-INF/views/User/userUpdateForm.jsp";
 		} else {
 			request.setAttribute("msg", "비밀번호가 일치하지 않습니다.");
 			page = "WEB-INF/views/common/errorPage.jsp";
