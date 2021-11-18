@@ -41,6 +41,8 @@
 		margin-left: 50px;
 		padding: 6px;
 		margin-right: 20px;
+		border: none;
+		border-bottom: 1px solid #606060;
 	}
 	.seartext .id_name input{
 		margin-left: 66px;
@@ -74,7 +76,7 @@
 			
 			<div class="id_email" style="">
 				인증번호 <input type="text" id="ceNum" name="ceNum"/><span id="ceNumText"></span>
-				<input type="hidden" name="<%=request.getAttribute("id")%>"/>
+				<input type="hidden" name="id" value="<%=request.getAttribute("id")%>"/>
 			</div>
 			
 		
@@ -86,6 +88,9 @@
 	</div>
 	</form>
 </body>
+<footer>
+		<%@ include file="../common/bottontitle.jsp" %>
+	</footer>
 <script>
 var form = document.ceNumForm;
 var ceNumCheck = false;

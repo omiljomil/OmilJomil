@@ -183,6 +183,9 @@
 	</div>
 	</form>
 </body>
+<footer>
+		<%@ include file="../common/bottontitle.jsp" %>
+	</footer>
 	<script>
 	function checkValue(){
 		var form = document.joinForm;

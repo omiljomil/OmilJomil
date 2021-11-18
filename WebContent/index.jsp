@@ -11,7 +11,7 @@
 	text-align: center;
 	margin-top: 80px;
 	}
-	
+	   
 	.newproduct table{
 		width: 950px;
 		margin: 0 auto;
