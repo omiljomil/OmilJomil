@@ -1,4 +1,4 @@
-package product.controller;
+package paiement.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,20 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-import product.model.service.ProductService;
-
 /**
- * Servlet implementation class ProductDeleteServlet
+ * Servlet implementation class PaiementPageServlet
  */
-@WebServlet("/productDelete.pr")
-public class ProductDeleteServlet extends HttpServlet {
+@WebServlet("/paie.me")
+public class PaiementPageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductDeleteServlet() {
+    public PaiementPageServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,19 +26,7 @@ public class ProductDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		int pNo = Integer.parseInt(request.getParameter("pNo"));
-		
-		
-		int result = new ProductService().deleteProduct(pNo);
-		
-		if(result > 0) {
-			response.sendRedirect("ManagerProductList.pr");
-		}else {
-			
-			request.setAttribute("msg", "상품 삭제 실패");
-			request.getRequestDispatcher("WEB-INF/views/common/errorPage.jsp");
-		}
+		request.getRequestDispatcher("WEB-INF/views/paiement/paiementPage.jsp").forward(request, response);
 	}
 
 	/**

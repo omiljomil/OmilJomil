@@ -15,6 +15,9 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <style>
+div{
+	background-color: white;
+}
 #nav_list{
 	height: 50px;
 }
@@ -162,16 +165,16 @@
 			 Product p = pList.get(i);
 			 
 			 %>
-				<input type="hidden" name="prodNo" value="<%= p.getProdNo() %>">
+				
 				<% for(int j = 0; j < fList.size(); j++){ %>
 				<% Photo ph = fList.get(j); %>
 					<% if(ph.getProdNo() == p.getProdNo() && ph.getType() == 0){ %>	
 			<div class="col-md-4">
 				<a class="proThumb">
-				
-				<p> <img src="<%= request.getContextPath() %>/thumbnail_uploadFiles/<%= ph.getImgChangeName() %>" width="200px" height="200px">
-				<h3><%= p.getProdName() %></h3>
-				<p><%= p.getPrice() %>원
+					<input type="hidden" value="<%= p.getProdNo() %>">
+					<p> <img src="<%= request.getContextPath() %>/thumbnail_uploadFiles/<%= ph.getImgChangeName() %>" width="200px" height="200px">
+					<h3><%= p.getProdName() %></h3>
+					<p><%= p.getPrice() %>원
 				<%= p.getProdNo() %>
 				</a>
 			</div>
@@ -228,7 +231,7 @@
 		
  $('.proThumb').click(function(){
 		console.log(123);
-		var pNo = $("input[name=prodNo]",document.form).val();
+		var pNo = $(this).children().eq(0).val();
 		console.log(pNo);
 		location.href = "<%= request.getContextPath() %>/proDetail.bo?pNo=" + pNo;
 	}); 
