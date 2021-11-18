@@ -147,11 +147,11 @@ border:1px solid darkgray;
           <span id="notice-title">공지사항</span>
 
           <div id="route">
-          <div><a href="#">홈</a></div>
+          <div><a href="<%=request.getContextPath() %>">홈</a></div>
           <div>--></div>
-          <div><a href="#">커뮤니티</a></div>
+          <div><a href="<%=request.getContextPath() %>/community.me">커뮤니티</a></div>
           <div>--></div>
-          <div><a href="#">공지사항</a></div>
+          <div><a href="<%=request.getContextPath()%>/noticeList.me">공지사항</a></div>
           </div>
           
           <div id="search">
@@ -205,15 +205,7 @@ border:1px solid darkgray;
         	var num=$(this).parent().children().eq(0).text();
     		location.href='<%=request.getContextPath() %>/noticeDetail.me?me=' + num;
         });
-        
-        
-        
-        /* $(".notice-table-list th").mouseout(function(){
-        	$(this).css({'text-decoration':'none'});
-        }); */
-        
-        
-        
+     
         </script>
 
       <section id="paising">
