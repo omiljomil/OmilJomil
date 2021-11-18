@@ -212,9 +212,10 @@ width:1000px;
 		  </script>
          
          
-         
+          <%if (loginUser!=null&&loginUser.getUserName().equals("운영자")){ %>
          <button type="submit" id="modify-button" class="system"><!-- onclick="location.href='update.me'" -->수정</button>
          <button type="button" id="delete-button" class="system" onclick="deleteNotice();" >삭제</button>
+       <%} %>
        </form>
        
        
