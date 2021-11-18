@@ -19,11 +19,16 @@ public class ProductService {
 
 	private ProductDAO pDAO = new ProductDAO();
 	
-	public int deleteProduct(int productNo) {
+	public int deleteProduct(int pNo) {
 		Connection conn = getConnection();
-		int result = 0;
 		
-		result = pDAO.deleteProduct(conn, productNo);
+		int result = pDAO.deleteProduct(conn, pNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
 		
 		close(conn);
 		

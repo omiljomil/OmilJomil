@@ -13,7 +13,7 @@ import product.model.service.ProductService;
 /**
  * Servlet implementation class ProductDeleteServlet
  */
-@WebServlet("/productDelete.do")
+@WebServlet("/productDelete.pr")
 public class ProductDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -29,21 +29,19 @@ public class ProductDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(123);
-		String no = request.getParameter("no");
-		int noticeNo = Integer.parseInt(no.trim());
+		
+		int pNo = Integer.parseInt(request.getParameter("pNo"));
 		
 		
-//		int result = new ProductService().deleteProduct(noticeNo);
-//		
-//		if(result > 0) {
-//			response.sendRedirect("productList.do");
-//		}else {
-//			
-//			request.setAttribute("msg", "상품 삭제 실패");
-//			request.getRequestDispatcher("WEB-INF/views/common/errorPage.jsp");
-//		}
-		request.getRequestDispatcher("WEB-INF/views/product/managerProductList.jsp");
+		int result = new ProductService().deleteProduct(pNo);
+		
+		if(result > 0) {
+			response.sendRedirect("ManagerProductList.pr");
+		}else {
+			
+			request.setAttribute("msg", "상품 삭제 실패");
+			request.getRequestDispatcher("WEB-INF/views/common/errorPage.jsp");
+		}
 	}
 
 	/**

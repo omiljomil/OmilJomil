@@ -1,10 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="product.model.vo.Product"%>
+    pageEncoding="UTF-8" import="product.model.vo.*, java.util.*"%>
 <% 
-
-	Product p = (Product)request.getAttribute("p"); 
-
-
+	Product p = (Product)request.getAttribute("product"); 
+	ArrayList<Photo> fileList = (ArrayList<Photo>)request.getAttribute("fileList");
 %>
 <!DOCTYPE html>
 <html>
@@ -94,86 +92,107 @@
 	<div id="updateProductTitle">상품등록</div>
 	<!-- 저장 버튼을 누르면 insert.pr로 이동(최종적으로 등록하면 등록상품리스트페이지로 이동) -->
 	<form action="<%= request.getContextPath() %>/productUpdate.pr" enctype="multipart/form-data" method="post">
-	
+		
 		<table class="productTable">
 			<tr>
 				<td class="tableName">메인카테고리</td>
 				<td>
-					<select id="mainCategory" name="mainCategory">
-						<option value="all" >전체</option>
-						<option value="veganType" >채식유형별</option>
-						<option value="mainType" >메인재료별</option>
+					<select id="updateMainCategory" name="mainCategory">
+						<option value="default" >선택</option>
+						<option value="100" >채식유형별</option>
+						<option value="200" >메인재료별</option>
 					</select>
 				</td>
 				<td class="tableName">상세카테고리</td>
 				<td>
-					<select id="detailCategory" name="detailCategory">
-						<option value="all">전체</option>
-						<option value="10">채식유형별</option>
-						<option value="20">메인재료별</option>
-						<option value="30">추천별</option>					
+					<select id="updateDetailCategory" name="detailCategory">
+						<option value="101">비건</option>
+						<option value="102">락토</option>
+						<option value="103">오보</option>
+						<option value="104">락토오보</option>
+						<option value="105">폴로</option>
+						<option value="106">페스코</option>
+						<option value="107">플렉시테리안</option>	
+						
+						<option value="201">콩고기</option>		
+						<option value="202">유제품</option>		
+						<option value="203">생선</option>		
+						<option value="204">야채</option>		
+						<option value="205">육류</option>	
+			
 					</select>
 				</td>
 			</tr>
 			<tr>
 				<td class="tableName">상품명</td>
 				<td colspan="3">
-					<input type="text" id="productName" name="productName" value="<%= p.getProdName() %>">
+					<input type="text" id="updateProductName" name="productName" value="<%= p.getProdName() %>">
+					
 				</td>
 			</tr>
 			<tr>
 				<td class="tableName">재료명</td>
 				<td colspan="3">
-					<input type="text" id="mainMtrl" name="mainMtrl" value="<%= p.getMtrlName() %>">
+					<input type="text" id="updateMainMtrl" name="mainMtrl" value="<%= p.getMtrlName() %>">
+					
 				</td>
 			</tr>
 			<tr>
 				<td class="tableName">상품가격</td>
 				<td colspan="3">
-					<input type="text" id="productPrice" name="productPrice" value="<%= p.getPrice() %>">
+					<input type="text" id="updaetProductPrice" name="productPrice" value="<%= p.getPrice() %>">
+					
 				</td>
 			</tr>
 			<tr>
 				<td class="tableName">간단상품설명</td>
 				<td>
 					<input type="text" class="shortInfo" name="shortInfo" value="<%= p.getShortInfo() %>">
-				</td>			
+					
+				</td>
 			</tr>
 			<tr>
 				<td class="tableName">해시태그</td>
 				<td colspan="3">
-					<input type="text" id="hashtag" name="hashtag" value="<%= p.getProdTag() %>">
-				</td>
-			</tr>
-			<tr  rowspan="2">
-				<td class="tableName">대표이미지등록</td>
-				<td>
-					<input type="file" id="thumImg" name="thumImg" width="" height="">
+					<input type="text" id="updateHashtag" name="hashtag" value="<%= p.getProdTag() %>">
+				
 				</td>
 			</tr>
 			<tr rowspan="2">
-				<td class="tableName">이미지등록</td>
+				<td class="tableName">대표이미지등록</td>
 				<td>
-					<input type="file" id="imgs" name="imgs" width="" height="">
+					<div class="imgArea" id="updateThumbnailArea"><img id="updateThumImg" width="270px" height="170px" src="<%= request.getContextPath() %>/thumbnail_uploadFiles/<%= fileList.get(0).getImgChangeName()%>"></div>
 				</td>
-				
+			</tr>
+			<tr>
+				<td class="tableName">이미지등록</td>
+				<td style="border:1px solid black;">
+					<div class="imgArea" id= "updateImgArea1"><img id="updateImgs1" width="270px" height="170px" src="<%= request.getContextPath() %>/thumbnail_uploadFiles/<%= fileList.get(1).getImgChangeName()%>"></div>
+				</td>
+				<td style="border:1px solid black;">
+					<div class="imgArea" id= "updateImgArea2"><img id="updateImgs2" width="270px" height="170px" src="<%= request.getContextPath() %>/thumbnail_uploadFiles/<%= fileList.get(2).getImgChangeName()%>"></div>
+				</td>
+				<td style="border:1px solid black;">
+					<div class="imgArea" id= "updateImgArea3"><img id="updateImgs3" width="270px" height="170px" src="<%= request.getContextPath() %>/thumbnail_uploadFiles/<%= fileList.get(3).getImgChangeName()%>"></div>
+				</td>			
 			</tr>
 			<tr>
 				<td class="tableName">상품설명</td>
 				<td colspan="3">
-					<input type="textarea" id="productInfo" name="productInfo" value="<%= p.getProdExple() %>">
+					<textarea id="productInfo" name="productInfo" style="resize:none;"> <%= p.getProdExple() %></textarea>
+					
 				</td>
 			</tr>
-			<!-- 파일 업로드 하는 부분 -->
-				<div id="fileArea">
-					<input type="file" id="thumbnailImg1" multiple="multiple" name="thumbnailImg1" onchange="LoadImg(this,1)">
-					<input type="file" id="thumbnailImg2" multiple="multiple" name="thumbnailImg2" onchange="LoadImg(this,2)">
-					<input type="file" id="thumbnailImg3" multiple="multiple" name="thumbnailImg3" onchange="LoadImg(this,3)">
-					<input type="file" id="thumbnailImg4" multiple="multiple" name="thumbnailImg4" onchange="LoadImg(this,4)">
-				</div>
-			
-			
+
 		</table>
+		<!-- 파일 업로드 하는 부분 -->
+		<div id="updateFileArea">
+			<input type="file" id="updateThumbnailImg" multiple="multiple" name="thumbnailImg1" onchange="LoadImg(this,1)">
+			<input type="file" id="updateThumbnailImg1" multiple="multiple" name="thumbnailImg2" onchange="LoadImg(this,2)">
+			<input type="file" id="updateThumbnailImg2" multiple="multiple" name="thumbnailImg3" onchange="LoadImg(this,3)">
+			<input type="file" id="updateThumbnailImg3" multiple="multiple" name="thumbnailImg4" onchange="LoadImg(this,4)">
+		</div>
+	
 		<input type="submit" id="insertProductBtn" value="저장">
 		<!-- 취소를 누르면 상품등록리스트로 이동하게 하기 -->
 		<input type="reset" id="resetProductBtn" value="취소" onclick="location.href='<%= request.getContextPath() %>/ManagerProductList.pr'">
@@ -190,47 +209,56 @@
 	
 	<script>
 	$(function(){
-		$("#fileArea").hide();//버튼을 숨김
+		$("#updateFileArea").hide();//버튼을 숨김
 		
-		$("#titleImgArea").click(function(){
-			$("#thumbnailImg1").click();
+		$("#updateThumbnailArea").click(function(){
+			$("#updateThumbnailImg").click();
 		});
-		$("#contentImgArea1").click(function(){
-			$("#thumbnailImg2").click();
+		$("#updateImgArea1").click(function(){
+			$("#updateThumbnailImg1").click();
 		});
-		$("#contentImgArea2").click(function(){
-			$("#thumbnailImg3").click();
+		$("#updateImgArea2").click(function(){
+			$("#updateThumbnailImg2").click();
 		});
-		$("#contentImgArea3").click(function(){
-			$("#thumbnailImg4").click();
+		$("#updateImgArea3").click(function(){
+			$("#updateThumbnailImg3").click();
 		});
+		
 	});
-		
 		function LoadImg(value, num){
 			// 각각의 영역에 파일을 첨부 했을 경우 미리 보기가 가능하도록 하는 함수
-			
-			
+				
 			if(value.files && value.files[0]){
-				var reader = new FileReader();
+				var reader = new FileReader();//파일을 읽기 위함 함수
 							
 					reader.onload = function(e){								
 					switch(num){
 					case 1: 
-						$("#mainFileName").attr("src", e.target.result);//타겟result:경로를 가져옴
+						$("#updateThumImg").attr("src", e.target.result);//타겟result:경로를 가져옴
 						break;
 					case 2:
-						$("#fileName").attr("src", e.target.result);
+						$("#updateImgs1").attr("src", e.target.result);
+						break;
+					case 3:
+						$("#updateImgs2").attr("src", e.target.result);
+						break;
+					case 4:
+						$("#updateImgs3").attr("src", e.target.result);
 						break;
 					
 					}
 				}
-							
-				reader.readAsDataURL(value.files[0]);//여러 사진을 선택하여 업로드 할 경우 처음선택한 사진만 업로드 됨(한 공간에는 한 사진만 올라감)
+					//여러 사진을 선택하여 업로드 할 경우 처음선택한 사진만 업로드 됨(한 공간에는 한 사진만 올라감)			
+				reader.readAsDataURL(value.files[0]);
 			}
 		}
+		
+		
 	
 	</script>
-		
+	
+	
+
 
 </body>
 </html>
