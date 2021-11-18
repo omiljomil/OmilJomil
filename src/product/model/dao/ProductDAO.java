@@ -42,7 +42,7 @@ public class ProductDAO {
 
 	}
 
-	public int deleteProduct(Connection conn, int productNo) {
+	public int deleteProduct(Connection conn, int pNo) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
@@ -50,7 +50,7 @@ public class ProductDAO {
 		String query = prop.getProperty("deleteProduct");
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, productNo);
+			pstmt.setInt(1, pNo);
 			
 			result = pstmt.executeUpdate();
 			
