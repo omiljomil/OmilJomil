@@ -85,8 +85,6 @@ public class ReviewUpdateServlet extends HttpServlet {
 				  }
 				 Review r=new Review(reviewNo, reviewTitle, reviewCon, userId, userName, enRollDate, null, null);	
 				
-			
-			 
 					    Photo p=new Photo();
 						p.setFilePath(savePath);
 						p.setImgName(originFiles.get(0));
@@ -94,10 +92,6 @@ public class ReviewUpdateServlet extends HttpServlet {
 						p.setReviewNo(reviewNo);
 						p.setFileLevel(0);
 						
-				
-					
-			
-			 
 			  System.out.println(r);
 			  System.out.println(p);
 			 int result=new ReviewService().updateReview(r,p);
