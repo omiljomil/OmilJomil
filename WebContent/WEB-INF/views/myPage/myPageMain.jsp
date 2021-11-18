@@ -118,7 +118,7 @@
 			<br><br>
 			<div class="zzim">
 				<ul class="zzim_title">
-					<li>찜키트 상품<input type="button" class="zzimkit" value="전체 보기 >"></li>
+					<li>찜키트 상품<input type="button" onclick="location.href='<%=request.getContextPath() %>/zzim.me';" class="zzimkit" id="zzimkit" value="전체 보기 >"></li>
 				</ul>
 				<table>
 					<tr>
@@ -177,6 +177,7 @@
 
 	</div>
 	
+
 	
 </body>
 
