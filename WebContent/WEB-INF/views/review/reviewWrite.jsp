@@ -250,29 +250,21 @@ position:absolute;
 	            </tr>
 	            <tr>
 	                <th>작성자</th>
-	                <%if(user!=null){ %>
-	                <th><input type="text" id="review-text-title" placeholder="이름 입력" name="name"value="<%=user.getUserName() %>"></th>
-	                <%}else{ %>
-	                 <th><input type="text" id="review-text-title" placeholder="이름 입력" name="name"></th>
-	                 <%} %>
+	                <th><%=loginUser.getUserName() %><input type="hidden" id="review-text-title" placeholder="이름 입력" name="name"value="<%=user.getUserName() %>"></th>
 	            </tr>
 	            
 	        </table>
 	      </div>
 
 			    <div id="review-content">
-			        <textarea  id="review-text-content" name="content" cols="150" rows="21" placeholder="이미지%내용입력"></textarea>
+			        <textarea  id="review-text-content" class="editor" name="content" cols="150" rows="21" placeholder="이미지%내용입력"></textarea>
 		   
 				 </div>
  
-     
          <div id="fileArea">
 					<input type="file" id="thumbnailImg1" multiple="multiple" name="thumbnailImg1" onchange="LoadImg(this,1)" required="required">
 				</div>
-  
-    
-  
-   
+ 
   			 <script>
   			 CKEDITOR.replace('content'
   	                , {height: 500 ,
@@ -282,13 +274,10 @@ position:absolute;
 					// 내용 작성 부분의 공간을 클릭할 때 파일 첨부 창이 뜨도록 설정하는 함수
 					$(function(){
 						$("#fileArea").hide();
-						
 						$("#review-product-image").click(function(){
 							//div 내용사진부분을 클릭함으로써 input file의 해당하는 태그는hiddent이므로 그 input을 누르게되는 효과 속성
 							$("#thumbnailImg1").click();
-				
 								});
-
 					});
 					
 					function LoadImg(value, num){
@@ -313,14 +302,14 @@ position:absolute;
 	 </section>	 			
 	 
 	 <script>
-      
 		 $('#input-save').click(function(){
+			 var value = CKEDITOR.instances['review-text-content'].getData();
+			  console.log(value);
 			    if($.trim ($('#review-text-title').val())==""){
 			        console.log("값이 비어있습니다.");
-			        console.log($('#thumbnailImg1').val());
 			        $('#review-text-title').select();
 			      alert("제목을 입력해주세요");
-			    }else if($.trim ($('#review-text-content').val())==""){
+			    }else if($.trim(value)==""){
 			        console.log("값이 비어있습니다.");
 			        $('#review-text-content').select();
 			      alert("내용을을 입력해주세요");
@@ -332,15 +321,14 @@ position:absolute;
 			        $('#input-save').attr('type','submit');
 			        $('#input-save').submit();
 			    }
-			   
-			   });
+		 });
 		 
 		 $('#input-cancle').click(function(){
 		     var bool=confirm("내용이 저장되지 않을 수도 있습니다. 작성을 취소하시겠습니까?");
 		     if(bool){
 		    	 location.href='javascript:history.go(-1);'
 		     }
-		  });  
+	    });  
 		 
 		 $('#go-button').click(function(){
 			  var bool=confirm("내용이 저장되지 않을 수도 있습니다. 작성을 취소하시겠습니까?");
