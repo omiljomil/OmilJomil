@@ -43,7 +43,7 @@
 	}
 	table {margin-left: auto; margin-right: auto;}
 	th, td {text-align: center;}
-	#selectDelete {
+	#selectDelete {    
 		width: 135px; height: 40px; background: #5E5E5E; color: white;
 		border: 1px solid #5E5E5E; border-radius: 5px; font-weight: bold;
 	}
