@@ -16,6 +16,7 @@ int reviewNo=(int)r.getReviewNo();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <script type="text/javascript" src="<%=request.getContextPath() %>/ckeditor/ckeditor.js"></script>
     <title>상품후기 양식 페이지</title>
  
 <style>
@@ -151,17 +152,6 @@ border:2px solid gray;
  
 }
 
-#imageBox{
- position:absolute;
- left:150px;
- top:1000px;
-}
-#imageBox img{
- margin-top:30px;
- border: 1px solid gray;
- 
-}
-
 #go-button {
   position: absolute;
   width: 80px;
@@ -199,8 +189,11 @@ border:2px solid gray;
 #fileArea{
 position:absolute;
  top: 1900px;
-
 }
+#cke_review-text-content{
+ width:1100px;
+}
+
 </style> 
     
 </head>
@@ -224,7 +217,7 @@ position:absolute;
 	<form action="<%= request.getContextPath() %>/reviewUpdate.bo" method="post" encType="multipart/form-data"><!-- 파일올리는 거기 때문에 -->
 	      	<div id="review-table">
 	     	     <div id="review-porduct">
-	                	<div id="review-product-image"><img id="titleImg"  width="180" height="199" ></div>		
+	                	<div id="review-product-image"><img id="titleImg"  width="180" height="198" ></div>		
 	                	<button><a href="#">상품 상세 정보 등록</a></button>
 	              </div>
 	            
@@ -235,11 +228,7 @@ position:absolute;
 	           	 	</tr>
 	            <tr>
 		                <th>작성자</th>
-		                <%if(user!=null){ %>
-		                <th><input type="text" id="review-text-title" placeholder="이름 입력" name="name"value="<%=user.getUserName() %>"></th>
-		                <%}else{ %>
-		                 <th><input type="text" id="review-text-title" placeholder="이름 입력" name="name"></th>
-		                 <%} %>
+		           <th><%=loginUser.getUserName() %><input type="hidden" id="review-text-title" placeholder="이름 입력" name="name"value="<%=user.getUserName() %>"></th>
 	            </tr>
 	       	 </table>
 		        <input type="hidden" name="date" value="<%=request.getAttribute("date") %>">
@@ -249,22 +238,21 @@ position:absolute;
 	               
 	              
 
-			    <div id="review-content">
-			        <textarea  id="review-text-content" name="content" cols="150" rows="21" placeholder="이미지%내용입력"><%=r.getReviewCon() %></textarea>
-		   
-				 </div>
+	     <div id="review-content">
+			      <textarea  id="review-text-content" name="content" cols="150" rows="21" placeholder="이미지%내용입력"><%=r.getReviewCon() %></textarea>
+		 </div>
+   
+   
    
          <div id="fileArea">
 					<input type="file" id="thumbnailImg1" multiple="multiple" name="thumbnailImg1" onchange="LoadImg(this,1)" required="required">
-					<!-- <input type="file" id="thumbnailImg2" multiple="multiple" name="thumbnailImg2" onchange="LoadImg(this,2)">
-					<input type="file" id="thumbnailImg3" multiple="multiple" name="thumbnailImg3" onchange="LoadImg(this,3)">
-					<input type="file" id="thumbnailImg4" multiple="multiple" name="thumbnailImg4" onchange="LoadImg(this,4)"> -->
-				</div>
+		 </div>
   
-    
-  
-   
   			 <script>
+  			CKEDITOR.replace('content'
+  	                , {height: 500 ,
+   	                 });
+  			
 					// 내용 작성 부분의 공간을 클릭할 때 파일 첨부 창이 뜨도록 설정하는 함수
 					$(function(){
 						$("#fileArea").hide();
@@ -289,8 +277,6 @@ position:absolute;
 							//파일을 여러개 가져올려고한다면 맨앞에 가져온 파일만 가져오도록 설정!파일창이 띄어지고 파일을여러개골랐다면 맨처음파일만 넘거가도록하는설정
 						}
 					}
-					
-				
 			</script>
 			
 			 <button type="button" id="go-button">목록</button>
@@ -302,12 +288,14 @@ position:absolute;
 	 <script>
       
 		 $('#input-save').click(function(){
+			 var value = CKEDITOR.instances['review-text-content'].getData();
+			  console.log(value);
 			    if($.trim ($('#review-text-title').val())==""){
 			        console.log("값이 비어있습니다.");
 			        console.log($('#thumbnailImg1').val());
 			        $('#review-text-title').select();
 			      alert("제목을 입력해주세요");
-			    }else if($.trim ($('#review-text-content').val())==""){
+			    }else if($.trim (value)==""){
 			        console.log("값이 비어있습니다.");
 			        $('#review-text-content').select();
 			      alert("내용을을 입력해주세요");
@@ -319,8 +307,7 @@ position:absolute;
 			        $('#input-save').attr('type','submit');
 			        $('#input-save').submit();
 			    }
-			   
-			   });
+		 });
 		 
 		 $('#input-cancle').click(function(){
 		     var bool=confirm("내용이 저장되지 않을 수도 있습니다. 작성을 취소하시겠습니까?");
