@@ -83,5 +83,19 @@ public class ReviewService {
 	}
 
 
+	public int deleteReview(int reviewNo) {
+	   Connection conn=getConnection();
+	   int result1=rDAO.deleteReview(conn,reviewNo);
+	   int result2=rDAO.deletePhoto(conn,reviewNo);
+	   if(result1>0 &&result2>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result1+result2;
+	}
+
+
 	
 }

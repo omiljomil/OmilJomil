@@ -166,7 +166,7 @@ width:1500px;
             </tr>
             <tr>
                 <th>작성자</th>
-                <th>운영자<input type="hidden" id="notice-text-title"name="writer" value="<%=request.getAttribute("writer")%>"></th>
+                <th><%=loginUser.getUserName() %><input type="hidden" id="notice-text-title"name="writer" value="<%=request.getAttribute("writer")%>"></th>
             </tr>
             <tr>
                 <th>작성일</th>

@@ -72,7 +72,6 @@ section{
     border:2px solid darkgray; 
 }
 
-
 #notice-date {
   text-align: center;
   width: 450px;
@@ -185,12 +184,7 @@ width:1000px;
                 </tr>
                 <tr>
                     <th>작성자</th>
-                     <%if(n.getNoticeWriter().equals("admin")){ %>
-                    <th colspan="3">운영자<input type="hidden" size="50" name="nickName" value="<%=userName %>"></th>
-                    <%}else{%>
-                      <th colspan="3"><%=userName %><input type="hidden" size="50" name="writer" value="<%=userName %>"></th>
-                    <%} %>
-                    
+                    <th colspan="3"><%=userName %><input type="hidden" size="50" name="writer" value="<%=userName %>"></th>
                 </tr>
             </table>
             <div id="notice-date" >작성일 : <input type="hidden" name="date" value="<%=date%>"><%=date %></div>
