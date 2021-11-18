@@ -36,7 +36,7 @@ public class DeleteUserServlet extends HttpServlet {
 		
 		if(result > 0) {
 			session.invalidate();
-			request.getRequestDispatcher("WEB-INF/views/user/deleteCompletion.jsp").forward(request, response);
+			request.getRequestDispatcher("WEB-INF/views/User/deleteCompletion.jsp").forward(request, response);
 		} else {
 			request.setAttribute("msg", "회원 탈퇴 실패");
 			request.getRequestDispatcher("WEB-INF/views/common/errorPage.jsp").forward(request, response);
