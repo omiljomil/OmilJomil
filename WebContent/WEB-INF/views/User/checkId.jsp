@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
+</head> 
 <body onload="inputValue();">
 	<b>아이디 중복 검사</b>
 	<br>

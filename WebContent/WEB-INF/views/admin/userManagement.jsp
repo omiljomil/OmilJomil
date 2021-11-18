@@ -61,7 +61,7 @@
 </style>
 </head>
 <body>
-	<%@ include file="../common/header.jsp" %>
+	<%@ include file = "../common/header.jsp" %>
 	
 	<% if(loginUser == null || !loginUser.getManager().equals("Y")) { %>
 		<div class="layout" id="Forbidden"><p>권한이 없습니다.</p></div>

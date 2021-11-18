@@ -3,8 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Insert title here</title>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <style>
 	.order_ship{
 		float: left; /*정렬*/
@@ -61,14 +64,14 @@
 		padding: 3px 3px;
 		font-size: 1em;
 	}
-	#picker2{
+	#startDate{
 		border: 1px solid #A4A4A4;
 		border-radius: 3px;
 		padding: 3px 3px;
 		font-size: 1em;
 		width: 100px
 	}
-	#picker3{
+	#endDate{
 		border: 1px solid #A4A4A4;
 		border-radius: 3px;
 		padding: 3px 3px;
@@ -126,28 +129,8 @@
 				<ul class="order_search">
 					<li><input type="text" id="product_search" size="53" maxlength="20" height="50px;" placeholder="주문한 상품을 검색해 보세요"></li>
 				</ul>
-					 <div class="date_check_calendar">
-					 <form method="get" name="frmDateSearch" class="order_form">
-						<table class="ship_table">
-							<tr>
-								<td id="ship_search" width=50px; height=30px><button type="button" class="ship_button">오늘</button></td>
-								<td id="ship_search" width=50px; height=30px;><button type="button" class="ship_button">7일</button></td>
-								<td id="ship_search" width=50px; height=30px;><button type="button" class="ship_button">15일</button></td>
-								<td id="ship_search" width=50px; height=30px;><button type="button" class="ship_button">1개월</button></td>
-								<td id="ship_search" width=50px; height=30px><button type="button" class="ship_button">3개월</button></td>							
-								<td id="ship_search" width=50px; height=30px><button type="button" class="ship_button">1년</button></td>
-								<td id="ship_search" width=50px; height=30px><button type="button" class="ship_button">3년</button></td>
-								<td id="order_search" width=15px; height=30px></td>
-								<td id="order_search"><input type="text" class="check_text" id="picker2"name="wDate[]" value="2021-11-01" style="font-size: small"></td>
-								<td id="order_search" width=5px; height=30px style="font-size: small">~ </td>
-								<td id="order_search" width=20px; height=30px><input type="text" class="check_text" id="picker3" name="wDate[]" value="2021-11-08" style="font-size: small"></td>
-                    		    <td><button type="submit" class="btn_date_check">조회</button></td>
-							</tr>
-						</table>
-           		     </form>	
-                </div>
 
-       
+       		<%@ include file = "../myPage/dateCheck.jsp" %>
        		<div class="order_product_title" style="width: 100%; position: relative; text-align: left;">
                 <p>주문 상품 정보</p>
 			</div>
@@ -156,7 +139,6 @@
 	           		<li class="not_order_page">- 해당 목록에 없는 상품은 문의하기를 통해 문의해 주세요.</li>
 				</ul>
             </div>
-
 
 </body>
 </html>
