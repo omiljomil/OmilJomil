@@ -70,7 +70,6 @@ public class ReviewService {
 	public int updateReview(Review r, Photo p) {
 		Connection conn=getConnection();
 		int result1=rDAO.updateReview(conn, r);
-		int reviewNo=r.getReviewNo();
 		int result2=rDAO.updatePhoto(conn, p);
 		
 		if(result1>0 &&result2>0) {
