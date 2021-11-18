@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="review.model.vo.*"%>
+    pageEncoding="UTF-8" import="User.model.vo.*"%>
     
 <%
-/* Member user=(Member)request.getSession().getAttribute("loginUser"); */
+User user=(User)request.getSession().getAttribute("loginUser");
 
 %>    
     
@@ -14,7 +14,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="style10.css">
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>상품후기 양식 페이지</title>
  
 <style>
@@ -155,13 +155,8 @@ text-decoration: none;
 
 #review-content {
  position:absolute;
-  width: 700px;
-  height: 500px;
   top:1060px;
-  left:500px;
-  display:flex;
-  justify-content: center;
-  align-items: center;
+  margin-left:150px;
 }
 
 #imageBox{
@@ -180,15 +175,13 @@ text-decoration: none;
   width: 80px;
   left: 1300px;
   top: 1700px;
-}
-
-#go-button a {
-  text-decoration:none;
+   text-decoration:none;
   font-size: 18px;
   font-weight: 800;
   color: black;
 }
-#go-button a:hover {
+
+#go-button:hover {
   color: yellowgreen;
 }
 
@@ -232,18 +225,18 @@ position:absolute;
 	        <div id="review">
 	                <span id="review-title">상품후기</span>
 	                <div id="route">
-	                    <span><a href="#">홈</a></span>
+	                    <span id="home"><a href="#">홈</a></span>
+	                    <span >-></span>
+	                    <span  id="community"><a href="#">커뮤니티</a></span>
 	                    <span>-></span>
-	                    <span><a href="#">커뮤니티</a></span>
-	                    <span>-></span>
-	                    <span><a href="#">상품후기</a></span>
+	                    <span id="reviewList"><a href="#">상품후기</a></span>
 	                </div>
 	        </div><br><br>
 	        
-	<form action="<%= request.getContextPath() %>/boardInsert.bo" method="post" encType="multipart/form-data"><!-- 파일올리는 거기 때문에 -->
+	<form action="<%= request.getContextPath() %>/reviewInsert.bo" method="post" encType="multipart/form-data"><!-- 파일올리는 거기 때문에 -->
 	      	<div id="review-table">
 	     	     <div id="review-porduct">
-	                <div id="review-product-image"><img id="titleImg"  width="180" height="199" ></div>		<!-- <input  id="thumnail-image" type="button" value="사진첨부" > -->
+	                <div id="review-product-image"><img id="titleImg"  width="180" height="199" ></div>
 	                <div id="product-title"></div>
 	                <button><a href="#">상품 상세 정보 등록</a></button>
 	              </div>
@@ -261,81 +254,15 @@ position:absolute;
 	                 <th><input type="text" id="review-text-title" placeholder="이름 입력" name="name"></th>
 	                 <%} %>
 	            </tr>
+	            
 	        </table>
 	      </div>
-<!-- 
-	<div id="write-content">
-	      <div id="option-button-div">
-	        &nbsp; 
-	         <select name="text-style" id="text-style" >
-	          <option value="">굴림체</option>
-	          <option value="">돋움체</option>
-	          <option value="">바탕체</option>
-	          <option value="">궁서체</option>
-	          </select> &nbsp;
-	
-	
-	         <label>글씨크기</label>
-	        <select name="text-size">
-	            <option value="10">10</option>
-	            <option value="11">11</option>
-	            <option value="12">12</option>
-	            <option value="13">13</option>
-	            <option value="14">14</option>
-	            <option value="15">15</option>
-	            <option value="16">16</option>
-	            <option value="17">17</option>
-	            <option value="18">18</option>
-	            <option value="19">19</option>
-	            <option value="20">20</option>
-	            <option value="21">21</option>
-	            <option value="22">22</option>
-	            <option value="23">23</option>
-	            <option value="24">24</option>
-	            <option value="25">25</option>
-	            <option value="26">26</option>
-	            <option value="27">27</option>
-	            <option value="28">28</option>
-	            <option value="29">29</option>
-	            <option value="30">30</option>
-	        </select>
-	      
-     	   <label>글자 색</label><input  type="color" id="ot-textColor">
-
-      
-	        &nbsp;
-	        <label>굵기</label>
-	        <select name="text-weight">
-	            <option value="bord">보통</option>
-	            <option value="border">굵게</option>
-	            <option value="light">얇게</option>
-	         </select>
-	         &nbsp;
-     
-
-	     <label>목록 형식</label>
-	       <select name="text-addlist">
-	        <option value="text-underline">없음</option>
-	        <option value="text-underline">순서있는 목록</option>
-	        <option value="text-underline">순서없는 목록</option>
-	     </select>
-
-	     <label>정렬</label>
-	       <select name="text-sort">
-	        <option value="text-underline">왼쪽정렬</option>
-	        <option value="text-underline">가운데 정렬</option>
-	        <option value="text-i">오른쪽 정렬</option>
-	     </select>
-
-   		</div> -->
-   	 <!--여기까지 옵션바 --> 
 
 			    <div id="review-content">
-			        <textarea name="content" cols="150" rows="21" placeholder="이미지%내용입력"></textarea>
+			        <textarea  id="review-text-content" name="content" cols="150" rows="21" placeholder="이미지%내용입력"></textarea>
 		   
 				 </div>
-		
-      
+      <!-- 
 		   <div id="imageBox">
 			     <div id="contentImgArea1">
 						<img id="contentImg1" width="250" height="160"> 
@@ -349,13 +276,13 @@ position:absolute;
 						<img id="contentImg3" width="250" height="170"> 
 					</div> 
 		     </div> 
-	   
+	    -->
      
          <div id="fileArea">
-					<input type="file" id="thumbnailImg1" multiple="multiple" name="thumbnailImg1" onchange="LoadImg(this,1)">
-					<input type="file" id="thumbnailImg2" multiple="multiple" name="thumbnailImg2" onchange="LoadImg(this,2)">
+					<input type="file" id="thumbnailImg1" multiple="multiple" name="thumbnailImg1" onchange="LoadImg(this,1)" required="required">
+					<!-- <input type="file" id="thumbnailImg2" multiple="multiple" name="thumbnailImg2" onchange="LoadImg(this,2)">
 					<input type="file" id="thumbnailImg3" multiple="multiple" name="thumbnailImg3" onchange="LoadImg(this,3)">
-					<input type="file" id="thumbnailImg4" multiple="multiple" name="thumbnailImg4" onchange="LoadImg(this,4)">
+					<input type="file" id="thumbnailImg4" multiple="multiple" name="thumbnailImg4" onchange="LoadImg(this,4)"> -->
 				</div>
   
     
@@ -371,7 +298,7 @@ position:absolute;
 							$("#thumbnailImg1").click();
 				
 								});
-						$("#contentImgArea1").click(function(){
+						/* $("#contentImgArea1").click(function(){
 							$("#thumbnailImg2").click();
 						});
 						$("#contentImgArea2").click(function(){
@@ -379,7 +306,7 @@ position:absolute;
 						});
 						$("#contentImgArea3").click(function(){
 							$("#thumbnailImg4").click();
-						});
+						}); */
 					});
 					
 					function LoadImg(value, num){
@@ -391,7 +318,7 @@ position:absolute;
 								case 1: 
 									$("#titleImg").attr("src", e.target.result);
 									break;
-								case 2:
+								/* case 2:
 									$("#contentImg1").attr("src", e.target.result);
 									break;
 								case 3: 
@@ -399,20 +326,79 @@ position:absolute;
 									break;
 								case 4:
 									$("#contentImg3").attr("src", e.target.result);
-									break;
+									break; */
 								}
 							}
 							
 							reader.readAsDataURL(value.files[0]);
-							//파일을 여러개 가져올려고한다면 맨앞에 가져온 파일만 가져오도록 설정!파일창이 띄어지고 파일을여러개골랐다면 맨처음파일만 넘거가도록하는설정
+							
 						}
 					}
 			</script>
-			 <button type="button" id="go-button"><a href="#">목록</a></button>
+			 <button type="button" id="go-button">목록</button>
 	       <input type="button" value="취소" id="input-cancle" >
-	       <input type="submit" value="저장" id="input-save">	
+	       <input type="button" value="저장" id="input-save" >	
 		</form> 
 	 </section>	 			
+	 
+	 <script>
+      
+		 $('#input-save').click(function(){
+			    if($.trim ($('#review-text-title').val())==""){
+			        console.log("값이 비어있습니다.");
+			        console.log($('#thumbnailImg1').val());
+			        $('#review-text-title').select();
+			      alert("제목을 입력해주세요");
+			    }else if($.trim ($('#review-text-content').val())==""){
+			        console.log("값이 비어있습니다.");
+			        $('#review-text-content').select();
+			      alert("내용을을 입력해주세요");
+			    }else if(!$('#thumbnailImg1').val()){
+			    	  alert("썸네일에 들어갈 이미지 파일을 입력해주세요");
+			    	  $('#titleImg').click();
+			    }
+			    else{
+			        $('#input-save').attr('type','submit');
+			        $('#input-save').submit();
+			    }
+			   
+			   });
+		 
+		 $('#input-cancle').click(function(){
+		     var bool=confirm("내용이 저장되지 않을 수도 있습니다. 작성을 취소하시겠습니까?");
+		     if(bool){
+		    	 location.href='javascript:history.go(-1);'
+		     }
+		  });  
+		 
+		 $('#go-button').click(function(){
+			  var bool=confirm("내용이 저장되지 않을 수도 있습니다. 작성을 취소하시겠습니까?");
+			  if(bool){
+				  location.href='reviewList.bo'
+			  }
+		 });
+		 
+		 $('#home').click(function(){
+			 var bool=confirm("내용이 저장되지 않을 수도 있습니다. 작성을 취소하시겠습니까?");
+			  if(bool){
+				   location.href='<%=request.getContextPath()%>/'
+			  }
+		 });
+		 $('#community').click(function(){
+			 var bool=confirm("내용이 저장되지 않을 수도 있습니다. 작성을 취소하시겠습니까?");
+			  if(bool){
+				  location.href='<%=request.getContextPath()%>/community.me'
+			  }
+			  });
+
+		 $('#reviewList').click(function(){
+			 var bool=confirm("내용이 저장되지 않을 수도 있습니다. 작성을 취소하시겠습니까?");
+			  if(bool){
+				  location.href='<%=request.getContextPath()%>/reviewList.bo'
+			  }
+			  });
+		 
+	 </script>
     
 </body>
 </html>

@@ -36,9 +36,9 @@ public class DeleteUserServlet extends HttpServlet {
 		
 		if(result > 0) {
 			session.invalidate();
-			request.getRequestDispatcher("WEB-INF/views/user/deleteCompletion.jsp").forward(request, response);
+			request.getRequestDispatcher("WEB-INF/views/User/deleteCompletion.jsp").forward(request, response);
 		} else {
-			request.setAttribute("msg", "회원 탈퇴에 실패했습니다.");
+			request.setAttribute("msg", "회원 탈퇴 실패");
 			request.getRequestDispatcher("WEB-INF/views/common/errorPage.jsp").forward(request, response);
 		}
 	}
@@ -49,5 +49,4 @@ public class DeleteUserServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-
 }
