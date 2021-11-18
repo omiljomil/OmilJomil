@@ -21,6 +21,7 @@
 	}
 	
 	
+	
 	#updateProductTitle{
 		color: rgb(65, 116, 77);
 		font-size: 50px;

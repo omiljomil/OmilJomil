@@ -18,7 +18,7 @@
 #nav_list{
 	height: 50px;
 }
-.cateNav {   
+.cateNav { 
 
 	float: left;
 	width: 1200px; 
