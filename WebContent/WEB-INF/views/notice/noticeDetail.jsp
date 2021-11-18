@@ -45,11 +45,12 @@ section{
   bottom: 100px;
   right: 150px;
   font-size: 29px;
-   color: gray;
+    color: gray;
 }
 #notice-route a{
  text-decoration:none;
   color: gray;
+   font-size: 29px;
 }
 #notice-route a:hover {
   color: yellowgreen;
