@@ -41,7 +41,7 @@ public class loginUserServlet extends HttpServlet {
 		
 		if(loginUser != null) {
 			HttpSession session = request.getSession();
-			session.setMaxInactiveInterval(600); //10분 뒤 세션 종료
+			session.setMaxInactiveInterval(60*30); //30분 뒤 세션 종료
 			session.setAttribute("loginUser", loginUser);
 			response.sendRedirect(request.getContextPath());
 			}else {
