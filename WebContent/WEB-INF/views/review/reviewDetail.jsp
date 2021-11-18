@@ -17,6 +17,7 @@ String userName=r.getUserName();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>상품후기  상세 페이지</title>
+     <script type="text/javascript" src="<%=request.getContextPath() %>/ckeditor/ckeditor.js"></script>
  <style>
  * {
   box-sizing: border-box;
@@ -52,10 +53,6 @@ text-decoration: none;
   color: yellowgreen;
 }
 
-#review-list {
-  box-sizing: content-box;
-  margin-top: 60px;
-}
 #review-porduct {
   position: relative;
   margin-left: 150px;
@@ -72,8 +69,8 @@ text-decoration: none;
   height: 200px;
 }
 #review-product-image img{
-   width: 190px;
-  height: 190px;
+   width: 198px;
+  height: 195px;
 
 }
 
@@ -114,7 +111,6 @@ border:2px solid gray;
 text-align: center;
  
 }
-
 #review-date {
   text-align: center;
   width: 450px;
@@ -153,6 +149,10 @@ p {
   margin-left: 150px;
   font-size: 19px;
 }
+#inform{
+ width:500px;
+}
+
 #outform  {
   position: relative;
   top: 100px;
@@ -185,8 +185,6 @@ p {
 form input {
   margin-left: 15px;
 }
-
-
 #next-or-back {
   text-align:center;
   position: relative;
@@ -225,27 +223,9 @@ form input {
   text-decoration: none;
 }
 
-#imageBox{
-
-  position:absolute;
-  left:150px;
- } 
-#imageBox div{
- margin-top:40px;
-border:2px solid gray;
-width:250px;
- height:160px;
-
-} 
- 
- #imageBox img{
- width:245px;
- height:152px;
- 
-}
 #answer-box{
  position:relative;
- margin-top:40px;
+ margin-top:100px;
 }
 
 
@@ -253,7 +233,7 @@ width:250px;
 width:65px;
 position:absolute;
 top:1600px;
-left:1180px;
+left:1280px;
 font-weight:600;
 }
 
@@ -261,8 +241,12 @@ font-weight:600;
 width:65px;
 position:absolute;
 top:1600px;
-left:1070px;
+left:1170px;
 font-weight:600;
+}
+#cke_notcie-content-text{
+ width:1000px;
+ height:500px;
 }
 
 
@@ -321,27 +305,29 @@ font-weight:600;
                 <textarea id="notcie-content-text" cols="150" rows="20" readonly="readonly"name="content"><%=r.getReviewCon()%></textarea> 
         </div>
          <%if (loginUser!=null&&loginUser.getUserName().equals(userName)){ %>
-         <button type="submit" id="modify-button" class="system"><!-- onclick="location.href='update.me'" -->수정</button>
-         <button type="button" id="delete-button" class="system" onclick="deleteBoard();" >삭제</button>
+         <button type="submit" id="modify-button" class="system">수정</button>
+         <button type="button" id="delete-button" class="system" onclick="deleteReview();" >삭제</button>
          <%} %>
    
      <script>
      
-      console.log($('#file').val());
-     
-     function deleteBoard(){
+     CKEDITOR.replace('content'
+               , {height: 500 ,
+               	
+                }); 
+     function deleteReview(){
      	var bool= confirm("정말삭제하시겠습니까?");
  		if(bool){
- 		 $('#inform').attr('action','.deleteBoard.bo');
+ 		 $('#inform').attr('action','reviewDelete.bo');
  		 $('#inform').submit();
  		}    	
      }
      
+     
+     
      </script>
-   
-   
      </form>   
-        <br><br><br><br><br>
+        <br><br><br><br><br><br>
         <hr>
 
        <div id="answer-box">
@@ -359,10 +345,6 @@ font-weight:600;
         <hr>
      </div>   
         
-         
-     
-    
-
     <form action="#" method="#" id="outform">
     <!-- <div id="button-bind1">
         <input type="button" value="수정" class="com-button1"  id="modify-button">
@@ -392,7 +374,8 @@ font-weight:600;
             </tr>
            </table>
        </div>
-       <button type="button" id="go-button"><a href="#">목록</a></button>
+       <button type="button" id="go-button"><a href="<%=request.getContextPath()%>/reviewList.bo" >목록</a></button>
+       
 
   </section>
     

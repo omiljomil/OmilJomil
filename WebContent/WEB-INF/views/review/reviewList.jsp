@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList,review.model.vo.*, page.PageInfo"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList,User.model.vo.*,review.model.vo.*, page.PageInfo"%>
   <%
   
    PageInfo pi=(PageInfo)request.getAttribute("pi"); 
   ArrayList<Review> rList=(ArrayList<Review>)request.getAttribute("rList");
   ArrayList<Photo>fList=(ArrayList<Photo>)request.getAttribute("fList");
+
  
   %>  
     
@@ -134,8 +135,8 @@ body {
   height: 180px;
 }
 .review-list-innerbox img{
- width:263px;
- height:178px;
+ width:266px;
+ height:180px;
 }
 .review-list-innerbox img:hover{
   cursor:pointer;
@@ -156,11 +157,9 @@ body {
    text-decoration:none;
 }
 .review-list h2{
- 
  text-align:center;
  width:500px;
  margin-top:350px;
- 
 }
 /*페이징  */
 #paising {
@@ -204,7 +203,7 @@ body {
             <span id="review-title">상품후기</span>
 
             <div id="route">
-            <div><a href=<%=request.getContextPath() %>">홈</a></div>
+            <div><a href="<%=request.getContextPath() %>/">홈</a></div>
             <div>--></div>
             <div><a href="<%=request.getContextPath() %>/community.me">커뮤니티</a></div>
              <div>--></div>

@@ -15,6 +15,8 @@ User user=(User)request.getSession().getAttribute("loginUser");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <script type="text/javascript" src="<%=request.getContextPath() %>/ckeditor/ckeditor.js"></script>
+   
     <title>상품후기 양식 페이지</title>
  
 <style>
@@ -207,11 +209,11 @@ text-decoration: none;
 #fileArea{
 position:absolute;
  top: 1900px;
+}
+#cke_review-text-content{
+ width:1000px;
 
 }
-
-
-
 
 </style> 
     
@@ -248,65 +250,34 @@ position:absolute;
 	            </tr>
 	            <tr>
 	                <th>작성자</th>
-	                <%if(user!=null){ %>
-	                <th><input type="text" id="review-text-title" placeholder="이름 입력" name="name"value="<%=user.getUserName() %>"></th>
-	                <%}else{ %>
-	                 <th><input type="text" id="review-text-title" placeholder="이름 입력" name="name"></th>
-	                 <%} %>
+	                <th><%=loginUser.getUserName() %><input type="hidden" id="review-text-title" placeholder="이름 입력" name="name"value="<%=user.getUserName() %>"></th>
 	            </tr>
 	            
 	        </table>
 	      </div>
 
 			    <div id="review-content">
-			        <textarea  id="review-text-content" name="content" cols="150" rows="21" placeholder="이미지%내용입력"></textarea>
+			        <textarea  id="review-text-content" class="editor" name="content" cols="150" rows="21" placeholder="이미지%내용입력"></textarea>
 		   
 				 </div>
-      <!-- 
-		   <div id="imageBox">
-			     <div id="contentImgArea1">
-						<img id="contentImg1" width="250" height="160"> 
-					 </div>
-					  
-					<div id="contentImgArea2">
-						<img id="contentImg2" width="250" height="170">
-					</div>
-					
-					<div id="contentImgArea3">
-						<img id="contentImg3" width="250" height="170"> 
-					</div> 
-		     </div> 
-	    -->
-     
+ 
          <div id="fileArea">
 					<input type="file" id="thumbnailImg1" multiple="multiple" name="thumbnailImg1" onchange="LoadImg(this,1)" required="required">
-					<!-- <input type="file" id="thumbnailImg2" multiple="multiple" name="thumbnailImg2" onchange="LoadImg(this,2)">
-					<input type="file" id="thumbnailImg3" multiple="multiple" name="thumbnailImg3" onchange="LoadImg(this,3)">
-					<input type="file" id="thumbnailImg4" multiple="multiple" name="thumbnailImg4" onchange="LoadImg(this,4)"> -->
 				</div>
-  
-    
-  
-   
+ 
   			 <script>
+  			 CKEDITOR.replace('content'
+  	                , {height: 500 ,
+  	                	
+  	                 });
+  			 
 					// 내용 작성 부분의 공간을 클릭할 때 파일 첨부 창이 뜨도록 설정하는 함수
 					$(function(){
 						$("#fileArea").hide();
-						
 						$("#review-product-image").click(function(){
 							//div 내용사진부분을 클릭함으로써 input file의 해당하는 태그는hiddent이므로 그 input을 누르게되는 효과 속성
 							$("#thumbnailImg1").click();
-				
 								});
-						/* $("#contentImgArea1").click(function(){
-							$("#thumbnailImg2").click();
-						});
-						$("#contentImgArea2").click(function(){
-							$("#thumbnailImg3").click();
-						});
-						$("#contentImgArea3").click(function(){
-							$("#thumbnailImg4").click();
-						}); */
 					});
 					
 					function LoadImg(value, num){
@@ -318,20 +289,9 @@ position:absolute;
 								case 1: 
 									$("#titleImg").attr("src", e.target.result);
 									break;
-								/* case 2:
-									$("#contentImg1").attr("src", e.target.result);
-									break;
-								case 3: 
-									$("#contentImg2").attr("src", e.target.result);
-									break;
-								case 4:
-									$("#contentImg3").attr("src", e.target.result);
-									break; */
 								}
 							}
-							
 							reader.readAsDataURL(value.files[0]);
-							
 						}
 					}
 			</script>
@@ -342,14 +302,14 @@ position:absolute;
 	 </section>	 			
 	 
 	 <script>
-      
 		 $('#input-save').click(function(){
+			 var value = CKEDITOR.instances['review-text-content'].getData();
+			  console.log(value);
 			    if($.trim ($('#review-text-title').val())==""){
 			        console.log("값이 비어있습니다.");
-			        console.log($('#thumbnailImg1').val());
 			        $('#review-text-title').select();
 			      alert("제목을 입력해주세요");
-			    }else if($.trim ($('#review-text-content').val())==""){
+			    }else if($.trim(value)==""){
 			        console.log("값이 비어있습니다.");
 			        $('#review-text-content').select();
 			      alert("내용을을 입력해주세요");
@@ -361,15 +321,14 @@ position:absolute;
 			        $('#input-save').attr('type','submit');
 			        $('#input-save').submit();
 			    }
-			   
-			   });
+		 });
 		 
 		 $('#input-cancle').click(function(){
 		     var bool=confirm("내용이 저장되지 않을 수도 있습니다. 작성을 취소하시겠습니까?");
 		     if(bool){
 		    	 location.href='javascript:history.go(-1);'
 		     }
-		  });  
+	    });  
 		 
 		 $('#go-button').click(function(){
 			  var bool=confirm("내용이 저장되지 않을 수도 있습니다. 작성을 취소하시겠습니까?");
