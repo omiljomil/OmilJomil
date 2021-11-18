@@ -22,7 +22,7 @@ div{
 	height: 50px;
 }
 .cateNav { 
-
+	background-color: none;
 	float: left;
 	width: 1200px; 
 	height: 50px; 
@@ -96,6 +96,7 @@ div{
 		color: black;
 	}
 
+
 	/*.img-thumb {
 		width: 100%;
 		border-style: none;
@@ -141,8 +142,6 @@ div{
   	<li><a href="#">플렉시테리안</a></li>
   </ul>
   </div>
-  
-  
 
 	<!-- 부트스트랩 컨테이너 -->
 
@@ -169,7 +168,7 @@ div{
 				<% for(int j = 0; j < fList.size(); j++){ %>
 				<% Photo ph = fList.get(j); %>
 					<% if(ph.getProdNo() == p.getProdNo() && ph.getType() == 0){ %>	
-			<div class="col-md-4">
+			<div class="col-md-4" width="300px" height="300" id="proInfo">
 				<a class="proThumb">
 					<input type="hidden" value="<%= p.getProdNo() %>">
 					<p> <img src="<%= request.getContextPath() %>/thumbnail_uploadFiles/<%= ph.getImgChangeName() %>" width="200px" height="200px">

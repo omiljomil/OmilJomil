@@ -360,5 +360,58 @@ public class ProductDAO {
 		
 		return list;
 	}
+	
+	public int updatePhoto(Connection conn, ArrayList<Photo> fileList) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = prop.getProperty("updatePhoto");
+		
+		try {
+			for(int i = 0; i < fileList.size(); i++) {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, fileList.get(i).getImgName());
+			pstmt.setString(2, fileList.get(i).getImgChangeName());
+			pstmt.setString(3, fileList.get(i).getPath());
+			pstmt.setInt(4, fileList.get(i).getFileLevel());
+			pstmt.setInt(5, fileList.get(i).getType());
+			
+			result += pstmt.executeUpdate();
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+public int updateProduct(Connection conn, Product p) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateProduct");
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, p.getProdName());
+			pstmt.setInt(2, p.getPrice());
+			pstmt.setString(3, p.getCtgryName());
+			pstmt.setString(4, p.getProdExple());
+			pstmt.setString(5, p.getProdTag());
+			pstmt.setString(6,  p.getShortInfo());
+			pstmt.setString(7, p.getMtrlName());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 
 }
