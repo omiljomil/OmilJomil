@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.ArrayList,review.model.vo.*, page.PageInfo"%>
-    
   <%
   
-/*   PageInfo pi=(PageInfo)request.getAttribute("pi");
-  ArrayList<Board> bList=(ArrayList<Board>)request.getAttribute("bList");
-  ArrayList<Attachment>fList=(ArrayList<Attachment>)request.getAttribute("fList"); */
-  
+   PageInfo pi=(PageInfo)request.getAttribute("pi"); 
+  ArrayList<Review> rList=(ArrayList<Review>)request.getAttribute("rList");
+  ArrayList<Photo>fList=(ArrayList<Photo>)request.getAttribute("fList");
+ 
   %>  
     
     
@@ -30,62 +29,56 @@ body {
   margin: 0 auto;
   font-family: sans-serif;
 }
-
-section{
- margin-top:100px;
-}
-
 #title-box {
-  box-sizing: content-box;
-  position: absolute;
-  top: 330px;
-  left: 840px;
+  width:1500px;
+  height:300px;
+  margin-top: 100px;
+  margin-left:auto;
+  margin-right:auto;
 }
 
 #review-title {
+  display:flex;
+  margin:20px auto;
+  margin-left:auto;
+ 
+  justify-content:center;
   font-size: 60px;
 }
 #route {
+  display:flex;
   color: #888;
-  position: absolute;
   padding-left: 10px;
-  width: 400px;
-  left: 650px;
-  font-size: 28px;
+  font-size: 29px;
+  justify-content: flex-end;
 }
 #route a {
   color: #888;
+  text-decoration: none;
 }
-
 #route div {
   display: inline-block;
   padding-left: 10px;
 }
 #route a:hover {
-  text-decoration: underline;
+  text-decoration: none;
   color: yellowgreen;
 }
-#search-box-title {
-  border: 2px solid darkgray;
-  width: 140px;
-  height: 49px;
-  text-align: center;
-  font-size: 18px;
-}
-
-#search-box-title {
-  border: 2px solid darkgray;
-  width: 140px;
-  height: 49px;
-  text-align: center;
-  font-size: 18px;
-}
-
 #search {
-  position: relative;
-  right: 500px;
-  top: 90px;
+ margin-top:30px;
+ margin-left:50px;
+ width:500px; 
 }
+
+#search-box-title {
+  border: 2px solid darkgray;
+  width: 140px;
+  height: 49px;
+  text-align: center;
+  font-size: 18px;
+}
+
+
 #search-box-option {
   border: 1px solid darkslategrey;
   width: 200px;
@@ -109,82 +102,99 @@ section{
 /*타이틀, 검색부분*/
 
 #review {
-  width: 0%;
-  position: absolute;
-  left: 120px;
-}
 
+ width:1200x;
+ height:700px;
+ margin-top:50px;
+ margin-left:150px ;
+ margin-right:100px;
+  
+  
+}
 .review-list {
-  box-sizing: content-box;
-  position: absolute;
-  display: flex;
-  top: 400px;
+   display:inline-block;
+   margin-left: 50px;
+   margin-right:100px;
+  width:1200x;
+  height:800px;
+  align:center;
+  
 }
 .review-list-box {
-  margin-left: 110px;
+  margin-left: 50px;
+  margin-top:100px;
   border: 2px solid gray;
-
-  width: 300px;
-  height: 336px;
+  display:inline-block;
+  width: 270px;
+  height: 300px;
+ 
 }
 .review-list-innerbox {
-  border-bottom: 2px solid #888;
-  width: 300px;
-  height: 200px;
+  width: 250px;
+  height: 180px;
 }
-.review-list-innerbox img	{
- width:290px;
- height:190px;
-
+.review-list-innerbox img{
+ width:263px;
+ height:178px;
 }
-
+.review-list-innerbox img:hover{
+  cursor:pointer;
+}
 .review-list-text {
+  border-top:2px solid gray;
   text-align: center;
   line-height: 30px;
 }
 .review-list-text a {
+  font-weight:400;
+  text-decoration:none;
   color: black;
   font-size: 16px;
 }
+.review-list-text :hover{
+  color:rgb(4, 88, 4);
+   text-decoration:none;
+}
 .review-list h2{
-   position:absolute;
-   left: 700px;
-   top:300px;
-   width:500px;;
+ 
+ text-align:center;
+ width:500px;
+ margin-top:350px;
+ 
 }
-
-
-
+/*페이징  */
 #paising {
-  position: absolute;
-  top: 1500px;
-  left: 800px;
   display: flex;
+  margin-top:150px;
+  justify-content: center;
+  
 }
-#paising div {
-  font-size: 28px;
-  margin-right: 55px;
+.paising-button {
+    text-align:center;
+    font-size: 30px;
+	margin-right: 30px;
+	border: none;
+	 background-color: white; 
+	 color:black;
 }
-
-#paising-1 {
-  box-sizing: content-box;
-  text-align: center;
-  background-color: yellowgreen;
-  border-radius: 10px;
-}
-
-#paising-2:hover,
-#paising-3:hover {
-  background-color: yellowgreen;
-  border-radius: 10px;
+#paising-number:hover {
+	background-color: yellowgreen;
+	border-radius: 10px;
 }
 
 #insertBtn{
- position:relative;
- left:1800px;
- top:1300px;
+ float:right;
+ margin-top:100px;
+ margin-right:100px;
+ font-weight: 600;
+ font-size: 20px;
+ border:2px solid darkgray;
+ color:black;
+ background-color: beige;
 }
-
+#insertBtn:hover{
+ color:rgb(4, 88, 4);
+}
    </style> 
 </head>
 <body>
@@ -194,16 +204,16 @@ section{
             <span id="review-title">상품후기</span>
 
             <div id="route">
-            <div><a href="#">홈</a></div>
+            <div><a href=<%=request.getContextPath() %>">홈</a></div>
             <div>--></div>
-            <div><a href="#">커뮤니티</a></div>
+            <div><a href="<%=request.getContextPath() %>/community.me">커뮤니티</a></div>
              <div>--></div>
-            <div><a href="#">상품 후기</a></div>
+            <div><a href="<%=request.getContextPath()%>/reviewList.bo">상품 후기</a></div>
             </div>
 
             <div id="search">
             <form action="#" method="#">
-            <div id="search-box-bind">
+           
               <select name="search-box-option" id="search-box-option">
                 <option value="">전체 검색</option>
               <option value="">글 번호</option>
@@ -213,83 +223,85 @@ section{
               <input type="text" id="search-box">
               </form>
             </div>
-          </div>
+        
         </section>
 
          <section id="review">
             <div class="review-list">
-               <%if(bList.isEmpty()||fList.isEmpty()){ %>
+               <%if(rList.isEmpty()||fList.isEmpty()){ %>
                		<h2>등록된 상품 후기가 없습니다.</h2>
                	<%}else{ %>
-               	<%for(int i=0; i< bList.size(); i++){ %>
-               	 	<%Board b=bList.get(i);%>
+         
+               	<%for(int i=0; i< rList.size(); i++){ %>
+               	      <%Review r=rList.get(i);%>
                	   <div class="review-list-box">
-                 	    <input type="hidden"  value="<%=b.getBoardId() %>">
+                 	    <input type="hidden"  value="<%=r.getReviewNo() %>">
                  	    <div class="review-list-innerbox"> 
                     <%for (int j=0; j<fList.size(); j++){ %>
-                         <%Attachment a=fList.get(j);%>
-                         <%if(b.getBoardId()==a.getBoardId()){ %>
-                         <img src="<%=request.getContextPath() %>/thumbnail_uploadFiles/<%=a.getChangeName() %>">
+                         <%Photo p=fList.get(j);%>
+                         <%if(r.getReviewNo()==p.getReviewNo()){ %>
+                         <img src="<%=request.getContextPath() %>/thumbnail_uploadFiles/<%=p.getImgChangeName() %>">
                        	<%} %>
 					<%} %>
 				</div>	
-                       <div class="review-list-text"><a href="#">제목 :<%=b.getBoardTitle() %><br><%=b.getBoardWriter() %><br>새싹 샐러드(상품정보)<br><%=b.getCreateDate() %></a><br> 조회수 : <%=b.getBoardCount() %></div>
+                       <div class="review-list-text"><a href="#">제목 :<%=r.getReviewTitle() %><br><%=r.getUserName() %><br>새싹 샐러드(상품정보)<br><%=r.getEnrollDate() %></a></div>
                     </div>
                    <%} %>
                <%} %>
             </div>
-           
+            
+                
         </section>   
         
          <script>
 		  $('.review-list-box').click(function(){
 			 var bId=$(this).children().eq(0).val();
-			 location.href='<%=request.getContextPath()%>/boardDetail.bo?bId='+bId;
+			 location.href='<%=request.getContextPath()%>/reviewDetail.bo?bId='+bId;
 		  });
   
  		</script>
         
-        
-         <input type="button" onclick="location.href='writeBoardForm.bo'" id="insertBtn" value="작성하기">
-        
+         <%if(loginUser!=null){%>
+         <input type="button" onclick="location.href='writeReviewForm.bo'" id="insertBtn" value="작성하기">
+          <%} %> 
 
-         <section id="paising">
+        <section id="paising">
        <!-- 맨 처음으로  -->
-           <button type="button" onclick="location.href='/SemiTest_JSPServlet/boardList.bo?currentPage=1'">◀◀</button>
-           <!-- 이전페이지 -->
-            <button id="beforeBtn" onclick="location.href='/SemiTest_JSPServlet/boardList.bo?currentPage=<%=pi.getCurrentPage()-1 %>'" >◀ </button>
+
+           <button class="paising-button" type="button" onclick="location.href='/SemiTest_JSPServlet/reviewList.bo?currentPage=1'">◀</button>
+          
+          
+          <%--  <!-- 이전페이지 -->
+            <button id="beforeBtn" onclick="location.href='/SemiTest_JSPServlet/reviewList.bo?currentPage=<%=pi.getCurrentPage()-1 %>'" >◀ </button>
          <script>
 		    if(<%=pi.getCurrentPage()%><=1){
 		    	$('#beforeBtn').prop('disabled',true);
 		    }
-		  </script>
+		  </script> --%>
          
           <!-- 숫자버튼 -->
+       
           <%for (int p=pi.getStartPage(); p<=pi.getEndPage();p++){ %>
            <%if(p == pi.getCurrentPage()){ %>
-           <button  disabled>&nbsp;<%=p %>&nbsp;</button>
+           <button class="paising-button" id="paising-number"  disabled>&nbsp;<%=p %>&nbsp;</button>
            <%} else{ %>
-           <button onclick="location.href='/SemiTest_JSPServlet/boardList.bo?currentPage=<%=p%>'">&nbsp;<%=p %>&nbsp;</button>
+           <button  class="paising-button" id="paising-number"  onclick="location.href='/SemiTest_JSPServlet/reviewList.bo?currentPage=<%=p%>'">&nbsp;<%=p %>&nbsp;</button>
             <% } %>
            <%} %>
-           <!-- 다음 페이지로  -->
-           <button id="afterBtn" onclick="location.href='/SemiTest_JSPServlet/boardList.bo?currentPage=<%=pi.getCurrentPage()+1 %>'" >▶ </button>
+           
+           
+         <%--   <!-- 다음 페이지로  -->
+           <button id="afterBtn" onclick="location.href='/SemiTest_JSPServlet/reviewList.bo?currentPage=<%=pi.getCurrentPage()+1 %>'" >▶ </button>
           <script>
           if(<%=pi.getCurrentPage() %>>=<%=pi.getMaxPage()%>){
 			   $('#afterBtn').prop('disabled',true);
 		   }
-          </script>
+          </script> --%>
+          
           
            <!-- 맨 끝으로 -->
-           <button onclick="location.href='/SemiTest_JSPServlet/boardList.bo?currentPage=<%=pi.getMaxPage()%>'">▶▶</button>
-      </section>
-       
-            
-
-
-
-        
-            
-    
+           <button class="paising-button" onclick="location.href='/SemiTest_JSPServlet/reviewList.bo?currentPage=<%=pi.getMaxPage()%>'">▶</button>
+      </section> 
+ 
 </body>
 </html>

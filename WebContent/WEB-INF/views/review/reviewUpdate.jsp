@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="User.model.vo.*"%>
-    
+    pageEncoding="UTF-8" import="User.model.vo.User,review.model.vo.*"%>
 <%
 User user=(User)request.getSession().getAttribute("loginUser");
-
+Review r=(Review)request.getAttribute("review");
+System.out.println(r.getReviewNo());
+int reviewNo=(int)r.getReviewNo();
 %>    
     
     
@@ -113,17 +114,20 @@ text-decoration: none;
   font-weight: 700;
 }
 #review-table {
-  width: 500px;
+  width: 600px;
   position: absolute;
   left: 150px;
-  height: 100px;
+  height: 510px;
   border-collapse: collapse;
+   text-align: center;
 }
+
 
 #review-table th {
   height: 65px;
   border: 1px solid gray;
-  text-align: center;
+ 
+  
 }
 #review-table button {
   border: none;
@@ -134,29 +138,17 @@ text-decoration: none;
 
   border: none;
 }
-#write-content {
-  position: absolute;
-  width: 0%;
-  top: 650px;
+#review-write{
+border:2px solid gray;
 }
 
-#option-button-div {
-  border: 1px solid #888;
-  margin-left: 150px;
-  position: relative;
-  top: 400px;
-  width: 1100px;
-}
-#ot-backColor,
-#ot-textColor {
-  position: relative;
-  top: 3px;
-}
+
 
 #review-content {
  position:absolute;
-  top:1060px;
-  margin-left:150px;
+ top:1060px;
+ margin-left:130px;
+ 
 }
 
 #imageBox{
@@ -209,10 +201,6 @@ position:absolute;
  top: 1900px;
 
 }
-
-
-
-
 </style> 
     
 </head>
@@ -233,51 +221,39 @@ position:absolute;
 	                </div>
 	        </div><br><br>
 	        
-	<form action="<%= request.getContextPath() %>/reviewInsert.bo" method="post" encType="multipart/form-data"><!-- 파일올리는 거기 때문에 -->
+	<form action="<%= request.getContextPath() %>/reviewUpdate.bo" method="post" encType="multipart/form-data"><!-- 파일올리는 거기 때문에 -->
 	      	<div id="review-table">
 	     	     <div id="review-porduct">
-	                <div id="review-product-image"><img id="titleImg"  width="180" height="199" ></div>
-	                <div id="product-title"></div>
-	                <button><a href="#">상품 상세 정보 등록</a></button>
+	                	<div id="review-product-image"><img id="titleImg"  width="180" height="199" ></div>		
+	                	<button><a href="#">상품 상세 정보 등록</a></button>
 	              </div>
 	            
-	     <table id="review-write">
+	     	<table id="review-write">
+	           		 <tr>
+		                <th width="130px" >제목</th>
+		                <th><input type="text" id="review-text-title" name="title" placeholder="제목 입력" value="<%=r.getReviewTitle()%>"></th>
+	           	 	</tr>
 	            <tr>
-	                <th width="130px" >제목</th>
-	                <th><input type="text" id="review-text-title" name="title" placeholder="제목 입력"></th>
+		                <th>작성자</th>
+		                <%if(user!=null){ %>
+		                <th><input type="text" id="review-text-title" placeholder="이름 입력" name="name"value="<%=user.getUserName() %>"></th>
+		                <%}else{ %>
+		                 <th><input type="text" id="review-text-title" placeholder="이름 입력" name="name"></th>
+		                 <%} %>
 	            </tr>
-	            <tr>
-	                <th>작성자</th>
-	                <%if(user!=null){ %>
-	                <th><input type="text" id="review-text-title" placeholder="이름 입력" name="name"value="<%=user.getUserName() %>"></th>
-	                <%}else{ %>
-	                 <th><input type="text" id="review-text-title" placeholder="이름 입력" name="name"></th>
-	                 <%} %>
-	            </tr>
-	            
-	        </table>
-	      </div>
+	       	 </table>
+		        <input type="hidden" name="date" value="<%=request.getAttribute("date") %>">
+	           	<input type="hidden" name="reviewNo" value="<%=reviewNo %>">
+	           	<input type="hidden" name="file" value="<%=request.getAttribute("file") %>">
+	      </div>    
+	               
+	              
 
 			    <div id="review-content">
-			        <textarea  id="review-text-content" name="content" cols="150" rows="21" placeholder="이미지%내용입력"></textarea>
+			        <textarea  id="review-text-content" name="content" cols="150" rows="21" placeholder="이미지%내용입력"><%=r.getReviewCon() %></textarea>
 		   
 				 </div>
-      <!-- 
-		   <div id="imageBox">
-			     <div id="contentImgArea1">
-						<img id="contentImg1" width="250" height="160"> 
-					 </div>
-					  
-					<div id="contentImgArea2">
-						<img id="contentImg2" width="250" height="170">
-					</div>
-					
-					<div id="contentImgArea3">
-						<img id="contentImg3" width="250" height="170"> 
-					</div> 
-		     </div> 
-	    -->
-     
+   
          <div id="fileArea">
 					<input type="file" id="thumbnailImg1" multiple="multiple" name="thumbnailImg1" onchange="LoadImg(this,1)" required="required">
 					<!-- <input type="file" id="thumbnailImg2" multiple="multiple" name="thumbnailImg2" onchange="LoadImg(this,2)">
@@ -297,44 +273,26 @@ position:absolute;
 							//div 내용사진부분을 클릭함으로써 input file의 해당하는 태그는hiddent이므로 그 input을 누르게되는 효과 속성
 							$("#thumbnailImg1").click();
 				
-								});
-						/* $("#contentImgArea1").click(function(){
-							$("#thumbnailImg2").click();
-						});
-						$("#contentImgArea2").click(function(){
-							$("#thumbnailImg3").click();
-						});
-						$("#contentImgArea3").click(function(){
-							$("#thumbnailImg4").click();
-						}); */
 					});
-					
+				});			
 					function LoadImg(value, num){
 						if(value.files && value.files[0]){
 							var reader = new FileReader();
-							
 							reader.onload = function(e){								
 								switch(num){
 								case 1: 
 									$("#titleImg").attr("src", e.target.result);
 									break;
-								/* case 2:
-									$("#contentImg1").attr("src", e.target.result);
-									break;
-								case 3: 
-									$("#contentImg2").attr("src", e.target.result);
-									break;
-								case 4:
-									$("#contentImg3").attr("src", e.target.result);
-									break; */
 								}
 							}
-							
 							reader.readAsDataURL(value.files[0]);
-							
+							//파일을 여러개 가져올려고한다면 맨앞에 가져온 파일만 가져오도록 설정!파일창이 띄어지고 파일을여러개골랐다면 맨처음파일만 넘거가도록하는설정
 						}
 					}
+					
+				
 			</script>
+			
 			 <button type="button" id="go-button">목록</button>
 	       <input type="button" value="취소" id="input-cancle" >
 	       <input type="button" value="저장" id="input-save" >	

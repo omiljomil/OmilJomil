@@ -335,7 +335,7 @@ cursor: pointer;
 
  <section id="review">
       <div id="review-titlebar">
-        <button type="button" id="review-button">후기 작성하기</button>
+        <!-- <button type="button" id="review-button">후기 작성하기</button> -->
         <div id="review-title" >상품 후기</div>
       </div>
 

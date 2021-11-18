@@ -26,6 +26,9 @@ public class InsertShppingForm extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String userId = request.getParameter("userId");
+		request.setAttribute("userId", userId);
+		System.out.println(userId);
 		request.getRequestDispatcher("WEB-INF/views/myPage/insertShppingForm.jsp").forward(request, response);
 	}
 

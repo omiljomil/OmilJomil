@@ -5,22 +5,24 @@ public class Photo {
  private int reviewNo;
  private String imgName;
  private String imgChangeName;
- private String fileLevle;
+ private String filePath;
+ private int fileLevel;
  private String status;
  
 public Photo() {
 	super();
 }
 
-public Photo(int imgNo, int reviewNo, String imgName, String imgChangeName, String fileLevle, String status) {
+public Photo(int imgNo, int reviewNo, String imgName, String imgChangeName, String filePath, int fileLevel,
+		String status) {
 	super();
 	this.imgNo = imgNo;
 	this.reviewNo = reviewNo;
 	this.imgName = imgName;
 	this.imgChangeName = imgChangeName;
-	this.fileLevle = fileLevle;
+	this.filePath = filePath;
+	this.fileLevel = fileLevel;
 	this.status = status;
-
 }
 
 public int getImgNo() {
@@ -55,12 +57,20 @@ public void setImgChangeName(String imgChangeName) {
 	this.imgChangeName = imgChangeName;
 }
 
-public String getFileLevle() {
-	return fileLevle;
+public String getFilePath() {
+	return filePath;
 }
 
-public void setFileLevle(String fileLevle) {
-	this.fileLevle = fileLevle;
+public void setFilePath(String filePath) {
+	this.filePath = filePath;
+}
+
+public int getFileLevel() {
+	return fileLevel;
+}
+
+public void setFileLevel(int fileLevel) {
+	this.fileLevel = fileLevel;
 }
 
 public String getStatus() {
@@ -74,7 +84,7 @@ public void setStatus(String status) {
 @Override
 public String toString() {
 	return "Photo [imgNo=" + imgNo + ", reviewNo=" + reviewNo + ", imgName=" + imgName + ", imgChangeName="
-			+ imgChangeName + ", fileLevle=" + fileLevle + ", status=" + status + "]";
+			+ imgChangeName + ", filePath=" + filePath + ", fileLevel=" + fileLevel + ", status=" + status + "]";
 }
 
 }

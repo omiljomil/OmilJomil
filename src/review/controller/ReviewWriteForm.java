@@ -1,4 +1,4 @@
-package myPage.controller;
+package review.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class sp_AddressForm
+ * Servlet implementation class ReviewWriteForm
  */
-@WebServlet("/sp_AddressForm.me")
-public class sp_AddressForm extends HttpServlet {
+@WebServlet("/writeReviewForm.bo")
+public class ReviewWriteForm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public sp_AddressForm() {
+    public ReviewWriteForm() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,7 +26,7 @@ public class sp_AddressForm extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("WEB-INF/views/myPage/sp_AddressForm.jsp").forward(request, response);
+		 request.getRequestDispatcher("WEB-INF/views/review/reviewWrite.jsp").forward(request, response);
 	}
 
 	/**
