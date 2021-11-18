@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
- 
 
-
-%>    
-    
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,13 +33,14 @@ section{
   display: flex;
   justify-content: right;
   bottom: 100px;
-  right: 150px;
-  font-size: 25px;
+  right: 200px;
+  font-size: 29px;
+  color:gray;
 }
 #notice-route a{
  text-decoration: none;
  color:gray;
- font-size:26px;
+ font-size:29px;
 }
 
 #notice-route a:hover {
@@ -145,11 +141,11 @@ width:1500px;
         <div id="notice">
                 <span id="notice-title">공지사항</span>
                 <div id="notice-route">
-                    <span><a href="#">홈</a></span>
+                    <span id="home"><a href="#">홈</a></span>
+                    <span >-></span>
+                    <span id="community"><a href="#">커뮤니티</a></span>
                     <span>-></span>
-                    <span><a href="#">커뮤니티</a></span>
-                    <span>-></span>
-                    <span><a href="#">공지사항</a></span>
+                    <span id="noticeList"><a href="#">공지사항</a></span>
                 </div>
         </div><br><br>
         <form  action="<%=request.getContextPath() %>/noticeUdpateServlet.me" method="post" id="updateForm">
@@ -216,9 +212,6 @@ $('#input-save').click(function(){
   $('#input-cancle').click(function(){
      var bool=confirm("내용이 저장되지 않을 수도 있습니다. 작성을 취소하시겠습니까?");
      if(bool){
-       	/*  $('#updateForm').attr('action','noticeList.me');
-    	 $(this).attr('type','submit');
-    	 $('#updateForm').submit(); */
     	 location.href='javascript:history.go(-1);'
          
      }
@@ -229,9 +222,35 @@ $('#input-save').click(function(){
 	  if(bool){
 		  location.href='noticeList.me'
 	  }
-	 
-	 
  });
+ 
+ $('#go-button').click(function(){
+	  var bool=confirm("내용이 저장되지 않을 수도 있습니다. 작성을 취소하시겠습니까?");
+	  if(bool){
+		  location.href='noticeList.me'
+	  }
+});
+
+$('#home').click(function(){
+	 var bool=confirm("내용이 저장되지 않을 수도 있습니다. 작성을 취소하시겠습니까?");
+	  if(bool){
+		   location.href='<%=request.getContextPath()%>/'
+	  }
+});
+$('#community').click(function(){
+	 var bool=confirm("내용이 저장되지 않을 수도 있습니다. 작성을 취소하시겠습니까?");
+	  if(bool){
+		  location.href='<%=request.getContextPath()%>/community.me'
+	  }
+	  });
+
+$('#noticeList').click(function(){
+	 var bool=confirm("내용이 저장되지 않을 수도 있습니다. 작성을 취소하시겠습니까?");
+	  if(bool){
+		  location.href='<%=request.getContextPath()%>/noticeList.me'
+	  }
+	  });
+ 
 	 
  
   

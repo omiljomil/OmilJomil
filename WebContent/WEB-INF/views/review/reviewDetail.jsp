@@ -2,9 +2,9 @@
     pageEncoding="UTF-8" import="review.model.vo.*, java.util.*"%>
   
 <%
-/* Board b=(Board)request.getAttribute("board");
-ArrayList<Attachment> f=(ArrayList<Attachment>)request.getAttribute("fileList");
-System.out.println(f.size()); */
+Review r=(Review)request.getAttribute("review");
+ArrayList<Photo> f=(ArrayList<Photo>)request.getAttribute("fileList");
+System.out.println(f.size()); 
 %>  
 <!DOCTYPE html>
 <html lang="en">
@@ -286,8 +286,8 @@ font-weight:600;
         <div id="review-list" >
             <div id="review-porduct">
               <div id="review-product-image">
-		              <a href="<%=request.getContextPath() %>/thumbnail_uploadFiles/<%=f.get(0).getChangeName() %>" >
-		              	<img id=detailImg class="detailImg" src="<%=request.getContextPath() %>/thumbnail_uploadFiles/<%=f.get(0).getChangeName() %>">
+		              <a href="<%=request.getContextPath() %>/thumbnail_uploadFiles/<%=f.get(0).getImgChangeName() %>" >
+		              	<img id=detailImg class="detailImg" src="<%=request.getContextPath() %>/thumbnail_uploadFiles/<%=f.get(0).getImgChangeName() %>">
 	                   </a>
 	          </div>   
               <div id="product-title">상품:새싹새러드 8500원</div>
@@ -301,39 +301,39 @@ font-weight:600;
                 </tr>
                 <tr>
                     <th  width="130px" height="50px">제목</th>
-                    <th><input type="hidden" name="title" value="<%=b.getBoardTitle() %>"><%=b.getBoardTitle() %></th>    
+                    <th><input type="hidden" name="title" value="<%=r.getReviewTitle() %>"><%=r.getReviewTitle() %></th>    
                 </tr>
                 <tr>
                     <th width="130px" height="50px"> 작성자</th>
-                    <th><input type="hidden" name="wirter" value="<%=b.getBoardWriter()%>"><%=b.getBoardWriter()%></th>
+                    <th><input type="hidden" name="wirter" value="<%=r.getUserName()%>"><%=r.getUserName()%></th>
                 </tr>
             </table>
-            <div id="review-date"><span>작성일: <%=b.getCreateDate()%></span></div> 
+            <div id="review-date"><span>작성일: <%=r.getUserName()%></span></div> 
             </div>
             
             <div id="imageBox">
 			     <div id="contentImgArea1">
 			     <%if(f.size()>=2){ %>
-			       <a href="<%=request.getContextPath() %>/thumbnail_uploadFiles/<%=f.get(1).getChangeName() %>" >
-						<img id=detailImg class="detailImg" src="<%=request.getContextPath() %>/thumbnail_uploadFiles/<%=f.get(1).getChangeName() %>">
+			       <a href="<%=request.getContextPath() %>/thumbnail_uploadFiles/<%=f.get(1).getImgChangeName() %>" >
+						<img id=detailImg class="detailImg" src="<%=request.getContextPath() %>/thumbnail_uploadFiles/<%=f.get(1).getImgChangeName() %>">
 					</a>
 					<%} %>
 				</div>
 					  
 					<div id="contentImgArea2">
 					   <%if(f.size()>=3){ %>
-					<a href="<%=request.getContextPath() %>/thumbnail_uploadFiles/<%=f.get(2).getChangeName() %>" >
-						<img id=detailImg2 class="detailImg" src="<%=request.getContextPath() %>/thumbnail_uploadFiles/<%=f.get(2).getChangeName() %>">
-					   <input type="hidden" name="contentImg3" value="<%=f.get(2).getChangeName() %>"> 
+					<a href="<%=request.getContextPath() %>/thumbnail_uploadFiles/<%=f.get(2).getImgChangeName() %>" >
+						<img id=detailImg2 class="detailImg" src="<%=request.getContextPath() %>/thumbnail_uploadFiles/<%=f.get(2).getImgChangeName() %>">
+					   <input type="hidden" name="contentImg3" value="<%=f.get(2).getImgChangeName() %>"> 
 					</a>
 					<%} %>
 					</div>
 					  
 					<div id="contentImgArea3">
 					<%if(f.size()>=4){ %>
-				     <a href="<%=request.getContextPath() %>/thumbnail_uploadFiles/<%=f.get(3).getChangeName() %>" >
-						<img id=detailImg3 class="detailImg" src="<%=request.getContextPath() %>/thumbnail_uploadFiles/<%=f.get(3).getChangeName() %>">
-					    <input type="hidden" name="contentImg3" value="<%=f.get(3).getChangeName() %>"> 
+				     <a href="<%=request.getContextPath() %>/thumbnail_uploadFiles/<%=f.get(3).getImgChangeName() %>" >
+						<img id=detailImg3 class="detailImg" src="<%=request.getContextPath() %>/thumbnail_uploadFiles/<%=f.get(3).getImgChangeName() %>">
+					    <input type="hidden" name="contentImg3" value="<%=f.get(3).getImgChangeName() %>"> 
 					</a>
 					<%} %>
 					</div> 
@@ -342,7 +342,7 @@ font-weight:600;
 		    
 
          <div id="review-content"> 
-                <textarea id="notcie-content-text" cols="80" rows="20" readonly="readonly"name="content"><%=b.getBoardContent()%></textarea> 
+                <textarea id="notcie-content-text" cols="80" rows="20" readonly="readonly"name="content"><%=r.getReviewCon()%></textarea> 
         </div>
         
          <button type="submit" id="modify-button" class="system"><!-- onclick="location.href='update.me'" -->수정</button>
