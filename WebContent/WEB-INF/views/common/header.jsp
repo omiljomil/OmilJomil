@@ -203,7 +203,7 @@
 					<li><a href="#" >신상품</a></li>
 					<li><a href="#" >베스트상품</a></li>
 					<li><a href="<%= request.getContextPath() %>/community.me" >커뮤니티</a></li>
-					<%--관리자로 로그인시 상품관리 탭 보이게 하기 --%>
+					<%--관리자로 로그인시 상품관리 탭 보이게 하기 --%>  
 					<li><form id="adminPage" >상품관리</form></li>
 					
 					</ul>
