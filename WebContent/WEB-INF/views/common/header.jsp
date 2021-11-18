@@ -188,6 +188,7 @@
 					<li class="fir">
 						<a href="#" id="ca"><i class="bi bi-list"></i>카테고리</a>
 						<ul class="sub-menu">
+							<li><a href="<%= request.getContextPath() %>/productList.do">전체</a></li>
 							<li><a href="#">비건</a></li>
 							<li><a href="#">락토</a></li>
 							<li><a href="#">오보</a></li>
@@ -202,6 +203,8 @@
 					<li><a href="#" >신상품</a></li>
 					<li><a href="#" >베스트상품</a></li>
 					<li><a href="<%= request.getContextPath() %>/community.me" >커뮤니티</a></li>
+					<%--관리자로 로그인시 상품관리 탭 보이게 하기 --%>
+					<li><form id="adminPage" >상품관리</form></li>
 					
 					</ul>
 				</div>
@@ -216,5 +219,11 @@
 	}).mouseout(function(){
 		$(this).find('.sub-menu').stop().slideUp(500);
 	});
+	//상품관리 클릭시 상품관리로 이동
+	$('#adminPage').click(function(){
+		$('#adminPage').attr('action', 'ManagerProductList.pr');
+		$('#adminPage').submit();
+	});
+	
 </script>
 </html>
