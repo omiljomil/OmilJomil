@@ -77,8 +77,10 @@
 			</li>
 			<li class="sub_menu_title">나의 회원 정보
 				<ul class="sub_depth1">
-					<li><a href="<%=request.getContextPath() %>/userModify.me" class= "sub_depth_href"><i class="fa-solid fa-angle-right fa-xs"></i> 회원 정보 변경</a></li>
-					<li><a href="<%=request.getContextPath() %>/sp_AddressForm.me" class= "sub_depth_href"><i class="fa-solid fa-angle-right fa-xs"></i> 배송지 관리</a></li>
+
+					<li><a href="<%=request.getContextPath() %>/userModify.me" class="sub_depth_href"><i class="fa-solid fa-angle-right fa-xs"></i> 회원 정보 변경</a></li>
+					<li><a href="<%=request.getContextPath() %>/sp_AddressForm.me?userId=<%= loginUser.getUserId() %>" class= "sub_depth_href"><i class="fa-solid fa-angle-right fa-xs"></i> 배송지 관리</a></li>
+
 				</ul>
 			</li>
 		</ul>

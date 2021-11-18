@@ -1,23 +1,28 @@
 package myPage.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import User.model.service.ShppingService;
+import User.model.vo.Shpping;
+
 /**
- * Servlet implementation class sp_AddressForm
+ * Servlet implementation class InsertShppingForm
  */
 @WebServlet("/sp_AddressForm.me")
-public class sp_AddressForm extends HttpServlet {
+public class ShppingForm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public sp_AddressForm() {
+    public ShppingForm() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,7 +31,19 @@ public class sp_AddressForm extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("WEB-INF/views/myPage/sp_AddressForm.jsp").forward(request, response);
+		 
+		String userId = request.getParameter("userId");
+		ArrayList<Shpping> list = new ShppingService().selectShpping(userId);
+		String page = null;
+		if(list != null) {
+			page = "WEB-INF/views/myPage/sp_AddressForm.jsp";
+			request.setAttribute("list", list);
+		}
+		else {
+			page = "WEB-INF/views/common/errorPage.jsp";
+			request.setAttribute("msg", "배송지 조회 실패");
+		}
+		request.getRequestDispatcher(page).forward(request, response);
 	}
 
 	/**

@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="product.model.vo.*, java.util.*"%>
+<% 
+
+	Product p = (Product)request.getAttribute("p"); 
+	ArrayList<Photo> fileList = (ArrayList<Photo>)request.getAttribute("fileList");
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +28,7 @@
 	
 	
 	
-	#updateProductTitle{
+	#insertProductTitle{
 		color: rgb(65, 116, 77);
 		font-size: 50px;
 		font-weight: bold;
@@ -105,7 +111,7 @@
 		
 	<!-- 상품등록 -->	
 	<div id="contentSize">
-	<div id="updateProductTitle">상품등록</div>
+	<div id="insertProductTitle">상품등록</div>
 	<!-- 저장 버튼을 누르면 insert.pr로 이동(최종적으로 등록하면 등록상품리스트페이지로 이동) -->
 	<form action="<%= request.getContextPath() %>/insertProduct.pr" enctype="multipart/form-data" method="post">
 		

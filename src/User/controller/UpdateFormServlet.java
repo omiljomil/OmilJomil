@@ -1,14 +1,12 @@
 package User.controller;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import User.model.service.UserService;
 import User.model.vo.User;
@@ -33,19 +31,12 @@ public class UpdateFormServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
-		HttpSession session = request.getSession();
-		User loginUser = (User)session.getAttribute("loginUser");
-		String userName = loginUser.getUserName();
-		String email = loginUser.getEmail();
-		String phone = loginUser.getPhone();
-		
 		String userId = request.getParameter("userId");
 		String userPwd = request.getParameter("inputUserPwd");
 		
 		int result = new UserService().checkPwd(userId, userPwd);
 		
 		User m = new UserService().selectUser(userId);
-		
 		
 		String page = "";
 		if(result != 0) {

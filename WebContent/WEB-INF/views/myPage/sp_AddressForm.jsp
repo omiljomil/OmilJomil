@@ -1,5 +1,10 @@
+<%@page import="User.model.vo.Shpping"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+    	ArrayList<Shpping> list = (ArrayList<Shpping>)request.getAttribute("list");
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,15 +70,29 @@
 				<th width="110px">연락처</th>
 				<th width="100px">수정 - 삭제</th>
 			</tr>
+			<% if(list.isEmpty()){ %>
 			<tr>
 				<td colspan="4" align="center" style="padding: 50px">등록된 배송지가 없습니다.</td>
 			</tr>
+			<%}else{ %>
+				<%for(Shpping s : list){ %>
+					<tr>
+						<td><%=s.getAlias() %>
+							<%if(s.getBasics().equals("Y")){ %>
+								<div style="font-size: 10px; color:skyblue;">기본 배송지</div>
+							<%} %> </td>
+						<td><%=s.getPostal_code() %> <br><%=s.getAddress() %> <br> <%=s.getDe_address() %></td>
+						<td><%=s.getSp_phone() %></td>
+						<td><input type="button" value="수정"/><input type="button" value="삭제"/></td>
+					</tr>
+				<%} %>
+			<%} %>
 		</table>
 	</div>
 </body>
 <script>
 	$('#insertShpping').on('click',function(){
-		window.open('insertShppingForm.me','insertShppingForm','width=800,height=900');
+		window.open('insertShppingForm.me?userId=<%= loginUser.getUserId()%>','insertShppingForm','width=500,height=600');
 	});
 </script>
 </html>

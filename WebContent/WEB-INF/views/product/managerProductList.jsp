@@ -112,7 +112,7 @@
 					<input type="hidden" value="<%= p.getProdNo() %>">
 			<tr>
 				<td><%= p.getProdNo() %>
-					<input type="hidden" name="prodNo" value="<%= p.getProdNo() %>">
+					<input type="hidden" name="pNo" value="<%= p.getProdNo() %>">
 				</td>
 				<td>
 				<% for(int j = 0; j < fList.size(); j++){ %>
@@ -128,8 +128,9 @@
 				<td><%=p.getCtgryName() %></td>
 						
 				<td>
-				<input type="button" name="update_Product" class="updateProductBtn" value="수정" onclick="updateProduct();">
-				<input type="button" name="deleteProduct" class="deleteProductBtn" value="삭제" onclick="deleteProduct();">
+				<input type="button" class="updateProductBtn" value="수정" onclick="updateProduct();">
+				<input type="hidden" value="<%= p.getProdNo() %>">
+				<input type="button" class="deleteProductBtn" value="삭제" onclick="deleteProduct();">
 				</td>	
 				<% } %>
 			<% } %>		
@@ -189,17 +190,28 @@
 		}
 		
 		//상품수정(url로 상품번호 받아와야함)
-		$('#updateProduct').click(function(){
-			$(this).attr('action', 'prouctUpdateForm.pr');
-			$('#productListForm').submit();
+		$('.updateProductBtn').click(function(){
+			console.log(123);
+			var pNo = $(this).next().eq(0).val();
+			console.log(pNo);
+			location.href = "<%= request.getContextPath() %>/prouctUpdateForm.pr?pNo=" + pNo;
 		});
+		
+		
+		
+		
+		
+		//$('#updateProductBtn').click(function(){
+		//	$(this).attr('action', 'prouctUpdateForm.pr');
+		//	$('#productListForm').submit();
+		//});
 		
 		//상품삭제
 		function deleteProduct(){
 			 var bool = confirm('정말 삭제하시겠습니까?');
 			 
 			 if(bool){
-				$(this).attr('action', 'productDeleteForm.pr');
+				$('#productListForm').attr('action', 'productDelete.pr');
 				$('#productListForm').submit();
 			 }
 		}
