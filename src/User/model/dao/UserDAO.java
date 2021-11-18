@@ -493,10 +493,10 @@ public class UserDAO {
 			
 			if(rset.next()) {
 				user = new User(rset.getString("USER_ID"),
-									rset.getString("USER_NAME"),
 									rset.getString("USER_PWD"),
-									rset.getString("EMAIL"),
+									rset.getString("USER_NAME"),
 									rset.getString("PHONE"),
+									rset.getString("EMAIL"),
 									rset.getString("MANAGER"),
 									rset.getDate("ENROLL_DATE"),
 									rset.getDate("MODIFY_DATE"),
