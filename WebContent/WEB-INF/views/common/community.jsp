@@ -253,8 +253,6 @@ section a {
 button:hover{
 cursor: pointer;
 }
-
-
 #review-button:hover,
 #notice-more-button:hover,
 #notice-write-button:hover,
@@ -267,39 +265,8 @@ cursor: pointer;
   </style>
 </head>
 <body>
- <!--  <header>
-    좌측 상단 
-      <div class="links">
-          <a href="#" class="link_text">LOGIN</a>
-          <a href="#" class="link_text">JOIN</a>
-          <a href="#" class="link_text">MYPAGE</a>
-          
-      </div>
-      우측 상단
-      <div class="search_box">
-          <input type="text" maxlength="225" tabindex="1"/>
-          <i class="bi bi-search"></i>
-          <a href="#"><i class="bi bi-basket2-fill"></i></a>
-      </div>
-      img
-      <a href="#" class="logo"><img src="img/logo.png" /></a>
+ 
       
-      
-      
-    </header>
-     nav
-      <nav>
-        <div class="nav_items">
-            <div class="categorymenu">
-            <a href="#"><i class="bi bi-list"></i>카테고리</a>
-            </div>
-            <a href="#">신상품</a>
-            <a href="#">베스트상품</a>
-            <a href="#">커뮤니티</a>
-          
-        </div>
-      </nav>
-       -->
        <%@include file ="./header.jsp" %>
       <!--  메인 페이지  -->
    
@@ -307,9 +274,9 @@ cursor: pointer;
      <section id="comunity-bar">
       <span id="comunity-title"> 커뮤니티
       <div id="route">
-        <span ><a href="#" >홈</a></span>
+        <span ><a href="#" onclick="location.href='<%=request.getContextPath() %>'" >홈</a></span>
         <span id="pointer" >--></span>
-        <span><a href="#" onclick="location.href='comunityForm.me'">커뮤니티</a></span>
+        <span><a href="#" onclick="location.href='<%=request.getContextPath()%>/community.me'">커뮤니티</a></span>
        </div>
       </span>
      </section>
@@ -348,7 +315,9 @@ cursor: pointer;
     <section id="notice-list">
 
       <button type="button" id="notice-more-button" onclick="location.href='noticeList.me'">더보기</button>
+      <%if(loginUser!=null&&loginUser.getUserName().equals("운영자")){%>
       <button type="button" id="notice-write-button" onclick="location.href='noticeWrite.me'">글작성하기</button>
+      <% }%>
       <div id="notice-list-title">공지 사항</div>
       <ul>
      <li><a href="#"><strong>(공지)</strong>공지 사항</a></li>
