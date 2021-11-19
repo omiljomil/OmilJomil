@@ -95,11 +95,7 @@
 <body>
 
 	<%@ include file = "../common/header.jsp" %>
-	<% if(loginUser == null) { %> 
-			<script>
-				window.alert('로그인을 해주세요');
-			</script>
-	<% } else { %>
+	<% if(loginUser != null) { %> 
 		<form action="<%=request.getContextPath() %>/order.me">
 			<!-- 장바구니 -->
 			<div class="layout" id="space4"></div>
