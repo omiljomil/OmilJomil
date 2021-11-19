@@ -1,6 +1,16 @@
+<%@page import="User.model.vo.Shpping"%>
 <%@page import="User.controller.loginUserServlet"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+    	Shpping s = (Shpping)request.getAttribute("s");
+    	String checked=null;
+    	if(s.getBasics().equals("Y")){
+    		checked="checked";
+    	}else{
+    		checked="";
+    	}
+    %>
     
 <!DOCTYPE html>
 <html>
@@ -67,38 +77,40 @@
 		</tr>
 		<tr>
 			<td>배송지명</td>
-			<td><input type="text" name="alias" id="alias"/></td>
+			<td><input type="text" name="alias" id="alias" value="<%= s.getAlias()%>"/></td>
 		</tr>
 		<tr>
 			<td>수령인</td>
-			<td><input type="text" name="recipient" id="recipient"/></td>
+			<td><input type="text" name="recipient" id="recipient"value="<%= s.getRecipient()%>"/></td>
 		</tr>
 		<tr>
 			<td  rowspan="3" style="vertical-align: top;">주소</td>
-			<td><input type="text" style="width: 100px;" name="postal" id="postal"/><input type="button" value="주소검색" onclick="execDaumPostcode()"></td>
+			<td><input type="text" style="width: 100px;" name="postal" id="postal" value="<%= s.getPostal_code()%>"/><input type="button" value="주소검색" onclick="execDaumPostcode()"></td>
 		</tr>
 		<tr>
-			<td colspan="2"><input type="text" style="width: 300px;" name="address" id="address"/></td>
+			<td colspan="2"><input type="text" style="width: 300px;" name="address" id="address" value="<%= s.getAddress()%>"/></td>
 		</tr>
 		<tr>
-			<td colspan="2"><input type="text"style="width: 300px;" name="de_address" id="de_address" placeholder="상세주소"/></td>
+			<td colspan="2"><input type="text"style="width: 300px;" name="de_address" id="de_address" placeholder="상세주소" value="<%= s.getDe_address()%>"/></td>
 		</tr>
 		<tr>
 			<td>연락처</td>
-			<td><input type="tel" style="width: 230px;" name="sp_Phone" id="sp_Phone" placeholder="'-'를 빼고 적어주세요."/></td>
+			<td><input type="tel" style="width: 230px;" name="sp_Phone" id="sp_Phone" placeholder="'-'를 빼고 적어주세요." value="<%= s.getSp_phone()%>"/></td>
 		</tr>
 		<tr>
 			<td><div>기본 배송지</div></td>
-			<td> <input type="checkbox" name="basics" id="basics"/>기본 배송지로 설정</td>
+			<td> <input type="checkbox" name="basics" id="basics" <%= checked %>/>기본 배송지로 설정</td>
+		
 			
 		</tr>
 	</table>
 	<div style="margin-left: 10px; margin-top: 10px; font-size: 12px;">입력/수정하신 배송지는 배송지 목록에 저장됩니다.</div>
 	<div align="center" class="diBtn">
+		<input type="hidden" name="ship_no" id="ship_no"value="<%=s.getShip_no()%>"/>
 		<input type="button" onclick="window.close()" value="취소" style="border: 1px solid black; color:black; background-color: white;"/>
-		<input type="button" value="등록" onclick="sbBtn();" id="submitclose"/>
+		<input type="button" value="수정" onclick="sbBtn();" id="submitclose"/>
 	</div>
-		<input type="hidden" name="userId" id="userId"value="<%= (String)request.getAttribute("userId") %>"/>
+		
 		
 	</form>
 </body>
@@ -139,8 +151,8 @@
 	        
 	        
 	        $.ajax({
-	        	url:'<%=request.getContextPath() %>/insertAddress.me',
-	        	data:{alias:$('#alias').val(),recipient:$('#recipient').val(),postal:$('#postal').val(),
+	        	url:'<%=request.getContextPath() %>/updateAddress.me',
+	        	data:{ship_no:$('#ship_no').val(),alias:$('#alias').val(),recipient:$('#recipient').val(),postal:$('#postal').val(),
 	        		address:$('#address').val(),de_address:$('#de_address').val(),sp_Phone:$('#sp_Phone').val(),
 	        		basics:checked,userId:$('#userId').val()},
 	        		success:function(data){

@@ -13,16 +13,16 @@ import User.model.service.ShppingService;
 import User.model.vo.Shpping;
 
 /**
- * Servlet implementation class InsertAddress
+ * Servlet implementation class UpdateAddress
  */
-@WebServlet("/insertAddress.me")
-public class InsertAddress extends HttpServlet {
+@WebServlet("/updateAddress.me")
+public class UpdateAddress extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InsertAddress() {
+    public UpdateAddress() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,6 +32,7 @@ public class InsertAddress extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		int ship_no = Integer.parseInt(request.getParameter("ship_no"));
 		String alias = request.getParameter("alias");
 		String recipient = request.getParameter("recipient");
 		int postal = Integer.parseInt(request.getParameter("postal"));
@@ -55,14 +56,14 @@ public class InsertAddress extends HttpServlet {
 				if(deleteB > 0) {
 					System.out.println("기존 basics 'n' 변경");
 				}else {
-					request.setAttribute("msg", "주소지 등록에 실패하였습니다");
+					request.setAttribute("msg", "주소지 수정에 실패하였습니다");
 					request.getRequestDispatcher("WEB-INF/views/common/errorPage.jsp").forward(request, response);
 				}
 			}
 		}
 		
-		Shpping sp = new Shpping(0, userId, postal, address, de_address, alias,basics ,recipient,sp_Phone);
-		int result = new ShppingService().insertShpping(sp);
+		Shpping sp = new Shpping(ship_no, userId, postal, address, de_address, alias,basics ,recipient,sp_Phone);
+		int result = new ShppingService().UpdateShpping(sp);
 		
 		if(result > 0) {
 			PrintWriter out = response.getWriter();
@@ -70,15 +71,10 @@ public class InsertAddress extends HttpServlet {
 			out.flush();
 			out.close();
 		}else {
-			request.setAttribute("msg", "배송지 등록에 실패하였습니다");
+			request.setAttribute("msg", "배송지 수정에 실패하였습니다");
 			request.getRequestDispatcher("WEB-INF/views/common/errorPage.jsp").forward(request, response);
 		}
-		
-		
-		
 	}
-	
-	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
