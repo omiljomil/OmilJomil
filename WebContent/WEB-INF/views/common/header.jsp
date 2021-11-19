@@ -176,17 +176,7 @@
 		<div class=rightlinks>
 				<input type="text" maxlength="225" tabindex="1"/>
 				<i class="bi bi-search"></i>
-				<%if(loginUser==null) { %> 
-					<a href="#"><i class="bi bi-basket2-fill"></i></a>
-					<script>
-						$('i').on('click', function() {
-							alert('로그인을 해야 이용 가능합니다.');
-							$('a').attr('href', '<%=request.getContextPath() %>/loginForm.me');
-						});
-					</script>
-				<% } else { %>
-					<a href="<%=request.getContextPath() %>/cartList.me"><i class="bi bi-basket2-fill"></i></a>
-				<% } %>
+				<a href="<%=request.getContextPath() %>/cartList.me"><i class="bi bi-basket2-fill"></i></a>
 		</div>
 		</div>
 		<!-- img -->
