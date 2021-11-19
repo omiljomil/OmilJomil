@@ -48,4 +48,35 @@ public class ShppingService {
 		return deleteB;
 	}
 
+	public int deleteShppingList(String ship_no) {
+		Connection conn = getConnection();
+		int result = sDAO.deleteShppingList(conn,ship_no);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		return result;
+	}
+
+	public Shpping insertShip_no(String ship_no) {
+		Connection conn = getConnection();
+		Shpping s = sDAO.insertShip_no(conn,ship_no);
+		close(conn);
+		return s;
+	}
+
+	public int UpdateShpping(Shpping sp) {
+		Connection conn = getConnection();
+		int result = sDAO.UpdateShpping(conn, sp);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
 }

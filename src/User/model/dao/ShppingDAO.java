@@ -41,7 +41,7 @@ private Properties prop = null;
 			pstmt.setString(5, sp.getAlias());
 			pstmt.setString(6, sp.getBasics());
 			pstmt.setString(7, sp.getRecipient());
-			pstmt.setInt(8, sp.getSp_phone());
+			pstmt.setString(8, sp.getSp_phone());
 			
 			result = pstmt.executeUpdate();
 			
@@ -75,7 +75,7 @@ private Properties prop = null;
 										rset.getString("alias"),
 										rset.getString("basics"),
 										rset.getString("recipient"),
-										rset.getInt("sp_phone"));
+										rset.getString("sp_phone"));
 				list.add(s);
 			}
 		} catch (SQLException e) {
@@ -126,5 +126,82 @@ private Properties prop = null;
 			close(pstmt);
 		}
 		return deleteB;
+	}
+
+	public int deleteShppingList(Connection conn, String ship_no) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = prop.getProperty("deleteShppingList");
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, ship_no);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public Shpping insertShip_no(Connection conn, String ship_no) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Shpping s = null;
+		String query = prop.getProperty("insertShip_no");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, ship_no);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				s = new Shpping(rset.getInt("ship_no"),
+										rset.getString("user_id"),
+										rset.getInt("postal_code"),
+										rset.getString("address"),
+										rset.getString("de_address"),
+										rset.getString("alias"),
+										rset.getString("basics"),
+										rset.getString("recipient"),
+										rset.getString("sp_phone"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			close(rset);
+			close(pstmt);
+		}
+		return s;
+	}
+
+	public int UpdateShpping(Connection conn, Shpping sp) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = prop.getProperty("updateShpping");
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1,sp.getPostal_code());
+			pstmt.setString(2, sp.getAddress());
+			pstmt.setString(3, sp.getDe_address());
+			pstmt.setString(4, sp.getAlias());
+			pstmt.setString(5, sp.getBasics());
+			pstmt.setString(6, sp.getRecipient());
+			pstmt.setString(7, sp.getSp_phone());
+			pstmt.setInt(8, sp.getShip_no());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 }
