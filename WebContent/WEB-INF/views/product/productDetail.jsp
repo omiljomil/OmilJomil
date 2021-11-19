@@ -410,7 +410,7 @@ a:visited {
 			<div id="product_name_select"><%= p.getProdName() %></div>
 	
 			<button type="button" id="plus" class="add_product">+</button>
-			 <input type="text" id="numBox" min="1" max=10 value="1" readonly="readonly"/>
+			 <input type="text" id="numBox" name="numBox" min="1" max=10 value="1" readonly="readonly"/>
 			 <button type="button" id="minus" class="add_product">-</button>
 			 <span id="price_product"></span>
 		 </div>
