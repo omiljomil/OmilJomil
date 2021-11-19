@@ -194,7 +194,8 @@
 			<div class="payment_bottom">
 				<h4 class="payment_h4">ORDER</h4>
 			</div>
-			
+		<form action="<%= request.getContextPath() %>/paie.me"
+			 method="post" name="paieForm" onsubmit="return checkValue()">
 			<div class="payment_order">
 				<h6 class="payment_order_h6">상품 주문 내역</h6>
 				<table class="payment_table">
@@ -226,18 +227,18 @@
 					주문 정보
 				</div>
 				</div>
-			<form>
+				
 				<table class="order_info_table" style="margin-bottom: 5px;">
 					<tr>	
 						<td class="order_info_sub_title1">주문자</td>
-						<td class="order_info_sub_title2"><input type="text" style="height: 25px; width:200px;"></td>
+						<td class="order_info_sub_title2"><input type="text" name="orderName" id="orderName" style="height: 25px; width:200px;"></td>
 					</tr>
 					<tr>	
 						<td class="order_info_sub_title1">주소</td>
 						<td class="order_info_sub_title2">
-						<input type="text" class="first_address" id="postal" style="height: 25px; width:70px;"><input type="button" onclick="execDaumPostcode()" class="post_numberBtn" id="post_number" value="우편번호 >"><br>
-						<input type="text" id="address" style="height: 25px; width:450px; margin-top: 10px;" placeholder="기본 주소"><br>
-						<input type="text" class="last_address1" id="de_address" style="height: 25px; width:450px; margin-top: 10px;" placeholder="상세 주소">
+						<input type="text" class="first_address" name="postal" id="postal" style="height: 25px; width:70px;"><input type="button" onclick="execDaumPostcode()" class="post_numberBtn" id="post_number" value="우편번호 >"><br>
+						<input type="text" name="address" id="address" style="height: 25px; width:450px; margin-top: 10px;" placeholder="기본 주소"><br>
+						<input type="text" class="last_address1" name="de_address" id="de_address" style="height: 25px; width:450px; margin-top: 10px;" placeholder="상세 주소">
 						</td>
 					</tr>
 					<tr>	
@@ -263,7 +264,7 @@
 					<tr>	
 						<td class="order_info_sub_title1">휴대전화</td>
 						<td class="order_info_sub_title2">
-						<select class="phone_select" name = "phone" id="phone" style="height: 25px; width:60px;">
+						<select class="phone_select" name = "phone1" id="phone1" style="height: 25px; width:60px;">
 							<option value="010">010</option>
 							<option value="011">011</option>
 							<option value="016">016</option>
@@ -271,7 +272,7 @@
 							<option value="018">018</option>
 							<option value="019">019</option>
 						</select> - 
-						<input type="text" style="height: 25px; width:80px;"> - <input type="text" style="height: 25px; width:80px;">
+						<input type="text" name = "phone2" id="phone2" style="height: 25px; width:80px;"> - <input type="text" name = "phone3" id="phone3" style="height: 25px; width:80px;">
 						</td>
 					</tr>
 					<tr>	
@@ -288,14 +289,12 @@
 						</td>
 					</tr>
 				</table>
-			</form>
 			
 			<div class="deliver_info">
 				<div class="deliver_info_title">
 					배송 정보
 				</div>
 				</div>
-			<form>
 				<table class="deliver_info_table" style="margin-bottom: 50px;">
 					<tr>	
 						<td class="deliver_info_sub_title1">배송지 선택</td>
@@ -360,32 +359,31 @@
 						</td>
 					</tr>
 				</table>
-			</form>
 			
-			<div class="all_order" style="margin-bottom: 300px;">
-				<table>
-					<tr>
-						<td class="all_order_first">총 주문 금액</td>
-						<td class="all_order_first">배송료</td>
-						<td class="all_order_first">총 결제 예정 금액</td>
-					</tr>
-					<tr>
-						<td class="all_order_second">21,400원</td>
-						<td class="all_order_second">2,500원</td>
-						<td class="all_order_second">= 23,900원</td>
-					</tr>
-					<tr>
-						<td colspan="3" class="all_order_third">
-							<input type="button" value="취소하기" class="all_orderBtn1">
-							<input type="button" value="결제하기" class="all_orderBtn2" id="all_orderBtn2">
-						</td>
-					</tr>
-				</table>
-			
+				<div class="all_order" style="margin-bottom: 300px;">
+					<table>
+						<tr>
+							<td class="all_order_first">총 주문 금액</td>
+							<td class="all_order_first">배송료</td>
+							<td class="all_order_first">총 결제 예정 금액</td>
+						</tr>
+						<tr>
+							<td class="all_order_second">21,400원</td>
+							<td class="all_order_second">2,500원</td>
+							<td class="all_order_second">= 23,900원</td>
+						</tr>
+						<tr>
+							<td colspan="3" class="all_order_third">
+								<input type="button" value="취소하기" class="all_orderBtn1">
+								<input type="button" value="결제하기" class="all_orderBtn2" id="all_orderBtn2">
+							</td>
+						</tr>
+					</table>
+				
+				</div>
+				
 			</div>
-			
-		</div>
-		
+		</form>
 		<script>
 			$('#all_orderBtn2').on('click', function(){
 				window.open('realPaiement.me', 'order', 'width=900, height=800');
@@ -394,6 +392,7 @@
 		
 		
 	<script>
+	// 우편 번호와 주소 불러오기
 	function execDaumPostcode() {
 	    new daum.Postcode({
 	        oncomplete: function(data) {
@@ -411,7 +410,9 @@
 	            }
 	            // 건물명이 있고, 공동주택일 경우 추가한다.
 	            if(data.buildingName !== '' && data.apartment === 'Y'){
-	               extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	           
+	            	
+	            extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
 	            }
 	            // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
 	            if(extraRoadAddr !== ''){
@@ -463,9 +464,36 @@
 	            document.getElementById('address2').value = fullRoadAddr; // 주소 
 	            document.getElementById('de_address2').focus();	// 상세 주소
 	        }
-	    }).open();
+	  	  }).open();
+		}
+	</script>
+
+	<script>
+	function checkValue(){
+		var form = document.paieForm;
+		
+		if(!form.orderName.value){
+			alert("주문자를 입력하세요.");
+			return false;
+		}
+		
+		if(!form.postal.value){
+			alert("우편번호를 입력하세요.");
+			return false;
+		}
+		
+		if(!form.address.value){
+			alert("주소를 입력하세요.");
+			return false;
+		}
+		
+		if(!form.phone1.value || !form.phone2.value || !form.phone3.value){
+			alert("전화번호를 입력하세요.");
+			return false;
+		}
+		
 	}
-</script>
+	</script>
 		
 </body>
 </html>
