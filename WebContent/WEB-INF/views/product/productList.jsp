@@ -70,16 +70,21 @@ div{
 	display:flex;
 	flex-direction: column;
 	flex-wrap: nowrap;
+	
 }
 	.prodCol{
 		margin: 40px;
 		width : 33%;
 		padding-right : 8px;
 		text-align : center;
+	
 	}
 	.prodCol a{
 		text-decoration: none;
 		color: black;
+		flex-shrink: 0;/* 이 속성 이용하면 너비 조정이 가능함*/
+		width: 300px;
+		height: 300px;
 	}
 
 	.prodCol *:hover{
@@ -130,18 +135,20 @@ div{
 
    
   <!-- 상단 카테고리별 네비게이터 -->
- <div   class="cateNav" id="cateNavDiv">
-  <ul>
-  	<li class="active"><a href="#">전체</a></li>
-  	<li><a href="#">비건</a></li>
-  	<li><a href="#">락토</a></li>
-  	<li><a href="#">오보</a></li>
-  	<li><a href="#">락토오보</a></li>
-  	<li><a href="#">폴로</a></li>
-  	<li><a href="#">페스코</a></li>
-  	<li><a href="#">플렉시테리안</a></li>
-  </ul>
-  </div>
+  <div  class="jumbotron" style="background-color: white !important;">
+	 <div   class="cateNav" id="cateNavDiv">
+		  <ul>
+		  	<li class="active"><a href="#">전체</a></li>
+		  	<li><a href="#">비건</a></li>
+		  	<li><a href="#">락토</a></li>
+		  	<li><a href="#">오보</a></li>
+		  	<li><a href="#">락토오보</a></li>
+		  	<li><a href="#">폴로</a></li>
+		  	<li><a href="#">페스코</a></li>
+		  	<li><a href="#">플렉시테리안</a></li>
+		  </ul>
+	  </div>
+	  </div>
 
 	<!-- 부트스트랩 컨테이너 -->
 
@@ -160,7 +167,7 @@ div{
 		</div>
 		<% } %>
 			<%
-				for(int i = 0; i < pList.size(); i++){ 
+			for(int i = 0; i < pList.size(); i++){ 
 			 Product p = pList.get(i);
 			 
 			 %>
@@ -171,15 +178,15 @@ div{
 			<div class="col-md-4" width="300px" height="300" id="proInfo">
 				<a class="proThumb">
 					<input type="hidden" value="<%= p.getProdNo() %>">
-					<p> <img src="<%= request.getContextPath() %>/thumbnail_uploadFiles/<%= ph.getImgChangeName() %>" width="200px" height="200px">
+					<p> <img src="<%= request.getContextPath() %>/thumbnail_uploadFiles/<%= ph.getImgChangeName() %>" width="300px" height="300px">
 					<h3><%= p.getProdName() %></h3>
 					<p><%= p.getPrice() %>원
 				<%= p.getProdNo() %>
 				</a>
 			</div>
-		    			<% } %>
 		    		<% } %>
-				<% } %>			
+		    	<% } %>
+			<% } %>			
 		</div>
 		<hr>
 		

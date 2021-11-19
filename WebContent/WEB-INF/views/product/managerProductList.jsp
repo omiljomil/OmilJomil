@@ -184,7 +184,7 @@
 			 var bool = confirm('정말 삭제하시겠습니까?');
 			 console.log(bool);
 			 if(bool){
-				 location.href='<%=request.getContextPath()%>/productDelete.do';
+				 location.href='<%=request.getContextPath()%>/productDelete.pr';
 				
 			 }
 		}
