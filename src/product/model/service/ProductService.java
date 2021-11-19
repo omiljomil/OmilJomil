@@ -130,6 +130,22 @@ public class ProductService {
 		return list;
 	}
 
+	public int updateProduct(Product p, ArrayList<Photo> fileList) {
+		Connection conn = getConnection();
+		int result1 = pDAO.updateProduct(conn, p);
+		int result2 = pDAO.updatePhoto(conn, fileList);
+		
+		if(result1 > 0 && result2 > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result1 + result2;
+
+	}
 
 
 }

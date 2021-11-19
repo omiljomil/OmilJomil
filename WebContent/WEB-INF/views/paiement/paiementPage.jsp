@@ -237,7 +237,7 @@
 						<td class="order_info_sub_title2">
 						<input type="text" class="first_address" id="postal" style="height: 25px; width:70px;"><input type="button" onclick="execDaumPostcode()" class="post_numberBtn" id="post_number" value="우편번호 >"><br>
 						<input type="text" id="address" style="height: 25px; width:450px; margin-top: 10px;" placeholder="기본 주소"><br>
-						<input type="text" class="last_address1" id="de_address" style="height: 25px; width:225px; margin-top: 10px;" placeholder="상세 주소">
+						<input type="text" class="last_address1" id="de_address" style="height: 25px; width:450px; margin-top: 10px;" placeholder="상세 주소">
 						</td>
 					</tr>
 					<tr>	
@@ -314,7 +314,7 @@
 						<td class="deliver_info_sub_title2">
 						<input type="text" class="first_address" id="postal2" style="height: 25px; width:70px;"><input type="button" class="post_numberBtn" onclick="execDaumPostcode2()" value="우편번호 >"><br>
 						<input type="text" id="address2" style="height: 25px; width:450px; margin-top: 10px;" placeholder="기본 주소"><br>
-						<input type="text" id="de_address2" class="last_address" style="height: 25px; width:450px;  margin-top: 10px;" placeholder="상세 주소">
+						<input type="text" id="de_address2" class="last_address2" style="height: 25px; width:450px;  margin-top: 10px;" placeholder="상세 주소">
 						
 						</td>
 					</tr>

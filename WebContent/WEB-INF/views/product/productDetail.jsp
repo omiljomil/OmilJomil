@@ -18,9 +18,8 @@
 
 <style>
 
-
-
 /* 헤더 부분 */
+
 
 	
 	.beginVegan{
@@ -30,6 +29,18 @@
 	#nav_list{
 	height: 50px;
 }
+a:link {
+ 	color: black; text-decoration: none;
+ }
+a:visited {
+ color: black; text-decoration: none;
+ }
+
+.jumbotron{
+	background-color: white !important;
+
+}
+
 .cateNav { 
 
 	float: left;
@@ -65,6 +76,7 @@
 .cateNav::after{
 	 clear:both;
 }
+
 	
 	#productBuyArea{
 		width: 1200px;
@@ -140,10 +152,12 @@
 		padding-top: 10px;
 		text-align: center;
 		flex-basis: 100px;
+		
 	}
 	.optionFlex button{
 		width: 30px;
 		border: 1px solid black;
+		flex-shrink: 0;
 		
 	}
 	.optionFlex input{
@@ -188,6 +202,7 @@
 		border-bottom: 1px solid black;
 	}
 	#cart button{
+		padding: -10px;
 		margin-right: -5px;
 		border: 1px solid black;
 	}
@@ -204,19 +219,17 @@
 		background-color: white;
 		
 	}
+	
+	#plus1, #plus2, #plus3, #minus1, #minus2, #minus3{
+		width: 30px;
+		height: 30px;
+	}
 
-	#numBox1{
+	#numBox1, #numBox2, #numBox3{
 		width: 30px;
 		height: 30px;
 	}
-	#numBox2{
-		width: 30px;
-		height: 30px;
-	}
-	#numBox3{
-		width: 30px;
-		height: 30px;
-	}
+
 	#numBox{
 		width: 30px;
 		height: 30px;
@@ -295,17 +308,18 @@
 	<%@ include file = "/WEB-INF/views/common/imgslide.jsp" %>
  
    <!-- 상단 카테고리별 네비게이터 -->
- <div   class="cateNav">
-  <ul>
-  	<li class="active"><a href="#">전체</a></li>
-  	<li><a href="#">비건</a></li>
-  	<li><a href="#">락토</a></li>
-  	<li><a href="#">오보</a></li>
-  	<li><a href="#">락토오보</a></li>
-  	<li><a href="#">폴로</a></li>
-  	<li><a href="#">페스코</a></li>
-  	<li><a href="#">플렉시테리안</a></li>
-  </ul>
+
+  <div   class="cateNav">
+	  <ul>
+	  	<li class="active"><a href="#">전체</a></li>
+	  	<li><a href="#">비건</a></li>
+	  	<li><a href="#">락토</a></li>
+	  	<li><a href="#">오보</a></li>
+	  	<li><a href="#">락토오보</a></li>
+	  	<li><a href="#">폴로</a></li>
+	  	<li><a href="#">페스코</a></li>
+	  	<li><a href="#">플렉시테리안</a></li>
+	  </ul>
   </div>
 
 	
@@ -415,7 +429,7 @@
 	
 	<!-- 상품 상세 설명 -->
 	
-	<ul class="nav nav-tabs">
+	<ul class="nav nav-tabs" id="infoNav">
 	  <li class="nav-item">
 	    <a class="nav-link active" aria-current="page" href="#detailInfo">상품상세정보</a>
 	  </li>

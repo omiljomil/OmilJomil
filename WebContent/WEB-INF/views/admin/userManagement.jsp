@@ -52,8 +52,8 @@
 	#menu-search {text-align: center;}
 	#userlist {text-align: center; width: 1230px;}
 	#address {text-align: left;}
-	.pagingArea input, button {background: white; border: 1px solid #ddd; width: 40px; height: 40px; font-size: 14px;}
-	#choosen {font-weight: bold; background: MintCream; color: black; cursor: text;}
+	.pagingArea input, button {background: white; width: 40px; height: 40px; font-size: 14px; color: black; border: 0px;}
+	#choosen {font-weight: bold; border: 1px solid #ddd; background: white; cursor: text;}
 	
 	/* 하단 버튼 */
 	#space2 {height: 105px; text-align: center;}
