@@ -211,7 +211,7 @@
 	
 		<input type="submit" id="insertProductBtn" value="저장">
 		<!-- 취소를 누르면 상품등록리스트로 이동하게 하기 -->
-		<input type="reset" id="resetProductBtn" value="취소" onclick="location.href='<%= request.getContextPath() %>/ManagerProductList.pr'">
+		<input type="button" id="resetProductBtn" value="취소">
 	</form>
 	</div>
 	
@@ -269,79 +269,19 @@
 			}
 		}
 	
+		//취소버튼 클릭시 안내창 뜨면서 리스트로 이동
+		
+		$('#resetProductBtn').click(function(){
+			 var bool=confirm("상품등록을 취소하시겠습니까?");
+			  if(bool){
+				  location.href='<%=request.getContextPath()%>/ManagerProductList.pr'
+			  }
+			  });
+		
+		
 	</script>
 	
-	<script>
-	/* function categoryChange(e){
-		var value = $('#mainCategory').val();
-		var value2 = '';
-		console.log(value);
-		console.log(typeof value);
-		if(value == "100"){
-			value2 = $('#detailCategory').val();
-			$('#detailCategory').append("<option value='101'>비건</option>");
-			$('#detailCategory').append("<option value='102'>락토</option>");
-			$('#detailCategory').append("<option value='103'>오보</option>");
-			$('#detailCategory').append("<option value='104'>락토오보</option>");
-			$('#detailCategory').append("<option value='105'>폴로</option>");
-			$('#detailCategory').append("<option value='106'>페스코</option>");
-			$('#detailCategory').append("<option value='107'>플렉시테리안</option>");
-		}else if(value == "200"){
-			$('#detailCategory').append("<option value='201'>콩고기</option>");
-			$('#detailCategory').append("<option value='202'>유제품</option>");
-			$('#detailCategory').append("<option value='203'>생선</option>");
-			$('#detailCategory').append("<option value='204'>야채</option>");
-			$('#detailCategory').append("<option value='205'>육류</option>");
-		}
-
-		var testA = $("#detailCategory option:selected").val();
-		console.log("testA:" + testA);
-
-	} 
- */
- 
- /* function doChange(srcE, targetId){
-	    var val = srcE.options[srcE.selectedIndex].value;
-	   
-	    var targetE = document.getElementById(targetId);
-	    removeAll(targetE);
-
-	    if(val == '100'){
-	        addOption('비건', targetE);
-	        addOption('락토', targetE);
-	        addOption('오보', targetE);
-	        addOption('락토오보', targetE);
-	        addOption('폴로', targetE);
-	        addOption('페스코', targetE);
-	        addOption('플렉시테리안', targetE);
-	    }
-	    else if(val == '200'){
-	        addOption('콩고기', targetE);
-	        addOption('유제품', targetE);
-	        addOption('생선', targetE);
-	        addOption('야채', targetE);
-	        addOption('육류', targetE);
-	    }
-	}
-
-	function addOption(value, e){
-	    var o = new Option(value);
-	    try{
-	        e.add(o);
-	    }catch(ee){
-	        e.add(o, null);
-	    }
-	   
-
-	}
-
-	function removeAll(e){
-	    for(var i = 0, limit = e.options.length; i < limit - 1; ++i){
-	        e.remove(1);
-	    }
-	}
- */
-	</script>
+	
 
 
 </body>
