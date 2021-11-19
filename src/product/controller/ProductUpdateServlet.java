@@ -79,7 +79,7 @@ public class ProductUpdateServlet extends HttpServlet {
 			String shortInfo = multiRequest.getParameter("shortInfo");
 
 					//productWriterForm에서 받은 데이터들을 p객체로 만들어서 한 번에 데이터 전달하기
-			Product p = new Product(0, productName, productPrice, ctgryName, mtrlName, null, shortInfo, productInfo, hashtag, null);
+			Product p = new Product(0, productName, productPrice, ctgryName, mtrlName, null, shortInfo, productInfo, hashtag, null, 0);
 					
 			ArrayList<Photo> fileList = new ArrayList<Photo>();
 					

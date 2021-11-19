@@ -14,5 +14,9 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
 	<classpathentry kind="output" path="bin"/>
 </classpath>
+=======
+
+>>>>>>> omiljomil/master

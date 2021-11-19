@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Properties;
 
 import category.model.vo.Category;
@@ -187,7 +188,8 @@ public class ProductDAO {
 									rset.getString("SHORT_INFO"),
 									rset.getString("PROD_EXPLE"),
 									rset.getString("PROD_TAG"),
-									rset.getString("STATUS")));
+									rset.getString("STATUS"),
+									rset.getInt("TYPE")));
 			}
 			
 		} catch (SQLException e) {
@@ -325,6 +327,31 @@ public class ProductDAO {
 		
 		return p;
 	}
+	
+//	public HashMap<String,String> selectProductDetail(Connection conn, int pNo) {
+//		PreparedStatement pstmt = null;
+//		ResultSet rset = null;
+//		HashMap<String,String> p = null;
+//		
+//		String query = prop.getProperty("selectProduct");
+//		
+//		try {
+//			pstmt = conn.prepareStatement(query);
+//			pstmt.setInt(1, pNo);
+//			rset = pstmt.executeQuery();
+//			
+//			p.put("PROD_NAME",rset.getString("PROD_NAME"));
+//		
+//	
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}finally {
+//			close(rset);
+//			close(pstmt);
+//		}
+//		
+//		return p;
+//	}
 
 	public ArrayList<Photo> selectPhoto(int pNo, Connection conn) {
 		PreparedStatement pstmt = null;
