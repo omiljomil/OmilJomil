@@ -159,7 +159,7 @@
 		<div class="links">
 		<div class=leftlinks>
 		<% if(loginUser==null) { %> 
-			<a href="<%=request.getContextPath() %>/loginUserServlet.me" class="link_text">LOGIN</a>
+			<a href="<%=request.getContextPath() %>/loginForm.me" class="link_text">LOGIN</a>
 			<a href="<%=request.getContextPath() %>/joinForm.me" class="link_text">JOIN</a>
 		<% } else { %>
 			<label for=""><%= loginUser.getUserName() %> <% if(loginUser.getManager().equals("Y")){ %>관리자 <%} %>(님)</label>
