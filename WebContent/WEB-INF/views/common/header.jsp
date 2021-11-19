@@ -165,6 +165,10 @@
 			<label for=""><%= loginUser.getUserName() %> <% if(loginUser.getManager().equals("Y")){ %>관리자 <%} %>(님)</label>
 			<a href="<%=request.getContextPath() %>/loginOutServlet.me" class="link_text">LOGOUT</a>
 			<a href="<%=request.getContextPath() %>/mypagemain.me" class="link_text">MYPAGE</a>
+			<% if(loginUser.getManager().equals("Y")) { %>
+				<a href="<%=request.getContextPath() %>/userManagement.no" class="link_text">회원관리</a>
+				<a href="<%=request.getContextPath() %>/orderManagement.no" class="link_text">주문관리</a>
+			<% } %>
 		<% } %>
 		</div>
 		
@@ -172,7 +176,17 @@
 		<div class=rightlinks>
 				<input type="text" maxlength="225" tabindex="1"/>
 				<i class="bi bi-search"></i>
-				<a href="<%=request.getContextPath() %>/cartList.me"><i class="bi bi-basket2-fill"></i></a>
+				<% if(loginUser==null) { %> 
+					<a href="#" id="basket"><i class="bi bi-basket2-fill"></i></a>
+					<script>
+						$('#basket').on('click', function() {
+							alert('로그인을 해야 이용 가능합니다.');
+							$(this).attr('href', '<%=request.getContextPath() %>/loginForm.me');
+						});
+					</script>
+				<% } else { %>
+					<a href="<%=request.getContextPath() %>/cartList.me"><i class="bi bi-basket2-fill"></i></a>
+				<% } %>
 		</div>
 		</div>
 		<!-- img -->
