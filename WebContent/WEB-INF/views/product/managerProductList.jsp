@@ -109,10 +109,11 @@
 			<% }else{ %>
 				<%	for(int i = 0; i < pList.size(); i++){ %>
 					<%  Product p = pList.get(i);%>
-					<input type="hidden" value="<%= p.getProdNo() %>">
+
 			<tr>
 				<td><%= p.getProdNo() %>
-					<input type="hidden" name="pNo" value="<%= p.getProdNo() %>">
+				
+				<%--자꾸 리스트의 마지막이 삭제됨 --%>
 				</td>
 				<td>
 				<% for(int j = 0; j < fList.size(); j++){ %>
@@ -129,7 +130,7 @@
 						
 				<td>
 				<input type="button" class="updateProductBtn" value="수정" onclick="updateProduct();">
-				<input type="hidden" value="<%= p.getProdNo() %>">
+				<input type="hidden" name = "pNo" value="<%= p.getProdNo() %>">
 				<input type="button" class="deleteProductBtn" value="삭제" onclick="deleteProduct();">
 				</td>	
 				<% } %>
@@ -178,46 +179,34 @@
 
 	<script>
 
-		
 		//클릭하면 삭제하겠냐는 alert창 뜨고 확인을 누르면 삭제되게 하기
-		function deleteProduct(){
-			 var bool = confirm('정말 삭제하시겠습니까?');
-			 console.log(bool);
-			 if(bool){
-				 location.href='<%=request.getContextPath()%>/productDelete.pr';
-				
-			 }
-		}
+	
+			$('.deleteProductBtn').click(function(){
+				 var bool = confirm('정말 삭제하시겠습니까?');
+				 var pNo = $(this).prev().eq(0).val();
+					console.log(pNo);
+				 if(bool){
+					 location.href = '<%= request.getContextPath() %>/productDelete.pr?pNo=' + pNo;
+					 }
+			});
+			
+			 
+			 
+	
 		
 		//상품수정(url로 상품번호 받아와야함)
 		$('.updateProductBtn').click(function(){
 			console.log(123);
 			var pNo = $(this).next().eq(0).val();
 			console.log(pNo);
-			location.href = "<%= request.getContextPath() %>/prouctUpdateForm.pr?pNo=" + pNo;
+			location.href = '<%= request.getContextPath() %>/prouctUpdateForm.pr?pNo=' + pNo;
 		});
-		
-		
-		
-		
-		
+
 		//$('#updateProductBtn').click(function(){
 		//	$(this).attr('action', 'prouctUpdateForm.pr');
 		//	$('#productListForm').submit();
 		//});
-		
-		//상품삭제
-		function deleteProduct(){
-			 var bool = confirm('정말 삭제하시겠습니까?');
-			 
-			 if(bool){
-				$('#productListForm').attr('action', 'productDelete.pr');
-				$('#productListForm').submit();
-			 }
-		}
-		
-		
-	
+
 	</script>
 	
 </body>

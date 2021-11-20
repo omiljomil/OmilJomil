@@ -13,7 +13,7 @@ public class Product {
 	private String prodExple;
 	private String prodTag;
 	private String status;
-	private int type;
+
 
 	
 
@@ -22,7 +22,7 @@ public class Product {
 
 	public Product(int prodNo, String prodName, int price, String ctgryName, 
 					String mtrlName, Date enrollDate, String shortInfo, String prodExple,
-					String prodTag, String status, int type) {
+					String prodTag, String status) {
 		super();
 		this.prodNo = prodNo;
 		this.prodName = prodName;
@@ -34,19 +34,11 @@ public class Product {
 		this.prodExple = prodExple;
 		this.prodTag = prodTag;
 		this.status = status;
-		this.type = type;
+		
 
 		
 	}
 
-
-	public int getType() {
-		return type;
-	}
-
-	public void setType(int type) {
-		this.type = type;
-	}
 
 	public String getShortInfo() {
 		return shortInfo;
@@ -132,7 +124,7 @@ public class Product {
 	public String toString() {
 		return "Product [prodNo=" + prodNo + ", prodName=" + prodName + ", price=" + price + ", ctgryName=" + ctgryName
 				+ ", mtrlName=" + mtrlName + ", enrollDate=" + enrollDate + ", shortInfo=" + shortInfo + ", prodExple="
-				+ prodExple + ", prodTag=" + prodTag + ", status=" + status + ", type=" + type + "]";
+				+ prodExple + ", prodTag=" + prodTag + ", status=" + status +  "]";
 	}
 
 	
