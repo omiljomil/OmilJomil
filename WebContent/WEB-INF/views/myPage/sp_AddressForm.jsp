@@ -47,6 +47,22 @@
 		border-bottom: 1px solid #E2E2E2;
 		padding : 20px 0px;
 	}
+	#insertShpping{
+		border-style: none;
+		background-color: yellowgreen;
+		color:white;
+	}
+	#de_in input{
+		background-color: white;
+		padding: 5px;
+		margin-left : 3px;
+		border: 1px solid black;
+	}
+	#de_in input:hover {
+	font-size: 17px;
+	font-weight: bold;
+}
+	
 </style>
 </head>
 <body>
@@ -79,11 +95,15 @@
 					<tr>
 						<td><%=s.getAlias() %>
 							<%if(s.getBasics().equals("Y")){ %>
+								<input type="hidden" id="ship_no" value="<%= s.getShip_no()%>"/>
 								<div style="font-size: 10px; color:skyblue;">기본 배송지</div>
 							<%} %> </td>
 						<td><%=s.getPostal_code() %> <br><%=s.getAddress() %> <br> <%=s.getDe_address() %></td>
 						<td><%=s.getSp_phone() %></td>
-						<td><input type="button" value="수정"/><input type="button" value="삭제"/></td>
+						<td id="de_in">
+							<input type="button" value="수정" onclick="UpdateShppingList(<%=s.getShip_no()%>);"/>
+							<input type="button" value="삭제" onclick="deleteShppingList(<%=s.getShip_no()%>);"/>
+						</td>
 					</tr>
 				<%} %>
 			<%} %>
@@ -94,5 +114,30 @@
 	$('#insertShpping').on('click',function(){
 		window.open('insertShppingForm.me?userId=<%= loginUser.getUserId()%>','insertShppingForm','width=500,height=600');
 	});
+	
+	 function deleteShppingList(no){
+		var bool = confirm("정말 삭제하시겠습니까?");
+		if(bool){
+			$.ajax({
+				url:'<%= request.getContextPath() %>/deleteShppingList.me',
+				data:{ship_no:no},
+				success:function(data){
+					alert("배송지가 정상적으로 삭제되었습니다.")
+					window.location.reload();
+				},
+				error:function(data){
+					
+				}
+				
+			});
+		}
+	}
+	 function UpdateShppingList(no){
+				window.open('updateShppingForm.me?Ship_no='+no,'insertShppingForm','width=500,height=600');
+			};
+			
+		
+	 
+	
 </script>
 </html>

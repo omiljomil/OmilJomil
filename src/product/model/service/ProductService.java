@@ -7,6 +7,7 @@ import static common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import category.model.vo.Category;
 import product.model.dao.ProductDAO;
@@ -121,7 +122,24 @@ public class ProductService {
 		close(conn);
 		return p;
 	}
-
+	
+//	public HashMap<String,String> selectProductDetail(int pNo) {
+//		Connection conn = getConnection();
+//		int result = 0;
+//		
+//		HashMap<String,String> p = pDAO.selectProductDetail(conn, pNo);
+//		
+//		if(result > 0 && p != null) {
+//				commit(conn);
+//			}else {
+//				rollback(conn);
+//			}
+//
+//
+//		close(conn);
+//		return p;
+//	}
+	
 	public ArrayList<Photo> selectPhoto(int pNo) {
 		Connection conn = getConnection();
 		ArrayList<Photo> list = pDAO.selectPhoto(pNo, conn);
@@ -130,6 +148,22 @@ public class ProductService {
 		return list;
 	}
 
+	public int updateProduct(Product p, ArrayList<Photo> fileList) {
+		Connection conn = getConnection();
+		int result1 = pDAO.updateProduct(conn, p);
+		int result2 = pDAO.updatePhoto(conn, fileList);
+		
+		if(result1 > 0 && result2 > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result1 + result2;
+
+	}
 
 
 }

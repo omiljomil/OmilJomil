@@ -9,12 +9,13 @@ public class Shpping {
 	private String alias;
 	private String basics;
 	private String recipient;
-	private int sp_phone;
+	private String sp_phone;
 	public Shpping() {
 		super();
 	}
+	
 	public Shpping(int ship_no, String user_id, int postal_code, String address, String de_address, String alias,
-			String basics,String recipient, int sp_phone) {
+			String basics, String recipient, String sp_phone) {
 		super();
 		this.ship_no = ship_no;
 		this.user_id = user_id;
@@ -26,6 +27,7 @@ public class Shpping {
 		this.recipient = recipient;
 		this.sp_phone = sp_phone;
 	}
+
 	public int getShip_no() {
 		return ship_no;
 	}
@@ -62,24 +64,22 @@ public class Shpping {
 	public void setAlias(String alias) {
 		this.alias = alias;
 	}
-	public String getRecipient() {
-		return recipient;
-	}
-	
-
 	public String getBasics() {
 		return basics;
 	}
 	public void setBasics(String basics) {
 		this.basics = basics;
 	}
+	public String getRecipient() {
+		return recipient;
+	}
 	public void setRecipient(String recipient) {
 		this.recipient = recipient;
 	}
-	public int getSp_phone() {
+	public String getSp_phone() {
 		return sp_phone;
 	}
-	public void setSp_phone(int sp_phone) {
+	public void setSp_phone(String sp_phone) {
 		this.sp_phone = sp_phone;
 	}
 	@Override
@@ -88,6 +88,7 @@ public class Shpping {
 				+ address + ", de_address=" + de_address + ", alias=" + alias + ", basics=" + basics + ", recipient="
 				+ recipient + ", sp_phone=" + sp_phone + "]";
 	}
+	
 	
 	
 	

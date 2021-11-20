@@ -6,7 +6,7 @@
     %>
 <!DOCTYPE html>
 <html>
-<head>
+<head>   
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script  src="<%=request.getContextPath() %>/js/jquery-3.6.0.min.js"></script>
@@ -158,22 +158,35 @@
 	<!-- 좌측 상단  -->
 		<div class="links">
 		<div class=leftlinks>
-		<%if(loginUser==null){ %> 
-				<a href="<%=request.getContextPath() %>/loginForm.me" class="link_text">LOGIN</a>
-				<a href="<%=request.getContextPath() %>/joinForm.me" class="link_text">JOIN</a>
-				<%}else{%>
-				<label for=""><%= loginUser.getUserName() %> <% if(loginUser.getManager().equals("Y")){ %>관리자 <%} %>(님)</label>
-				<a href="<%=request.getContextPath() %>/loginOutServlet.me" class="link_text">LOGOUT</a>
-				<a href="<%=request.getContextPath() %>/mypagemain.me" class="link_text">MYPAGE</a>
-				<%} %>
-				
-			</div>
+		<% if(loginUser==null) { %> 
+			<a href="<%=request.getContextPath() %>/loginForm.me" class="link_text">LOGIN</a>
+			<a href="<%=request.getContextPath() %>/joinForm.me" class="link_text">JOIN</a>
+		<% } else { %>
+			<label for=""><%= loginUser.getUserName() %> <% if(loginUser.getManager().equals("Y")){ %>관리자 <%} %>(님)</label>
+			<a href="<%=request.getContextPath() %>/loginOutServlet.me" class="link_text">LOGOUT</a>
+			<a href="<%=request.getContextPath() %>/mypagemain.me" class="link_text">MYPAGE</a>
+			<% if(loginUser.getManager().equals("Y")) { %>
+				<a href="<%=request.getContextPath() %>/userManagement.no" class="link_text">회원관리</a>
+				<a href="<%=request.getContextPath() %>/orderManagement.no" class="link_text">주문관리</a>
+			<% } %>
+		<% } %>
+		</div>
 		
 		<!-- 우측 상단 -->
 		<div class=rightlinks>
 				<input type="text" maxlength="225" tabindex="1"/>
 				<i class="bi bi-search"></i>
-				<a href="#"><i class="bi bi-basket2-fill"></i></a>
+				<% if(loginUser==null) { %> 
+					<a href="#" id="basket"><i class="bi bi-basket2-fill"></i></a>
+					<script>
+						$('#basket').on('click', function() {
+							alert('로그인을 해야 이용 가능합니다.');
+							$(this).attr('href', '<%=request.getContextPath() %>/loginForm.me');
+						});
+					</script>
+				<% } else { %>
+					<a href="<%=request.getContextPath() %>/cartList.me"><i class="bi bi-basket2-fill"></i></a>
+				<% } %>
 		</div>
 		</div>
 		<!-- img -->
@@ -189,26 +202,6 @@
 					<div class="categorymenu">
 					<ul class="category">
 					<li class="fir">
-					<% if(loginUser==null){ %>
-						<a href="#" id="ca"><i class="bi bi-list"></i>카테고리</a>
-						<ul class="sub-menu">
-							<li><a href="<%= request.getContextPath() %>/productList.do">전체</a></li>
-							<li><a href="#">비건</a></li>
-							<li><a href="#">락토</a></li>
-							<li><a href="#">오보</a></li>
-							<li><a href="#">락토오보</a></li>
-							<li><a href="#">폴로</a></li>
-							<li><a href="#">페스코</a></li>
-							<li><a href="#">플렉시테리안</a></li>
-						</ul>
-						
-					</li>
-					
-					<li><a href="#" >신상품</a></li>
-					<li><a href="#" >베스트상품</a></li>
-					<li><a href="<%= request.getContextPath() %>/community.me" >커뮤니티</a></li>
-					<%--관리자로 로그인시 상품관리 탭 보이게 하기 --%>
-					<% } else if(loginUser != null || loginUser.getManager().equals("Y")){ %> 
 					<a href="#" id="ca"><i class="bi bi-list"></i>카테고리</a>
 						<ul class="sub-menu">
 							<li><a href="<%= request.getContextPath() %>/productList.do">전체</a></li>
@@ -220,13 +213,15 @@
 							<li><a href="#">페스코</a></li>
 							<li><a href="#">플렉시테리안</a></li>
 						</ul>
-						
 					</li>
-					
 					<li><a href="#" >신상품</a></li>
 					<li><a href="#" >베스트상품</a></li>
 					<li><a href="<%= request.getContextPath() %>/community.me" >커뮤니티</a></li> 
-					<li><form id="adminPage" >상품관리</form></li>
+					<%--관리자로 로그인시 상품관리 탭 보이게 하기 --%>
+					<%if(loginUser != null){ %>
+						<%if(loginUser.getManager().equals("Y")){ %> 
+							<li><a href="<%= request.getContextPath()%>/ManagerProductList.pr">상품관리</a></li>
+						<% } %>
 					<% } %>
 					</ul>
 				</div>
@@ -241,11 +236,6 @@
 	}).mouseout(function(){
 		$(this).find('.sub-menu').stop().slideUp(500);
 	});
-	//상품관리 클릭시 상품관리로 이동
-	$('#adminPage').click(function(){
-		$('#adminPage').attr('action', 'ManagerProductList.pr');
-		$('#adminPage').submit();
-	});
-	
+
 </script>
 </html>

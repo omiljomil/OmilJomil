@@ -2,6 +2,8 @@ package product.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,6 +39,11 @@ public class ProductDetailServlet extends HttpServlet {
 		
 		ProductService service = new ProductService();
 		Product product = service.selectProduct(pNo);
+		
+//		HashMap<String,String> productDetail = new HashMap<String,String>();// hashmap 으로 가져오기
+//		
+//		productDetail = service.selectProductDetail(pNo);
+		
 		ArrayList<Photo> fileList = service.selectPhoto(pNo);
 				
 		String page = null;
@@ -44,6 +51,7 @@ public class ProductDetailServlet extends HttpServlet {
 					
 			request.setAttribute("product",product);
 			request.setAttribute("fileList", fileList);
+//			request.setAttribute("mapProductDetail", productDetail);
 			page = "WEB-INF/views/product/productDetail.jsp";
 			
 		}else {

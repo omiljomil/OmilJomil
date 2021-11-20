@@ -89,7 +89,7 @@
 		</tr>
 		<tr>
 			<td><div>기본 배송지</div></td>
-			<td> <input type="checkbox" name="basics" id="basics" value='Y'/>기본 배송지로 설정</td>
+			<td> <input type="checkbox" name="basics" id="basics"/>기본 배송지로 설정</td>
 			
 		</tr>
 	</table>
@@ -105,7 +105,13 @@
 <script>
 	function sbBtn(){
 		 var form = document.insertSP;
-	    	
+		 var checked = null;
+
+		if($("#basics").is(":checked") == true){
+			checked = 'Y';
+		}else{
+			checked = 'N';
+		}
 	        if(!form.alias.value){
 	            alert("배송지명을 입력하세요.");
 	            return false;
@@ -130,11 +136,13 @@
 	            return false;
 	        }
 	        
+	        
+	        
 	        $.ajax({
 	        	url:'<%=request.getContextPath() %>/insertAddress.me',
 	        	data:{alias:$('#alias').val(),recipient:$('#recipient').val(),postal:$('#postal').val(),
 	        		address:$('#address').val(),de_address:$('#de_address').val(),sp_Phone:$('#sp_Phone').val(),
-	        		basics:$('#basics').val(),userId:$('#userId').val()},
+	        		basics:checked,userId:$('#userId').val()},
 	        		success:function(data){
 	        			opener.parent.location.reload();
 	        			window.close();
@@ -185,10 +193,10 @@ function execDaumPostcode() {
     }).open();
 }
 
-/*	$('#sp_Phone').on('change paste keyup',function(){
+	$('#sp_Phone').on('change paste keyup',function(){
 		var inputVal = $(this).val();
 		$(this).val(inputVal.replace(/[^0-9]/gi,''));	
-	});*/
+	});
 	
 	
 </script>

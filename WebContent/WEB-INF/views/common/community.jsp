@@ -286,7 +286,7 @@ cursor: pointer;
    
     <section id="want-list">
       <button type="button" id="want-button">문의하기</button>
-       <button type="button" id="want-more-button" onclick="location.href='<%=request.getContextPath() %>/list.bo'" >더보기</button>
+       <button type="button" id="want-more-button" onclick="location.href='<%=request.getContextPath() %>/questionList.bo'" >더보기</button>
       <div id=want-list-title>문의 사항</div> 
       <ul>
      <li class="want-list-QA">배송 비용은 얼마인가요?</li>

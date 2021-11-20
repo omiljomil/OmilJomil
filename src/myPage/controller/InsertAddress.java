@@ -37,15 +37,13 @@ public class InsertAddress extends HttpServlet {
 		int postal = Integer.parseInt(request.getParameter("postal"));
 		String address = request.getParameter("address");
 		String de_address = request.getParameter("de_address");
-		if(de_address ==null) {
-			de_address="";
-		}
-		int sp_Phone = Integer.parseInt(request.getParameter("sp_Phone"));
+		String sp_Phone = request.getParameter("sp_Phone");
 		
-		String basics = request.getParameter("basics");
-		if(basics == null) {
-			basics ="N";
+		if(de_address == "") {
+			de_address="-";
 		}
+
+		String basics = request.getParameter("basics");
 		String userId = request.getParameter("userId");
 		
 		if(basics.equals("Y")) {

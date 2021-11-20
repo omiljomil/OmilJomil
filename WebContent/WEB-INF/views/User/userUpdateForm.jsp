@@ -47,10 +47,10 @@
 	.tablecontent5 {width: 700px; height: 20px; padding: 0px 20px 0px 20px;}
 	#email1, #email2, #emailSelect, #emailCheck, #ceNum, #ceNumCheck {vertical-align: middle;}
 	#emailCheck, #ceNumCheck {border: 1px solid black; background: white; width: 100px; height: 30px; font-size: 14px;}
-	.modifyUserInfomation input {border: 1px solid #a4a4a4; height: 30px; margin: 5px; padding: 0px 5px 0px 5px; vertical-align: middle;}
+	.modifyUserInfomation input {border: 1px solid #a4a4a4; height: 30px; margin: 3px 5px; padding: 0px 5px 0px 5px; vertical-align: middle;}
 	#userId, #userName {margin: 5px;}
 	#userPwd, #userPwd2 {width: 200px;}
-	#checkPwd, #checkPwd2, #checkPhone, #checkEmail, #ceNumText {margin: 5px; font-size: 12px;}
+	#checkPwd, #checkPwd2, #checkPhone, #checkEmail, #ceNumText {margin: 2px 5px; font-size: 12px;}
 	#ceNumText {margin: 5px 5px 10px 5px; font-size: 12px;}
 	#pwdcon {display: inline; font-size: 12px; color: #888; vertical-align: middle;}
 	input[name*=phone] {width: 95px;}
