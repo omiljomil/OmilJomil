@@ -52,7 +52,6 @@ public class ProductDAO {
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, pNo);
-			
 			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -90,14 +89,14 @@ public class ProductDAO {
 	}
 
 	public ArrayList<Product> selectList(Connection conn, PageInfo pi) {
-		//상품리스트 불러오기
+		//�긽�뭹由ъ뒪�듃 遺덈윭�삤湲�
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Product> list = null;
 
 		String query = prop.getProperty("selectList");
 		
-		int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;//1,11,21 currentPage이용해서 공식 만들기
+		int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;//1,11,21 currentPage�씠�슜�빐�꽌 怨듭떇 留뚮뱾湲�
 		int endRow = startRow + pi.getBoardLimit() - 1;//10, 20, 30
 
 		try {
@@ -188,8 +187,7 @@ public class ProductDAO {
 									rset.getString("SHORT_INFO"),
 									rset.getString("PROD_EXPLE"),
 									rset.getString("PROD_TAG"),
-									rset.getString("STATUS"),
-									rset.getInt("TYPE")));
+									rset.getString("STATUS")));
 			}
 			
 		} catch (SQLException e) {
@@ -231,7 +229,6 @@ public class ProductDAO {
 			close(rset);
 			close(stmt);
 		}
-		System.out.println(list);
 		return list;
 	}
 
@@ -241,7 +238,7 @@ public class ProductDAO {
 		String query = prop.getProperty("insertPhoto");
 		
 		try {
-			for(int i = 0; i < fileList.size(); i++) {//파일이 여러개면 그만큼 DB에 왔다갔다하면서 데이터 저장해야하기때문에 for문씀
+			for(int i = 0; i < fileList.size(); i++) {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, fileList.get(i).getImgName());
 			pstmt.setString(2, fileList.get(i).getImgChangeName());

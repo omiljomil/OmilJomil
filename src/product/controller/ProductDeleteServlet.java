@@ -29,9 +29,9 @@ public class ProductDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		//왜 nullpointer가 뜨지..
 		int pNo = Integer.parseInt(request.getParameter("pNo"));
-		
+		System.out.println(pNo);
 		
 		int result = new ProductService().deleteProduct(pNo);
 		
