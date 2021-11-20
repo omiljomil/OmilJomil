@@ -45,17 +45,20 @@ public class ReviewListForm extends HttpServlet {
 		int endPage; //페이징이 된 페이지 중 마지막페이지   //10 ,20,30,40,56 페이징에서 볼수있는 마지막페이지들
 		
 		listCount=new ReviewService().getFListCount();
+		currentPage=1;
 		if(request.getParameter("currentPage")!=null) {
 			currentPage=Integer.parseInt(request.getParameter("currentPage"));
 		}
-		currentPage=1;
+	
 		
 		pageLimit=10;
 		boardLimit=8;
 		
-		 maxPage=(int)Math.ceil((double)listCount / boardLimit);
+		 maxPage=(int)Math.ceil((double)listCount / 8);
 		  startPage=(currentPage-1)/pageLimit*pageLimit+1; 
-		  endPage= startPage+pageLimit-1; if(maxPage<endPage) { endPage=maxPage; }
+		  endPage= startPage+pageLimit-1; 
+		  if(maxPage<endPage) {
+			  endPage=maxPage; }
 		 
 		   
 	  PageInfo pi=new PageInfo(currentPage, listCount, pageLimit, boardLimit, maxPage, startPage, endPage);
