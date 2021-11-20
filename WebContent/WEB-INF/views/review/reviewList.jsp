@@ -267,7 +267,7 @@ body {
         <section id="paising">
        <!-- 맨 처음으로  -->
 
-           <button class="paising-button" type="button" onclick="location.href='/SemiTest_JSPServlet/reviewList.bo?currentPage=1'">◀</button>
+           <button class="paising-button" type="button" onclick="location.href='<%=request.getContextPath()%>/reviewList.bo?currentPage=1'">◀</button>
           
           
           <%--  <!-- 이전페이지 -->
@@ -284,7 +284,7 @@ body {
            <%if(p == pi.getCurrentPage()){ %>
            <button class="paising-button" id="paising-number"  disabled>&nbsp;<%=p %>&nbsp;</button>
            <%} else{ %>
-           <button  class="paising-button" id="paising-number"  onclick="location.href='/SemiTest_JSPServlet/reviewList.bo?currentPage=<%=p%>'">&nbsp;<%=p %>&nbsp;</button>
+           <button  class="paising-button" id="paising-number"  onclick="location.href='<%=request.getContextPath()%>/reviewList.bo?currentPage=<%=p%>'">&nbsp;<%=p %>&nbsp;</button>
             <% } %>
            <%} %>
            
@@ -299,7 +299,7 @@ body {
           
           
            <!-- 맨 끝으로 -->
-           <button class="paising-button" onclick="location.href='/SemiTest_JSPServlet/reviewList.bo?currentPage=<%=pi.getMaxPage()%>'">▶</button>
+           <button class="paising-button" onclick="location.href='/OmilJomil/reviewList.bo?currentPage=<%=pi.getMaxPage()%>'">▶</button>
       </section> 
  
 </body>

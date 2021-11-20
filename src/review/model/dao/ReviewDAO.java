@@ -39,7 +39,7 @@ private Properties prop=null;
 		ResultSet rset=null;
 		ArrayList<Review> rList=null;
 		String query=prop.getProperty("selectRList");
-		int startRow=(pi.getCurrentPage()-1)* pi.getBoardLimit()+1;//startRow 페이지에 01,11,21 이 들어가게되니깐 ?
+		int startRow=(pi.getCurrentPage()-1)*pi.getBoardLimit()+1;//startRow 페이지에 01,11,21 이 들어가게되니깐 ?
 		int endRow=startRow+pi.getBoardLimit()-1;
 		
 		try {
