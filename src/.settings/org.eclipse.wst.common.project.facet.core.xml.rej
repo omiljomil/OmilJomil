@@ -1,0 +1,8 @@
+diff a/.settings/org.eclipse.wst.common.project.facet.core.xml b/.settings/org.eclipse.wst.common.project.facet.core.xml	(rejected hunks)
+@@ -1,5 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <faceted-project>
++  <runtime name="JSPServer"/>
+   <installed facet="java" version="1.8"/>
+   <installed facet="wst.jsdt.web" version="1.0"/>
+   <installed facet="jst.web" version="3.0"/>
