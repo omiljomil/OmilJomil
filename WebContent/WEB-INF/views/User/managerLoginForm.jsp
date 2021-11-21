@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,147 +7,159 @@
 <title>Insert title here</title>
 
 <style>
-table{
-		margin : 0 auto;
-		width: 950px;
-		justify-content : center;
-		border-collapse: collapse;
-		border-top: 1px solid #606060;
-	}
-	.checktd{
-		border-bottom-width: 0px;
-	}
-	input[type=password]{
-		padding-bottom: 0px;
-		margin-bottom: 0px;
-	}
-	table tr td{
-		border-bottom: 1px solid #606060;
-		padding: 5px;
-	}
-	
-	table tr td label{
-		font-size: 4px;
-		padding-top: 0px;
-	}
-	
-	.jointitle{
+table {
+	margin: 0 auto;
+	width: 950px;
+	justify-content: center;
+	border-collapse: collapse;
+	border-top: 1px solid #606060;
+}
+
+.checktd {
+	border-bottom-width: 0px;
+}
+
+input[type=password] {
+	padding-bottom: 0px;
+	margin-bottom: 0px;
+}
+
+table tr td {
+	border-bottom: 1px solid #606060;
+	padding: 5px;
+}
+
+table tr td label {
+	font-size: 4px;
+	padding-top: 0px;
+}
+
+.jointitle {
 	background: #EEEEEE;
 	width: 230px;
 	padding-left: 50px;
 	font-size: 14px;
-	
-	}
-	table tr input{
-		margin: 5px;
-		border: 1px solid #999;
-		padding: 5px;
-	}
-	#pwdcon{
-		font-size: 2px;
-		display: inline;
-		color: #999;
-	}
-	.phone{
-		width: 80px;
-	}
-	.labeltd{
-		padding-top: 0px;
-		padding-left: 10px;
-		
-	}
-	.checkbtn{
-		margin: 30px auto;
-		width: 600px;
-		display: flex;
-		justify-content: center;
-		margin-bottom: 100px;
-		
+}
 
-	}
-	.checkbtn button{
-		padding: 7px 30px;
-		margin: 0 20px;
-		border-style: none;
+table tr input {
+	margin: 5px;
+	border: 1px solid #999;
+	padding: 5px;
+}
 
-	}
-	#deletebtn{
-		border : 1px solid #999;
-	}
-	.headjoin{
-		width: 600px;
-		margin: 60px auto;
-		display: flex;
-		justify-content: center;
-		font-size: 40px;
-		margin-bottom: 20px;
-		
-	}
+#pwdcon {
+	font-size: 2px;
+	display: inline;
+	color: #999;
+}
+
+.phone {
+	width: 80px;
+}
+
+.labeltd {
+	padding-top: 0px;
+	padding-left: 10px;
+}
+
+.checkbtn {
+	margin: 30px auto;
+	width: 600px;
+	display: flex;
+	justify-content: center;
+	margin-bottom: 100px;
+}
+
+.checkbtn button {
+	padding: 7px 30px;
+	margin: 0 20px;
+	border-style: none;
+}
+
+#deletebtn {
+	border: 1px solid #999;
+}
+
+.headjoin {
+	width: 600px;
+	margin: 60px auto;
+	display: flex;
+	justify-content: center;
+	font-size: 40px;
+	margin-bottom: 20px;
+}
 </style>
 </head>
 <body>
-<%@ include file = "../common/header.jsp" %>
+	<%@ include file="../common/header.jsp"%>
 
-<div class="headjoin">회원 가입</div>
+	<div class="headjoin">회원 가입</div>
 	<form action="<%= request.getContextPath() %>/insertManagerServlet.me"
-			 method="post" name="joinForm" onsubmit="return checkValue()">
+		method="post" name="joinForm" onsubmit="return checkValue()">
 		<table>
-		
+
 			<tr>
 				<td class="jointitle" rowspan="2">아이디</td>
-				<td class="checktd"><input type="text" name = "userId" id="userId" style="width: 180px;"/></td>
+				<td class="checktd"><input type="text" name="userId"
+					id="userId" style="width: 180px;" /></td>
 			</tr>
 			<tr>
 				<td class="labeltd"><label id="idCheck"></label></td>
 			</tr>
 			<tr>
 				<td class="jointitle">이름</td>
-				<td><input type="text" name = "username" id="username" style="width: 180px;"/>
+				<td><input type="text" name="username" id="username"
+					style="width: 180px;" />
 			</tr>
 			<tr>
 				<td rowspan="2" class="jointitle">비밀번호</td>
-				<td  class="checktd"><input type="password" name = "userPwd" id="userPwd"/><div id="pwdcon">영문/숫자/특수문자 조합(8-20자)</div></td>
+				<td class="checktd"><input type="password" name="userPwd"
+					id="userPwd" />
+				<div id="pwdcon">영문/숫자/특수문자 조합(8-20자)</div></td>
 			</tr>
 			<tr>
 				<td class="labeltd"><label id="pwdCheck1"></label></td>
 			</tr>
 			<tr>
 				<td rowspan="2" class="jointitle">비밀번호 확인</td>
-				<td  class="checktd"><input type="password" name = "userPwd2" id="userPwd2"/></td>
+				<td class="checktd"><input type="password" name="userPwd2"
+					id="userPwd2" /></td>
 			</tr>
 			<tr>
 				<td class="labeltd"><label id="pwdCheck2"></label></td>
 			</tr>
 			<tr>
 				<td class="jointitle" rowspan="3">이메일</td>
-				<td class="checktd"><input type="text" style="width: 150px;" id="email1"name = "email1"/> @ 
-				<input type="text" name = "email2" id="email2" style="width: 150px;" /> 
-																	<select name = "email3" id="email">
-																		<option value="1">직접입력</option>
-																		<option value="gmail.com">gmail.com</option>
-																		<option value="hanmail.net">hanmail.net</option>
-																		<option value="nate.com">nate.com</option>
-																		<option value="naver.com">naver.com</option>
-																	</select>
-																	<input type="button" id="emailCheck" value="인증번호 전송"/>
-				</td>
+				<td class="checktd"><input type="text" style="width: 150px;"
+					id="email1" name="email1" /> @ <input type="text" name="email2"
+					id="email2" style="width: 150px;" /> <select name="email3"
+					id="email">
+						<option value="1">직접입력</option>
+						<option value="gmail.com">gmail.com</option>
+						<option value="hanmail.net">hanmail.net</option>
+						<option value="nate.com">nate.com</option>
+						<option value="naver.com">naver.com</option>
+				</select> <input type="button" id="emailCheck" value="인증번호 전송" /></td>
 			</tr>
 			<tr>
-				<td class="checktd" ><input type="hidden" id="ceNum"/><input type=hidden id="ceNumCheck" value="인증번호 확인"/></td>				
+				<td class="checktd"><input type="hidden" id="ceNum" /><input
+					type=hidden id="ceNumCheck" value="인증번호 확인" /></td>
 			</tr>
 			<tr>
-				<td class="labeltd" ><label id="ceNumText"/></label></td>				
+				<td class="labeltd"><label id="ceNumText" /></label></td>
 			</tr>
 			<tr>
 				<td rowspan="2" class="jointitle">관리자 인증번호</td>
-				<td  class="checktd"><input type="text" name = "managerCode" id="managerCode"/></td>
+				<td class="checktd"><input type="text" name="managerCode"
+					id="managerCode" /></td>
 			</tr>
 			<tr>
 				<td class="labeltd"><label id="codeNum"></label></td>
 			</tr>
 			<tr>
 				<td class="jointitle">휴대폰 번호</td>
-				<td><input type="tel" class="phone" name = "phone" style="width: 320px;"></td>
+				<td><input type="tel" class="phone" name="phone"
+					style="width: 320px;"></td>
 				<input type="hidden" />
 			</tr>
 			<!--  
@@ -168,13 +180,15 @@ table{
 			-->
 		</table>
 		<div class="checkbtn">
-		<button type="submit" name = "joinBtn" id="joinBtn" style="background : #469536; color:white;">회원가입</button>
-		<button type="button" id="deletebtn"style="background:white; color:#606060;" onclick="history.back()">취소</button>
-		
-	</div>
+			<button type="submit" name="joinBtn" id="joinBtn"
+				style="background: #469536; color: white;">회원가입</button>
+			<button type="button" id="deletebtn"
+				style="background: white; color: #606060;" onclick="history.back()">취소</button>
+
+		</div>
 	</form>
 	<br>
-	
+
 	<!-- 
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -214,7 +228,7 @@ table{
     }
 </script>
  -->
-<script>
+	<script>
 	$('#email').change(function(){ 
 		$("#email option:selected").each(function () { 
 			if($(this).val()== '1'){ 
@@ -228,7 +242,7 @@ table{
 	});
 </script>
 
-<script>
+	<script>
 	function checkValue(){
 
         var form = document.joinForm;
@@ -427,6 +441,6 @@ table{
 </script>
 </body>
 <footer>
-		<%@ include file="../common/bottontitle.jsp" %>
-	</footer>
+	<%@ include file="../common/bottontitle.jsp"%>
+</footer>
 </html>

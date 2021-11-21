@@ -1,7 +1,7 @@
 <%@page import="User.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" %>
-    <%String name = (String)request.getAttribute("name"); %>
+	pageEncoding="UTF-8"%>
+<%String name = (String)request.getAttribute("name"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,84 +9,88 @@
 <title>Insert title here</title>
 </head>
 <style>
-	.idform{
-		width: 880px;
-		margin: 0 auto;
-		border: 1px solid #909090;
-		padding: 20px;
-		margin-top: 100px;
-		
-	}
-	.idform h3{
-		margin-left: 40px;
-	}
-	.seartext{
+.idform {
+	width: 880px;
+	margin: 0 auto;
+	border: 1px solid #909090;
+	padding: 20px;
+	margin-top: 100px;
+}
 
-		margin : 10px;
-		padding : 10px;
-		border-top: 1px solid #909090;
-		border-bottom: 1px solid #909090;
-		padding-bottom: 18px;
-		padding-left: 40px;
-	}
-	.seartext .id_name, .id_email, .id_id{
-		margin: 7px;
-		padding: 10px;
-	}
-	
-	.seartext input{
-		margin-left: 50px;
-		padding: 6px;
-		margin-right: 20px;
-	}
-	.seartext .id_name input{
-		margin-left: 66px;
-	}
-	
-	.searchbtn{
-		width: 300px;
-		margin: 30px auto;	
-		display: flex;
-		justify-content: space-between;
+.idform h3 {
+	margin-left: 40px;
+}
 
-	}
-	.searchbtn button{
-		width: 130px;
-		padding: 7px;
-		border-style: none;
-		background: yellowgreen;
-		color : white;
-		font-size: 15px;
-	}
-	
+.seartext {
+	margin: 10px;
+	padding: 10px;
+	border-top: 1px solid #909090;
+	border-bottom: 1px solid #909090;
+	padding-bottom: 18px;
+	padding-left: 40px;
+}
+
+.seartext .id_name, .id_email, .id_id {
+	margin: 7px;
+	padding: 10px;
+}
+
+.seartext input {
+	margin-left: 50px;
+	padding: 6px;
+	margin-right: 20px;
+}
+
+.seartext .id_name input {
+	margin-left: 66px;
+}
+
+.searchbtn {
+	width: 300px;
+	margin: 30px auto;
+	display: flex;
+	justify-content: space-between;
+}
+
+.searchbtn button {
+	width: 130px;
+	padding: 7px;
+	border-style: none;
+	background: yellowgreen;
+	color: white;
+	font-size: 15px;
+}
 </style>
 </head>
 <body>
-<%@ include file = "../common/header.jsp" %>
+	<%@ include file="../common/header.jsp"%>
 	<form action="<%= request.getContextPath() %>/pwdChageResult.me"
-			 method="post" name="Form" onsubmit="return checkValue()">
-	<div class="idform">
-		<h3>비밀번호 변경</h3>
-		<div class="seartext">
-			<div class="id_id">
-				비밀번호 <input type="password" id="userPwd1" name="userPwd1" style="margin-left: 88px"/><label id="pwdCheck1"></label>
+		method="post" name="Form" onsubmit="return checkValue()">
+		<div class="idform">
+			<h3>비밀번호 변경</h3>
+			<div class="seartext">
+				<div class="id_id">
+					비밀번호 <input type="password" id="userPwd1" name="userPwd1"
+						style="margin-left: 88px" /><label id="pwdCheck1"></label>
+				</div>
+				<div class="id_email">
+					비밀번호 확인 <input type="password" id="userPwd2" name="userPwd2" /><label
+						id="pwdCheck2"></label>
+				</div>
+				<input type="hidden" name="userName" value="<%= name %>" />
+
 			</div>
-			<div class="id_email">
-				비밀번호 확인 <input type="password" id="userPwd2" name="userPwd2"/><label id="pwdCheck2"></label>
+			<div class="searchbtn">
+				<button type="submit">다음</button>
+				<button type="button" style="background: #E2E2E2; color: black;"
+					onclick="location.href='<%=request.getContextPath()%>/loginForm.me'">취소</button>
 			</div>
-			<input type="hidden" name="userName" value="<%= name %>"/>
-			
 		</div>
-		<div class="searchbtn">
-			<button type="submit">다음</button>
-			<button type="button" style="background: #E2E2E2; color:black;" onclick="location.href='<%=request.getContextPath()%>/loginForm.me'">취소</button>
-		</div>
-	</div>
 	</form>
 </body>
 <footer>
-		<%@ include file="../common/bottontitle.jsp" %>
-	</footer>
+	<%@ include file="../common/bottontitle.jsp"%>
+</footer>
 <script>
 function checkValue(){
 	 var form = document.Form;

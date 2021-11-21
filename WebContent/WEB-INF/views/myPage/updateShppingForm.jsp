@@ -1,8 +1,8 @@
 <%@page import="User.model.vo.Shpping"%>
 <%@page import="User.controller.loginUserServlet"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%
+	pageEncoding="UTF-8"%>
+<%
     	Shpping s = (Shpping)request.getAttribute("s");
     	String checked=null;
     	if(s.getBasics().equals("Y")){
@@ -11,107 +11,125 @@
     		checked="";
     	}
     %>
-    
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script  src="<%=request.getContextPath() %>/js/jquery-3.6.0.min.js"></script>
+<script src="<%=request.getContextPath() %>/js/jquery-3.6.0.min.js"></script>
 </head>
 <style>
-	.shppingimg{
-		
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding: 5px 25px;
-		width: 420px;
-		height: 30px;
-		
-	}
-	.shppingTable{
-		border-spacing: 15px;
-		margin-left: 10px;
-		border-bottom: 1px solid #909090;
-		
-		
-	}
-	.shppingTable th{
-		border-top : 2px solid yellowgreen;
-		border-bottom: 1px solid yellowgreen;
-		padding: 10px;		
-	
-	}
-	.shppingTable td{
-		font-size: 12px;
-		width: 85px;
-	}
-	.shppingTable td input{
-		padding: 6px;
-		border: 1px solid #cccccc;
-	}
-	form input[type=button]{
-		border-style: none;
-		background-color: yellowgreen;
-		color: white;
-		padding: 4px;
-		padding-bottom:7px; 
-		
-	}
-	.diBtn input{
-		padding: 10px;
-		width: 100px;
-		margin: 15px;
-	}
+.shppingimg {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 5px 25px;
+	width: 420px;
+	height: 30px;
+}
+
+.shppingTable {
+	border-spacing: 15px;
+	margin-left: 10px;
+	border-bottom: 1px solid #909090;
+}
+
+.shppingTable th {
+	border-top: 2px solid yellowgreen;
+	border-bottom: 1px solid yellowgreen;
+	padding: 10px;
+}
+
+.shppingTable td {
+	font-size: 12px;
+	width: 85px;
+}
+
+.shppingTable td input {
+	padding: 6px;
+	border: 1px solid #cccccc;
+}
+
+form input[type=button] {
+	border-style: none;
+	background-color: yellowgreen;
+	color: white;
+	padding: 4px;
+	padding-bottom: 7px;
+}
+
+.diBtn input {
+	padding: 10px;
+	width: 100px;
+	margin: 15px;
+}
 </style>
 <body>
-<form name="insertSP" id="insertSP" >
-	<div class="shppingimg">
-	<div><img src="<%=request.getContextPath() %>/img/logo.png" align="middle" width="120px;" height="60px;"/></div>
+	<form name="insertSP" id="insertSP">
+		<div class="shppingimg">
+			<div>
+				<img src="<%=request.getContextPath() %>/img/logo.png"
+					align="middle" width="120px;" height="60px;" />
+			</div>
 
-	</div>
-	<table class="shppingTable">
-		<tr>
-			<th colspan="2" style="border-bottom: 1px solid #909090; padding-bottom: 10px;">배송지 상세 등록</th>
-		</tr>
-		<tr>
-			<td>배송지명</td>
-			<td><input type="text" name="alias" id="alias" value="<%= s.getAlias()%>"/></td>
-		</tr>
-		<tr>
-			<td>수령인</td>
-			<td><input type="text" name="recipient" id="recipient"value="<%= s.getRecipient()%>"/></td>
-		</tr>
-		<tr>
-			<td  rowspan="3" style="vertical-align: top;">주소</td>
-			<td><input type="text" style="width: 100px;" name="postal" id="postal" value="<%= s.getPostal_code()%>"/><input type="button" value="주소검색" onclick="execDaumPostcode()"></td>
-		</tr>
-		<tr>
-			<td colspan="2"><input type="text" style="width: 300px;" name="address" id="address" value="<%= s.getAddress()%>"/></td>
-		</tr>
-		<tr>
-			<td colspan="2"><input type="text"style="width: 300px;" name="de_address" id="de_address" placeholder="상세주소" value="<%= s.getDe_address()%>"/></td>
-		</tr>
-		<tr>
-			<td>연락처</td>
-			<td><input type="tel" style="width: 230px;" name="sp_Phone" id="sp_Phone" placeholder="'-'를 빼고 적어주세요." value="<%= s.getSp_phone()%>"/></td>
-		</tr>
-		<tr>
-			<td><div>기본 배송지</div></td>
-			<td> <input type="checkbox" name="basics" id="basics" <%= checked %>/>기본 배송지로 설정</td>
-		
-			
-		</tr>
-	</table>
-	<div style="margin-left: 10px; margin-top: 10px; font-size: 12px;">입력/수정하신 배송지는 배송지 목록에 저장됩니다.</div>
-	<div align="center" class="diBtn">
-		<input type="hidden" name="ship_no" id="ship_no"value="<%=s.getShip_no()%>"/>
-		<input type="button" onclick="window.close()" value="취소" style="border: 1px solid black; color:black; background-color: white;"/>
-		<input type="button" value="수정" onclick="sbBtn();" id="submitclose"/>
-	</div>
-		
-		
+		</div>
+		<table class="shppingTable">
+			<tr>
+				<th colspan="2"
+					style="border-bottom: 1px solid #909090; padding-bottom: 10px;">배송지
+					상세 등록</th>
+			</tr>
+			<tr>
+				<td>배송지명</td>
+				<td><input type="text" name="alias" id="alias"
+					value="<%= s.getAlias()%>" /></td>
+			</tr>
+			<tr>
+				<td>수령인</td>
+				<td><input type="text" name="recipient" id="recipient"
+					value="<%= s.getRecipient()%>" /></td>
+			</tr>
+			<tr>
+				<td rowspan="3" style="vertical-align: top;">주소</td>
+				<td><input type="text" style="width: 100px;" name="postal"
+					id="postal" value="<%= s.getPostal_code()%>" /><input type="button"
+					value="주소검색" onclick="execDaumPostcode()"></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="text" style="width: 300px;"
+					name="address" id="address" value="<%= s.getAddress()%>" /></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="text" style="width: 300px;"
+					name="de_address" id="de_address" placeholder="상세주소"
+					value="<%= s.getDe_address()%>" /></td>
+			</tr>
+			<tr>
+				<td>연락처</td>
+				<td><input type="tel" style="width: 230px;" name="sp_Phone"
+					id="sp_Phone" placeholder="'-'를 빼고 적어주세요."
+					value="<%= s.getSp_phone()%>" /></td>
+			</tr>
+			<tr>
+				<td><div>기본 배송지</div></td>
+				<td><input type="checkbox" name="basics" id="basics"
+					<%= checked %> />기본 배송지로 설정</td>
+
+
+			</tr>
+		</table>
+		<div style="margin-left: 10px; margin-top: 10px; font-size: 12px;">입력/수정하신
+			배송지는 배송지 목록에 저장됩니다.</div>
+		<div align="center" class="diBtn">
+			<input type="hidden" name="ship_no" id="ship_no"
+				value="<%=s.getShip_no()%>" /> <input type="button"
+				onclick="window.close()" value="취소"
+				style="border: 1px solid black; color: black; background-color: white;" />
+			<input type="button" value="수정" onclick="sbBtn();" id="submitclose" />
+		</div>
+
+
 	</form>
 </body>
 <script>
@@ -166,7 +184,8 @@
 		
 	}
 </script>
-	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <script>
 function execDaumPostcode() {

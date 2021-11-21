@@ -1,23 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-   
+	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head> 
+</head>
 <body onload="inputValue();">
 	<b>아이디 중복 검사</b>
 	<br>
-	<form action="<%= request.getContextPath() %>/checkIdServlet.me" id="idCheckForm" >
-		<input type="text" id="inputId" name="inputId">
-		<input type="hidden" name="idCheckValue" value = "UnCheck"/>
-		<input type="submit" value="중복확인"/>
+	<form action="<%= request.getContextPath() %>/checkIdServlet.me"
+		id="idCheckForm">
+		<input type="text" id="inputId" name="inputId"> <input
+			type="hidden" name="idCheckValue" value="UnCheck" /> <input
+			type="submit" value="중복확인" />
 	</form>
-	
+
 	<br>
-	
+
 	<%
 	Integer result = (Integer)request.getAttribute("result");
 		if(result != null){
@@ -25,18 +26,18 @@
 	%>
 	이미 사용 중인 아이디 입니다.
 	<% }else{ %>
-		사용가능한 아이디 입니다.
+	사용가능한 아이디 입니다.
 	<% 	} %>
 	<%} %>
 	<br>
 	<br>
-	
+
 	<input type="button" id="usedId" value="확인">
 	<input type="button" id="cancel" value="취소" onclick="window.close();">
 </body>
 <footer>
-		<%@ include file="../common/bottontitle.jsp" %>
-	</footer>
+	<%@ include file="../common/bottontitle.jsp"%>
+</footer>
 <script>
 	function inputValue(){
 		if(<%= result %> == null){
