@@ -23,7 +23,7 @@
 	#contentSize *{
 		margin: 15px;
 		
-	}  
+	}     
 
 	#insertProductTitle{
 		color: rgb(65, 116, 77);
