@@ -244,7 +244,7 @@ public class ProductDAO {
 			pstmt.setString(2, fileList.get(i).getImgChangeName());
 			pstmt.setString(3, fileList.get(i).getPath());
 			pstmt.setInt(4, fileList.get(i).getFileLevel());
-			pstmt.setInt(5, fileList.get(i).getType());
+			//pstmt.setInt(5, fileList.get(i).getType());
 			
 			result += pstmt.executeUpdate();
 			}

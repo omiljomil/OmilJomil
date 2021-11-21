@@ -252,9 +252,7 @@
 				reader.readAsDataURL(value.files[0]);
 			}
 		}
-		
-		
-	
+
 	</script>
 	
 	

@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="product.model.vo.*, java.util.*"%>
 <% 
-
 	Product p = (Product)request.getAttribute("p"); 
 	ArrayList<Photo> fileList = (ArrayList<Photo>)request.getAttribute("fileList");
-
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -25,9 +24,7 @@
 		margin: 15px;
 		
 	}
-	
-	
-	
+
 	#insertProductTitle{
 		color: rgb(65, 116, 77);
 		font-size: 50px;
@@ -41,9 +38,8 @@
 	}
 	
 	.tableName{
-		background-color:rgb(157, 181, 137);
-		color: white;
-		border-right: 1px solid black;
+		background-color:light gray;
+		border: 1px solid black;
 		text-align: center;
 	}
 	
@@ -52,6 +48,7 @@
 		height: 40px;
 		border: 1px solid black;
 	}
+
 	
 	.productTable select{
 		width: 250px;
@@ -96,6 +93,14 @@
 		height: 40px;
 		background-color:white;
 		font-weight: bold;
+	}
+	.addoption button{
+		width: 50px;
+		height: 30px;
+	}
+	.addoption input{
+		width: 100px;
+		height: 30px;
 	}
 	
 	
@@ -151,10 +156,28 @@
 					<input type="text" id="productName" name="productName">
 				</td>
 			</tr>
-			<tr>
-				<td class="tableName">재료명</td>
-				<td colspan="3">
-					<input type="text" id="mainMtrl" name="mainMtrl">
+			<tr name="add">
+				<td class="tableName">재료옵션</td>
+				
+				<td class="addOption"  colspan="3">
+					<select name="addOption">
+						<option value="1">콩고기 </option>
+						<option value="2">야채 </option>
+						<option value="3">렌틸콩 </option>
+						<option value="4">치즈 </option>
+						<option value="5">연어</option>
+					</select>
+					<select name="addPrice">						
+						<option value="11">1000원</option>
+						<option value="12">2000원</option>
+						<option value="13">3000원</option>
+						<option value="14">4000원</option>
+						<option value="15">5000원</option>
+					</select> <input type="button" class="removeOptionBtn" value="옵션삭제" name="removeOptionBtn">
+					<input type="button" id="addOptionBtn" value="옵션추가">
+					<!-- <input type="text" width="50px" height="40px" name="mainMtrl">
+					<input type="text" width="50px" height="40px" name="mainMtrl">
+					<input type="button" id="addOptionBtn" value="옵션추가"> -->
 				</td>
 			</tr>
 			<tr>
@@ -224,6 +247,60 @@
 	
 	
 	<script>
+	//옵션추가버튼클릭시 입력창 추가하기
+
+
+	$('#addOptionBtn').on('click', function(){
+		
+			var addSelect = 
+			'<tr name="add">'+
+				'<td class="tableName">재료옵션</td>'+			
+				'<td class="addOption"  colspan="3">'+
+					'<select name="addOption">'+
+						'<option value="1">콩고기 </option>'+
+						'<option value="2">야채 </option>'+
+						'<option value="3">렌틸콩 </option>'+
+						'<option value="4">치즈 </option>'+
+						'<option value="5">연어</option>'+
+					'</select>'+
+					'<select name="addPrice">'+				
+						'<option value="11">1000원</option>'+
+						'<option value="12">2000원</option>'+
+						'<option value="13">3000원</option>'+
+						'<option value="14">4000원</option>'+
+						'<option value="15">5000원</option>'+
+					'</select>'+
+					'<input type="button" class="removeOptionBtn" value="옵션삭제" name="removeOptionBtn">'+'<br>'+
+				'</td>'+
+			'</tr>';
+			var selectOpHtml = $('tr[name=add]:last');
+			selectOpHtml.after(addSelect);
+
+			
+			//삭제버튼
+			$(document).on('click','input[name=removeOptionBtn]',function(){
+				var trHtml = $(this).parent().parent();
+				trHtml.remove();
+				
+			});
+			
+ 				/* $('.addOption').append(
+				'<input type="button" class="removeOptionBtn" value="옵션삭제">'	
+			 ); */
+			/* $('.removeOptionBtn').click(function(){
+				$(this).prev().remove();
+				$(this).prev().remove();
+				$(this).next().remove();
+				$(this).next().remove();
+				$(this).remove();
+			}); */
+		});
+
+	
+	//옵션 추가하면 value값을 저장해야함
+	
+	
+	
 	$(function(){
 		$("#fileArea").hide();//버튼을 숨김
 		

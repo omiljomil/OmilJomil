@@ -97,9 +97,9 @@ public class InsertProductServlet extends HttpServlet {
 				ph.setImgChangeName(saveFiles.get(i));
 				
 				if(i == originFiles.size() - 1) {
-					ph.setType(0);//썸네일인지 아닌지 구분
+					ph.setFileLevel(0);//썸네일인지 아닌지 구분
 				}else {
-					ph.setType(1);
+					ph.setFileLevel(1);
 				}
 				
 				fileList.add(ph);

@@ -189,11 +189,7 @@
 					 location.href = '<%= request.getContextPath() %>/productDelete.pr?pNo=' + pNo;
 					 }
 			});
-			
-			 
-			 
-	
-		
+
 		//상품수정(url로 상품번호 받아와야함)
 		$('.updateProductBtn').click(function(){
 			console.log(123);

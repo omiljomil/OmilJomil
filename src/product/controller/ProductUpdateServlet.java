@@ -39,6 +39,7 @@ public class ProductUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		//해당 상품클릭시 그 번호를 찾아 데이터 가져옴
 		int pNo = Integer.parseInt(request.getParameter("pNo"));
 		
@@ -63,14 +64,19 @@ public class ProductUpdateServlet extends HttpServlet {
 				while(files.hasMoreElements()) {//데이터가 존재하면 true반환
 					String name = files.nextElement();//데이터를 얻음
 						
-						if(multiRequest.getFilesystemName(name) != null) {//rename된 파일 명을 가져옴(null이면 사진이 없다는 뜻)
-							saveFiles.add(multiRequest.getFilesystemName(name));
-							originFiles.add(multiRequest.getOriginalFileName(name));
-						}
+					if(multiRequest.getFilesystemName(name) != null) {//rename된 파일 명을 가져옴(null이면 사진이 없다는 뜻)
+						saveFiles.add(multiRequest.getFilesystemName(name));
+						originFiles.add(multiRequest.getOriginalFileName(name));
 					}
+				}
 					
 			//productWriterForm에서 입력받은 데이터 가져오기
-			String productName = multiRequest.getParameter("productName");
+			//기존 사진이름	
+//			String thumbnailImg1 = multiRequest.getParameter("thumbnailImg1");	
+//			String thumbnailImg2 = multiRequest.getParameter("thumbnailImg2");
+//			String thumbnailImg3 = multiRequest.getParameter("thumbnailImg3");
+//			String thumbnailImg4 = multiRequest.getParameter("thumbnailImg4");
+//			String productName = multiRequest.getParameter("productName");
 			int productPrice = Integer.parseInt(multiRequest.getParameter("productPrice"));
 			String ctgryName = multiRequest.getParameter("detailCategory");
 			String mtrlName = multiRequest.getParameter("mainMtrl");
@@ -100,14 +106,16 @@ public class ProductUpdateServlet extends HttpServlet {
 				int result = new ProductService().updateProduct(p, fileList);
 					
 				if(result >= 1+fileList.size()) {
-						
+//					for(int i = 0; i < saveFiles.size(); i++) {
+//						File deleteFile = new File(savePath + saveFiles.get(i));
+//						deleteFile.delete();
+//					}	
 					response.sendRedirect("ManagerProductList.pr");
 
 				}else {
 					request.setAttribute("msg", "상품 수정 실패");
 					request.getRequestDispatcher("WEB-INF/Views/common/errorPage.jsp").forward(request, response);
 						//실패하면 안에 있는 사진 삭제
-						//아 진짜 바보.. else문 밖에 있어서 계속 사진이 삭제되서 조회가 안되었음
 						for(int i = 0; i < saveFiles.size(); i++) {
 							File fail = new File(savePath + saveFiles.get(i));
 							fail.delete();
