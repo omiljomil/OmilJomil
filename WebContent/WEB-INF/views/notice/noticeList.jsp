@@ -210,18 +210,18 @@ border:1px solid darkgray;
 
       <section id="paising">
           <!--맨 처음으로 가는 버튼 -->
-           <button  class="paising-button" onclick="location.href='/SemiTest_JSPServlet/noticeList.me?currentPage=1'">◀</button>
+           <button  class="paising-button" onclick="location.href='<%=request.getContextPath()%>/noticeList.me?currentPage=1'">◀</button>
            
            <!-- 숫자버튼 -->
             <%for (int p=pi.getStartPage();p<=pi.getEndPage();p++){ %>
             <%if(p == pi.getCurrentPage()){  %>
            <button class="paising-button" id="paising-number">&nbsp;<%=p %>&nbsp;</button>
               <%} else{ %>
-                <button class="paising-button" id="paising-number" onclick="location.href='/SemiTest_JSPServlet/noticeList.me?currentPage=<%=p %>'"><%=p %></button>
+                <button class="paising-button" id="paising-number" onclick="location.href='<%=request.getContextPath()%>/noticeList.me?currentPage=<%=p %>'"><%=p %></button>
               	<%} %>
 		   <%} %> 
            
-           <button class="paising-button" onclick="location.href='/SemiTest_JSPServlet/noticeList.me?currentPage=<%=pi.getMaxPage()%>'" >▶</button>
+           <button class="paising-button" onclick="location.href='<%=request.getContextPath()%>/noticeList.me?currentPage=<%=pi.getMaxPage()%>'" >▶</button>
       </section>
       <script>
         
