@@ -2,16 +2,16 @@ package meterial.model.vo;
 
 import java.sql.Date;
 
-public class Meterial {
+public class Material {
 	private int mtrlNo;
 	private int prodNo;
 	private String mtrlName;
 	private String status;
 	private Date mtrlCt;//생성일
 
-	public Meterial() {}
+	public Material() {}
 
-	public Meterial(int mtrlNo, int prodNo, String mtrlName, String status, Date mtrlCt) {
+	public Material(int mtrlNo, int prodNo, String mtrlName, String status, Date mtrlCt) {
 		super();
 		this.mtrlNo = mtrlNo;
 		this.prodNo = prodNo;

@@ -76,7 +76,7 @@ public class ProductUpdateServlet extends HttpServlet {
 //			String thumbnailImg2 = multiRequest.getParameter("thumbnailImg2");
 //			String thumbnailImg3 = multiRequest.getParameter("thumbnailImg3");
 //			String thumbnailImg4 = multiRequest.getParameter("thumbnailImg4");
-//			String productName = multiRequest.getParameter("productName");
+			String productName = multiRequest.getParameter("productName");
 			int productPrice = Integer.parseInt(multiRequest.getParameter("productPrice"));
 			String ctgryName = multiRequest.getParameter("detailCategory");
 			String mtrlName = multiRequest.getParameter("mainMtrl");

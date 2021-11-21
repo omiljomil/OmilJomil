@@ -3,6 +3,7 @@
 <% 
 	Product p = (Product)request.getAttribute("p"); 
 	ArrayList<Photo> fileList = (ArrayList<Photo>)request.getAttribute("fileList");
+	ArrayList list = new ArrayList();
 	
 %>
 <!DOCTYPE html>
@@ -283,24 +284,10 @@
 				trHtml.remove();
 				
 			});
-			
- 				/* $('.addOption').append(
-				'<input type="button" class="removeOptionBtn" value="옵션삭제">'	
-			 ); */
-			/* $('.removeOptionBtn').click(function(){
-				$(this).prev().remove();
-				$(this).prev().remove();
-				$(this).next().remove();
-				$(this).next().remove();
-				$(this).remove();
-			}); */
-		});
+			//옵션 추가하면 value값 저장하기
+		
 
-	
-	//옵션 추가하면 value값을 저장해야함
-	
-	
-	
+	//사진
 	$(function(){
 		$("#fileArea").hide();//버튼을 숨김
 		

@@ -1,5 +1,5 @@
 package meterial.model.dao;
 
-public class MeterialDAO {
+public class MaterialDAO {
 
 }

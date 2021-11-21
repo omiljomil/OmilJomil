@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import category.model.vo.Category;
+import meterial.model.vo.Material;
 import product.model.dao.ProductDAO;
 import product.model.vo.Photo;
 import product.model.vo.PageInfo;
@@ -66,12 +67,13 @@ public class ProductService {
 	
 	
 
-	public int insertProduct(Product p, ArrayList<Photo> fileList) {
+	public int insertProduct(Product p, ArrayList<Photo> fileList, Material m) {
 		Connection conn = getConnection();
 		int result1 = pDAO.insertProduct(conn, p);
 		int result2 = pDAO.insertPhoto(conn, fileList);
+		int result3 = pDAO.insertMaterial(conn, m);
 		
-		if(result1 > 0 && result2 > 0) {
+		if(result1 > 0 && result2 > 0 && result3 > 0) {
 			commit(conn);
 		}else {
 			rollback(conn);

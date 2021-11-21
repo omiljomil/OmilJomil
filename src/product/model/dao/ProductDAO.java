@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.Properties;
 
 import category.model.vo.Category;
+import meterial.model.vo.Material;
 import product.model.vo.Product;
 import product.model.vo.ProductList;
 import product.model.vo.Photo;
@@ -411,7 +412,7 @@ public class ProductDAO {
 		return result;
 	}
 	
-public int updateProduct(Connection conn, Product p) {
+	public int updateProduct(Connection conn, Product p) {
 		
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -426,6 +427,27 @@ public int updateProduct(Connection conn, Product p) {
 			pstmt.setString(5, p.getProdTag());
 			pstmt.setString(6,  p.getShortInfo());
 			pstmt.setString(7, p.getMtrlName());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int insertMaterial(Connection conn, Material m) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertMeterial");
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, m.getMtrlName());
+
 			
 			result = pstmt.executeUpdate();
 			

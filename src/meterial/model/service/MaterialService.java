@@ -1,5 +1,5 @@
 package meterial.model.service;
 
-public class MeterialService {
+public class MaterialService {
 
 }

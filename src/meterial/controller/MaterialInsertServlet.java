@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class InsertMeterialServlet
+ * Servlet implementation class MaterialInsertServlet
  */
-@WebServlet("/insertMtrl.bo")
-public class InsertMeterialServlet extends HttpServlet {
+@WebServlet("/MaterialInsertServlet")
+public class MaterialInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InsertMeterialServlet() {
+    public MaterialInsertServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
