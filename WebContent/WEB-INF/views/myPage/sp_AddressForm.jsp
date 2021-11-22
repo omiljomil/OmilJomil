@@ -135,7 +135,7 @@
 	 function UpdateShppingList(no){
 				window.open('updateShppingForm.me?Ship_no='+no,'insertShppingForm','width=500,height=600');
 			};
-			
+		
 		
 	 
 	

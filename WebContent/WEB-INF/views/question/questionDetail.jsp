@@ -1,5 +1,12 @@
+<%@page import="question.model.vo.Question"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+    	Question q = (Question)request.getAttribute("q");
+    	String title = (String)request.getAttribute("title");
+    	String brackets = (String)request.getAttribute("brackets");
+    	
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,25 +76,17 @@
 	<table>
 		<tr>
 			<td>말머리</td>
-			<td><select name="brackets" id="brackets">
-				<option value="(주문)">주문</option>
-				<option value="(회원 정보)">회원 정보</option>
-				<option value="(제품)">제품</option>
-				<option value="(기타)">기타</option>
-			</select></td>
+			<td><input type="text" disabled value="<%= brackets%>"/></td>
 		
 		</tr>
 		<tr>
 			<td>제목</td>
-			<td colspan="2" width="260px;"><input type="text" name="title"/></td>
+			<td colspan="2" width="260px;"><input type="text" name="title" disabled value="<%=title %>"/></td>
 			
 		</tr>
 		<tr>
 			<td>작성자</td>
-			<td colspan="2"><input type="text" value="<%= loginUser.getUserId()%>" disabled/>
-				<input type="hidden" name="write" value="<%= loginUser.getUserId()%>"/>
-			</td>
-			
+			<td colspan="2"><input type="text" name="write" value="<%=q.getUser_id().replaceAll("(?<=.{3}).", "*") %>" disabled/></td>
 		</tr>
 	</table>
 	</div>
@@ -96,11 +95,13 @@
 	<h3 style="margin-top: 20px;">문의 작성</h3>
 	
 	<div class="QuestionTextArea">
-		<textarea name="questionContent" id="questionContent" cols="140" rows="13" style="resize:none;"></textarea>
+		<textarea name="questionContent" id="questionContent" cols="140" rows="13" style="resize:none; " disabled><%=q.getQst_cont() %></textarea>
 	</div>
+	<%if( loginUser.getUserId().equals(q.getUser_id())){ %>
 	<div>
-		<input type="submit" value="등록"/>
+		<input type="button" value="삭제" onclick="deleteQuestion();"/>
 	</div>
+	<%} %>
 	</form>
 	  <!--
 	<div class="quesImgArea">
@@ -121,6 +122,7 @@
 </div>
 -->
 </body>
+<!-- 
 <script>
 
 	$('#quesImg').change(function(){
@@ -143,5 +145,14 @@
 			$("#quesImg").click();
 		});
 	});
+	</script>
+	-->
+	<script>
+	 function deleteQuestion(){
+			var bool = confirm("정말 삭제하시겠습니까?");
+			if(bool){
+				location.href='<%= request.getContextPath()%>/deleteQuestion.qs?qId=<%= q.getUser_id()%>'
+			}
+		}
 	</script>
 </html>
