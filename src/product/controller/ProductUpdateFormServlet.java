@@ -39,7 +39,9 @@ public class ProductUpdateFormServlet extends HttpServlet {
 		ProductService service = new ProductService();
 		Product product = service.selectProduct(pNo);
 		ArrayList<Photo> fileList = service.selectPhoto(pNo);
-				
+		System.out.println(fileList);
+		System.out.println(product);
+		System.out.println(pNo);		
 		String page = null;
 		if(fileList != null) {
 					
