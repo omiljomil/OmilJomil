@@ -1,4 +1,4 @@
-![logo](https://user-images.githubusercontent.com/85299367/145218665-5ed2ffba-19a0-4af3-9f73-94eca4baf28a.png)
+![logo](https://user-images.githubusercontent.com/85299367/145218665-5ed2ffba-19a0-4af3-9f73-94eca4baf28a.png)  
 BeginVegan
 =================
 BeginVegan(팀명:오밀조밀)은 약 6주동안 준비한 JspServlet 중심의 semi project입니다. 5개월 동안 배운 것을 활용하여 만든것이며, 5명의 팀원이 함께 만들었습니다.
@@ -15,4 +15,8 @@ BeginVegan프로젝트는 이름 그대로 비건을 시작하자는 뜻으로 �
 
 개발 언어 및 API
 =========================
-![세미프로젝트1ppt-020](https://user-images.githubusercontent.com/85299367/145222186-5ad30f63-2c32-4e6b-952d-4615ae0b74cc.jpg)
+![세미프로젝트1ppt-020](https://user-images.githubusercontent.com/85299367/145222186-5ad30f63-2c32-4e6b-952d-4615ae0b74cc.jpg)  
+
+개발환경 
+==============
+
