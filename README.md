@@ -19,4 +19,18 @@ BeginVegan프로젝트는 이름 그대로 비건을 시작하자는 뜻으로 �
 
 개발환경 
 ==============
+os : window 10
+Server : Apache Tomcat 9.0
+Database : Oracle 12g
+Development Tool : Eclipse, sql Developer
+Development Language :  JAVA , HTML5, CSS3, JavaScript, jQuery, SQL, JSP, Servlet
+Team Coop : Github, ERDCloud, kakaoOven
+Open API : Kakao Map API, iamport api
+
+DB RED
+===================
+![ERD](https://user-images.githubusercontent.com/85299367/145320573-71f18416-9991-4644-a212-f6cc7092c25d.PNG)
+
+구현 기능 
+===============
 
